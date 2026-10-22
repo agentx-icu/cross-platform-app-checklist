@@ -441,6 +441,18 @@ Studio profilers).
   arm64 device library. Check deployment targets against every bundled
   native framework, and exercise macOS / Windows ARM dependencies where
   supported. Verify desktop releases on a clean machine (W4).
+- Windows target selection can follow the **Dart process ABI**, not the
+  runner CPU: [Flutter 3.41.9's build command](https://github.com/flutter/flutter/blob/3.41.9/packages/flutter_tools/lib/src/commands/build_windows.dart#L67-L70)
+  uses [hostPlatform / Abi.current()](https://github.com/flutter/flutter/blob/3.41.9/packages/flutter_tools/lib/src/base/os.dart#L478-L485),
+  and its [SDK bootstrap](https://github.com/flutter/flutter/blob/3.41.9/bin/internal/update_dart_sdk.ps1#L50-L65)
+  can fall back to x64. Record framework / engine revisions and the actual
+  Dart ABI, verify target SDK / engine availability, then inspect every
+  packaged native binary (X6). Changing CMake paths or package labels cannot
+  supply a missing engine or supported cross-compilation. Check the pinned
+  release's support, not only the current [platform matrix](https://docs.flutter.dev/reference/supported-platforms#previous-flutter-versions);
+  [maintainer discussion](https://github.com/flutter/flutter/issues/186730#issuecomment-4511188861)
+  documents version-dependent limits. This example is not a permanent
+  minimum-version rule or proof that an app's ARM64 build / smoke test passed.
 - Android Flutter apps include native engine / plugin libraries. Validate
   **all** bundled `.so` files and APK / bundle packaging for 16 KB page
   compatibility, then run on a 16 KB device / emulator. Updating Dart code

@@ -116,6 +116,12 @@ is rejected. It does **not** validate remote policy freshness, agent
 compliance, an app's binaries or a real store submission. Capture those
 separately using the [release evidence template](references/stores.md#report-record).
 
+For native releases, [X6](references/testing.md#x6-packaged-release-verification--p0-for-release)
+also requires an app / engine / plugin architecture inventory from final
+binary headers, separate from host CPU, tool ABI and package labels. Retain
+installer / package metadata and store-target comparisons as well as
+target-machine smoke evidence; this repository's CI does not provide them.
+
 ## License
 
 GPL-3.0, see [LICENSE](LICENSE).

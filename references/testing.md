@@ -247,6 +247,7 @@ Use [permissions](permissions.md) for the required declarations and
 
 | Artifact / environment | Check and failure prevented |
 |---|---|
+| Native payload architecture | Inventory the final app, engine and loaded plugin / FFI binaries against the declared target ABI: PE `Machine` (`dumpbin /headers`), Mach-O slices (`lipo -archs` on each executable), ELF class / machine / ABI flags (`readelf -h -A`). Every in-process module needs a compatible target ABI / slice; document intentional universal / hybrid binaries and out-of-process helpers separately. Package labels and CI job names are not binary evidence. Sources: [PE headers](https://learn.microsoft.com/en-us/windows/win32/debug/pe-format#machine-types), [Mach-O inspection](https://developer.apple.com/documentation/apple-silicon/building-a-universal-macos-binary), [ELF inspection](https://sourceware.org/binutils/docs/binutils/readelf.html). |
 | Android release APKs generated from the shipped bundle | Inspect final permissions, SDK levels, components and hardware requirements; run release shrinking / obfuscation and invoke plugins / native libraries. The [manifest merger](https://developer.android.com/build/manage-manifests) includes variants and dependencies, so the main source manifest is insufficient |
 | Android device availability | Check Play device filtering as well as sideload installation. Optional hardware permissions can imply required features; inspect camera and autofocus separately, then test without the hardware. See [`uses-feature`](https://developer.android.com/guide/topics/manifest/uses-feature-element) |
 | Android native libraries, including framework / SDK binaries | Check packaged ELF and ZIP alignment and run on a 16 KB page-size system with compatibility fallback disabled where available; a passing 4 KB emulator is insufficient. Follow the current [16 KB testing procedure](https://developer.android.com/guide/practices/page-sizes) and record the measured page size |
@@ -270,6 +271,14 @@ to shared code, plugins, native code or dependencies:
   [Git index mode handling](https://git-scm.com/docs/git-update-index).
 - Install that build and run a smoke test: launch, open the local
   database / storage, and invoke each changed plugin or native method.
+  Retain the payload architecture inventory with the artifact hash; prove
+  the gate rejects a mismatched native-module fixture. Header checks do not
+  replace target-machine loading / smoke tests or establish native execution.
+  Compare actual package metadata (for example MSI
+  [Template Summary](https://learn.microsoft.com/en-us/windows/win32/msi/template-summary)
+  or MSIX [Identity architecture](https://learn.microsoft.com/en-us/uwp/schemas/appxpackage/uapmanifestschema/element-f-identity))
+  with the payload and store target too; changing a filename does not set
+  the installer's target architecture.
 - Release credentials being present is only an input check. Verify the
   final artifact's actual signing identity against the channel's expected
   identity, reject unintended debug / ad-hoc fallback for distribution,
