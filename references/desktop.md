@@ -164,6 +164,12 @@ distinguish Mac App Store / Developer ID, Microsoft Store MSIX / MSI/EXE,
 Flathub / Snap and other selected repository paths. Their account, signing,
 review and update rules differ.
 
+- Record runner CPU / virtualization, tool-process ABI / emulation, build
+  target and package / store architecture separately. Pin SDK / compiler / engine
+  revisions and verify target artifacts exist. Missing assets must stop
+  that required target, not silently fall back and relabel another build.
+  Use cross-compilation only where supported and record it; an ARM64 runner
+  or renamed output directory is not evidence of a native ARM64 payload.
 - **macOS:** outside the Mac App Store, the standard Developer ID release
   path uses hardened runtime, signing, notarization and a stapled ticket
   where supported by the deliverable. Mac App Store signing / sandboxing is

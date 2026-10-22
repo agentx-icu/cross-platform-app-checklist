@@ -91,6 +91,11 @@ reference 错误锚点会被拒绝。这些检查不验证远程政策时效、a
 应用二进制或真实商店提审；后者按 [发布证据模板](references/stores.zh-CN.md#报告记录)
 单独记录。
 
+原生发布还需按 [X6](references/testing.md#x6-packaged-release-verification--p0-for-release)
+检查最终 app／engine／plugin 的二进制架构清单，分开记录 host CPU、工具
+进程 ABI、目标和包标签；另核对安装器／包元数据与商店目标，并保留目标机器
+加载／smoke 测试证据。本仓库 CI 不提供应用架构或真机验证结论。
+
 ## 许可证
 
 GPL-3.0，见 [LICENSE](LICENSE)。
