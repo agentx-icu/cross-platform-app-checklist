@@ -80,17 +80,28 @@ and [Windows session end](https://learn.microsoft.com/en-us/windows/win32/shutdo
   reliable way back. Starting a second instance should reopen the existing
   window if that is the single-instance policy; see [B5](lifecycle.md).
 - Distinguish window close from application quit. A quit request must not
-  be intercepted by the close-to-tray handler. Release capture, background
-  workers, tray objects and interprocess locks with bounded cleanup; do not
-  wait forever for the network. Persist important state before shutdown,
-  since termination callbacks are not guaranteed.
+  be intercepted by the close-to-tray handler. Route concurrent quit
+  entry points through one shared completion. Separate a cancellable local
+  checkpoint from irreversible resource disposal: a save failure may keep
+  the session open only while its services are still usable. Once teardown
+  starts, join it or reach an explicit terminal / recovery state; do not
+  return to an apparently active UI backed by disposed services. A deadline
+  on waiting does not itself cancel the work (see [Flutter notes](flutter.md)).
+  Bound network-dependent work through actual cancellation / checkpointing,
+  keep writer ownership until writers stop (B5), and persist important
+  state during use since termination callbacks are not guaranteed.
 - Use the platform's appropriate menu-bar / tray artwork; see
   [display.md D5](display.md).
 
 **Verify.** Close the last window, reopen, quit from app menu / Dock / tray,
 launch twice and end the OS session with unsaved state. Test tray missing,
 initialisation failure and shell restart. Confirm the process exits on quit,
-no capture continues and restart recovers saved work.
+no capture continues and restart recovers saved work. Inject a failed save,
+a disposal that completes after the wait deadline, and overlapping quit
+requests. Assert one teardown, no late disposal after a cancelled quit,
+and no second writer while the original is still shutting down. Native
+session-end / forced termination is a separate case from a cancellable
+framework exit request (B2, X7).
 
 ## W3 File system — P1
 
@@ -153,8 +164,15 @@ working on a machine with the SDK installed is insufficient evidence.
   path uses hardened runtime, signing, notarization and a stapled ticket
   where supported by the deliverable. Mac App Store signing / sandboxing is
   a different path and does not require a separate notarization submission.
-  Sign nested frameworks / helpers correctly and verify the final artifact;
-  modifying it after signing invalidates the signature. See
+  Finish bundle mutations (for example native-library copying,
+  `install_name_tool`, stripping and privacy-resource generation) before
+  final signing. Sign nested code from the inside out, then its containing
+  frameworks / helpers and outer app; re-sign affected containers after
+  any later mutation. `codesign --deep` is useful for recursive
+  **verification**, not the normal signing strategy. Verify the app
+  extracted / installed from the final deliverable, not just an earlier
+  staging directory. See [Apple TN2206](https://developer.apple.com/library/archive/technotes/tn2206/_index.html)
+  and
   [notarization](https://developer.apple.com/documentation/security/notarizing-macos-software-before-distribution).
 - Match functional entitlements across build configurations, but retain
   deliberate differences: debugging entitlements such as `get-task-allow`

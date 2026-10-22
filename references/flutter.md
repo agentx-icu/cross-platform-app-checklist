@@ -236,8 +236,22 @@ handler state as shipped, and exchange typed content with real apps.
   do not assume a UI navigator is available there.
 - Desktop window / single-instance packages need a per-platform capability
   check. `window_manager` / `screen_retriever` do not remove Wayland
-  placement restrictions. A lock must distinguish a live owner from stale
-  state and route second-launch arguments to the intended window (W1 / B5).
+  placement restrictions. With `RandomAccessFile.lock`, Linux / macOS
+  locks are advisory and process-wide: closing another descriptor for the
+  same file can release them, and another isolate can acquire the lock.
+  Windows locks belong to a handle and require matching unlock ranges;
+  other handles cannot write the locked region. Keep a dedicated handle
+  for ownership and separate activation metadata; verify with independent
+  processes on each OS (B5), not only isolates. See
+  [Dart lock semantics](https://api.dart.dev/dart-io/RandomAccessFile/lock.html).
+- `Future.timeout` stops waiting; it does **not** cancel the source future.
+  A timed-out save / disconnect / dispose may still mutate state later.
+  Share and join the original quit future. Before resuming a session after
+  teardown began, confirm the operation supports cancellation and services
+  remain usable, or rebuild them explicitly. Catching `TimeoutException`
+  and returning `AppExitResponse.cancel` does not undo disposal. Test late
+  completion explicitly (W2). See
+  [`Future.timeout`](https://api.dart.dev/dart-async/Future/timeout.html).
 - An Android foreground-service plugin still needs the host manifest,
   matching service type / permissions and a legally startable service.
   Follow [B4](lifecycle.md); a Dart timer is not background execution policy.
