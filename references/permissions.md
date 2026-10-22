@@ -206,6 +206,9 @@ Sources: [Android selected photos](https://developer.android.com/about/versions/
 **Rule.** Review the shipped binary and SDK behavior against the current
 submission rules; permission prompts, privacy manifests and store disclosures
 are separate obligations. Record the policy check date and applicable app type.
+Select the actual store / territory / package model using the
+[store release guide](stores.md) ([简体中文](stores.zh-CN.md)); it also covers
+publisher verification, submission access and channel-specific evidence.
 
 - **Apple:** bundle valid `PrivacyInfo.xcprivacy` files where required for
   the app / SDK, including SDKs on Apple's required list and applicable SDK
@@ -481,6 +484,9 @@ account deletion, third-party login, user-generated content, age rating,
 children's audience and localized store metadata. These are separate from
 privacy declarations ([P4](#p4-store-privacy-requirements--p0-for-release))
 and from the binary's own localization ([display.md, D2](display.md)).
+For publisher / listing ownership, review credentials, store release controls
+and desktop / regional channels, use [stores.md](stores.md). A passed unit
+test does not establish that a required store-console answer was completed.
 
 - **Account deletion.** If the app supports account creation, users must be
   able to start deletion of the account and its associated data in the app

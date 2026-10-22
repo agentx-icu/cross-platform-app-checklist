@@ -159,6 +159,10 @@ last valid document survives. Check uninstall / update data-retention policy.
 **Rule.** Validate the artifact users install on a clean system, separately
 for every distribution channel and architecture. A development runner
 working on a machine with the SDK installed is insufficient evidence.
+Use the [store release guide](stores.md) ([简体中文](stores.zh-CN.md)) to
+distinguish Mac App Store / Developer ID, Microsoft Store MSIX / MSI/EXE,
+Flathub / Snap and other selected repository paths. Their account, signing,
+review and update rules differ.
 
 - **macOS:** outside the Mac App Store, the standard Developer ID release
   path uses hardened runtime, signing, notarization and a stapled ticket
