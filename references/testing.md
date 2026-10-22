@@ -262,8 +262,24 @@ to shared code, plugins, native code or dependencies:
 - Require a release-mode build of every shipped target on the host its
   toolchain needs (for example macOS with Xcode for Apple targets) and
   publish the artifacts that X6 inspects.
+- Run the documented packaging entry point from a clean checkout, with
+  only declared tools / generated inputs. A local `chmod` or an ignored
+  helper can hide a broken CI path. On POSIX runners, helpers executed
+  directly need a committed executable bit (`git ls-files --stage`);
+  alternatively invoke the documented interpreter explicitly. See
+  [Git index mode handling](https://git-scm.com/docs/git-update-index).
 - Install that build and run a smoke test: launch, open the local
   database / storage, and invoke each changed plugin or native method.
+- Release credentials being present is only an input check. Verify the
+  final artifact's actual signing identity against the channel's expected
+  identity, reject unintended debug / ad-hoc fallback for distribution,
+  and inspect after the last packaging mutation (W4). For Android, check
+  the produced APK / AAB certificates; distinguish the upload key from
+  Play App Signing's distribution key. See
+  [Android app signing](https://developer.android.com/studio/publish/app-signing).
+  Test a missing-credential path and a wrongly signed fixture so the gate
+  proves it rejects an unsafe release; development artifacts may use an
+  explicitly separate policy.
 - Keep minimum-OS and API-boundary cases explicit: run the oldest supported
   OS (X1) as well as the current one, and guard newer native APIs at
   runtime, as with Android's [`SDK_INT`

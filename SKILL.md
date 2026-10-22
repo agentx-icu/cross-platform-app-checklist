@@ -173,14 +173,16 @@ degraded; **P2** — enhancement or niche.
   handled.
 - **B5 Single instance and multiple windows.** A second launch, an Android
   multi-instance window or an iPad second scene does not contend for the
-  same data; the design either supports several windows or prevents them.
+  same data; ownership is established before stores open, with activation
+  queued until the owning window is ready.
 - **B6 Durable transfers and retry ownership.** Persist operation ownership
   and reconcile background jobs after restart; retries, cancellation and
   account changes cannot duplicate or misattribute results.
 - **B7 Local-data migrations.** Versioned, atomic or resumable upgrades from
   every supported earlier release, including skipped releases; no
   destructive fallback for user data and a safe answer for data written by
-  a newer version (downgrade, restore).
+  a newer version in either the primary store or backup (downgrade,
+  restore), on both reads and writes.
 - **B8 Offline state and sync conflicts.** Offline reads / writes are
   documented; local edits carry a durable sync state; edit / edit and
   edit / delete conflicts follow a defined rule based on server versions,
@@ -262,7 +264,7 @@ degraded; **P2** — enhancement or niche.
 - **W2 Close vs quit vs tray.** Platform-correct semantics for closing the
   last window, quitting (Cmd+Q, taskbar, logout / shutdown), and
   minimising to tray; tray / menu-bar support gaps per desktop environment
-  never crash startup.
+  never crash startup; a cancelled quit cannot leave teardown running.
 - **W3 File system.** Per-OS app data, cache and documents directories;
   separators, case-insensitive and case-preserving file systems, long paths,
   non-ASCII user names; never write next to the executable.

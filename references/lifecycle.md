@@ -269,11 +269,22 @@ Sources: [Android SystemClock](https://developer.android.com/reference/android/o
 **Rule.** Choose a window / process ownership model; resizing support is
 not an instance-control mechanism.
 
-- Desktop: if only one instance is supported, use an OS-appropriate
-  per-user lock / named mutex / D-Bus ownership and safely forward second
-  launch arguments. Handle a stale owner and a launch during initialization;
-  don't drop URL / file activation. Window placement belongs in
+- Desktop: if only one writer is supported, acquire an OS-appropriate
+  per-user lock / named mutex / D-Bus ownership **before** opening stores,
+  running migrations or starting background writers. Scope ownership to
+  the data being protected (for example a profile), and retain it until
+  those writers have stopped. A PID file or in-memory flag alone does not
+  establish exclusive ownership. Window placement belongs in
   [desktop.md, W1](desktop.md).
+- Keep launch forwarding separate from ownership. With file locks, do not
+  delete / replace the live lock file: contenders can otherwise lock
+  different files at the same path. Do not assume another handle can read
+  a locked region; Windows exclusive byte-range locks deny that access.
+  A separately published activation sidecar is one option; validate its
+  current owner and use a bounded acknowledgement before the secondary
+  exits. Buffer accepted activation until account / navigation readiness
+  (B3). Failed forwarding must not silently open a second writer; report a
+  recoverable startup error when ownership cannot be established.
 - Android: understand task affinity, `launchMode`, intent flags and
   `onNewIntent()` together. `FLAG_ACTIVITY_MULTIPLE_TASK` can create separate
   tasks; `android:resizeableActivity` controls resizing, not a single-instance
@@ -287,13 +298,19 @@ not an instance-control mechanism.
   concurrency is not inherently corrupting; uncoordinated migrations and
   read-modify-write operations can corrupt or overwrite data.
 
-**Verify.** Launch twice, activate a URL while startup is pending, and open
-two windows on the same item. Edit, close, sign out and migrate with another
-window open; check no lost edits, duplicate notification routes or orphaned
-camera / audio owners.
+**Verify.** Use independent OS processes, including simultaneous launch and
+a second launch before the first has opened its stores / shown a window.
+Assert exactly one writer and one delivered activation. Crash the owner,
+relaunch with stale forwarding metadata, and verify ownership can recover
+without wiping data. Repeat on each shipped desktop OS: a same-process
+isolate test cannot establish process-lock behaviour. For supported
+multi-window operation, edit, close, sign out and migrate with another
+window open; check no lost edits, duplicate routes or orphaned resources.
 
 Sources: [Android tasks and launch modes](https://developer.android.com/guide/components/activities/tasks-and-back-stack),
-[Apple scene manifest](https://developer.apple.com/documentation/bundleresources/information-property-list/uiapplicationscenemanifest).
+[Apple scene manifest](https://developer.apple.com/documentation/bundleresources/information-property-list/uiapplicationscenemanifest),
+[Windows byte-range locks](https://learn.microsoft.com/en-us/windows/win32/fileio/locking-and-unlocking-byte-ranges-in-files).
+For Dart's process / handle differences, see [Flutter notes](flutter.md).
 
 ## B6 Durable transfers and retry ownership — P1
 
@@ -359,6 +376,18 @@ rebuilt.
   a beta, or a restored backup. Refuse to open it with a clear message, or
   read it compatibly; do not wipe it. Backup / restore and device transfer
   can deliver data written by an older or newer app version.
+- Check every retained primary **and** recovery / backup candidate
+  independently before selecting an older fallback or rotating files.
+  Incompatible newer data is not corruption: do not quarantine it, prune
+  it, replace it with defaults, or overwrite it through an older backup.
+  Preserve the unsupported-version error through recovery, repository and
+  startup catches; do not publish a writable default controller after
+  load failure. Explain that an app update is needed and retain the data.
+- Apply the same compatibility guard to direct writes, merges and delayed
+  saves, not just the initial read. A cached object can outlive a restore
+  or format change. Serialize the version check and mutation under the
+  store's writer ownership / transaction so another writer cannot change
+  the format between them.
 - Migrate preferences and secure-storage keys explicitly when renaming or
   re-encrypting. Run migrations once per store under the single-owner rules
   of [B5](#b5-single-instance-and-multiple-windows--p1): a second window,
@@ -378,7 +407,11 @@ exported schemas where the store supports them; schemas alone cannot prove
 content survives. Upgrade each fixture to the current version and assert content,
 relationships, drafts, settings and pending operations survive. Kill the
 process mid-migration, fill the disk, and relaunch: the store must resume or
-roll back. Open a newer-version store with the older build. On Android Room,
+roll back. With the older build, test newer primary + older backup and
+older / missing / corrupt primary + newer backup. Try cold start, recovery,
+direct save and a delayed save from an already loaded object. Assert every
+newer file remains byte-for-byte intact, no writable defaults escape, and
+the user gets the upgrade explanation. On Android Room,
 use `MigrationTestHelper` with exported schemas; it validates the schema,
 while data assertions remain yours ([testing.md](testing.md)).
 
