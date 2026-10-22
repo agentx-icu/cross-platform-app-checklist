@@ -305,6 +305,10 @@ path as a standard user without developer permission overrides.
 Store validation and privacy declarations need their own evidence; an
 accepted upload or local permission prompt is not approval of all policies.
 See P4 in [permissions](permissions.md).
+For submission readiness, use the channel × territory evidence matrix in
+[stores.md](stores.md#report-record) ([简体中文](stores.zh-CN.md#报告记录));
+keep local artifact tests, account-owner console checks and actual store
+review disposition separate.
 
 ## X7 Interrupted flows and access changes — P0 for stateful / permissioned flows
 

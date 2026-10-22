@@ -325,6 +325,10 @@ degraded; **P2** — enhancement or niche.
 
 ## Framework notes and sources
 
+- Store submissions and updates: select the actual channel in
+  [references/stores.md](references/stores.md)
+  ([简体中文](references/stores.zh-CN.md)) for P4 / P8 / P9 / W4 / X6;
+  record required vs conditional vs recommended checks and console evidence.
 - Flutter specifics (APIs, plugins and their traps): [references/flutter.md](references/flutter.md).
 - Official guidelines this checklist aligns with, dated version / store
   gates and related projects: [references/sources.md](references/sources.md).

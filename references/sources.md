@@ -66,6 +66,25 @@ page partly unreadable or history inconsistent.
 | [Apple social-media age-rating answers](https://developer.apple.com/news/?id=tlur8uvi) required for new apps, updates and alternative-distribution notarization | From September 2026 (exact day not stated) | high |
 | [Play excessive partial wake locks](https://developer.android.com/google/play/vitals/excessive-wakelock): 2 or more cumulative hours of non-exempt locks in 24 h while backgrounded or in a foreground service; more than 5 % of sessions over 28 days can affect visibility | From [2026-03-01](https://developer.android.com/blog/posts/raising-the-bar-on-battery-performance-excessive-partial-wake-locks-metric-is-now-out-of-beta) | high |
 
+## Store release source map
+
+Use [stores.md](stores.md) ([简体中文](stores.zh-CN.md)) for dated, directly
+linked official sources and evidence under **P4 / P8 / P9 / W4 / X6**:
+
+| Scope | Source families / applicability |
+|---|---|
+| Apple App Store | App Store Connect, App Review; iOS / iPadOS / macOS, with Mac App Store separated from outside-Store Developer ID / notarization |
+| Google Play | Play Console setup, access, declarations, testing / production eligibility, signing and release controls |
+| Microsoft Store | Partner Center and current formal Store Policies; MSIX/AppX re-signing is separate from non-game PC hosted MSI/EXE rules |
+| Flathub / Snap Store | Inclusion / confinement / permission and submission rules; optional quality / promotion measures are labelled separately |
+| Selected mainland China Android channels | Huawei, Xiaomi, OPPO official submission / review sources and MIIT scope; partial public access is explicitly marked for owner portal follow-up |
+| Other chosen channels | WinGet, Homebrew Cask, F-Droid and direct downloads / distro repositories; none is required merely because it is listed |
+
+The guide records a **2026-10-22** public-source check, including access
+limitations. Recheck live policies and the selected console for each
+release. These document checks are not evidence of an app submission,
+legal applicability determination or store approval.
+
 ## Related projects
 
 | Project | Worth borrowing | Licence |

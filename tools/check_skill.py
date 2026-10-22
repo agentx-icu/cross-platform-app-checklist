@@ -113,7 +113,7 @@ def main():
     text = SKILL.read_text(encoding="utf-8")
     check_frontmatter(text)
     check_ids(text)
-    for path in [SKILL, ROOT / "README.md", *sorted(REFS.glob("*.md"))]:
+    for path in [SKILL, *sorted(ROOT.glob("README*.md")), *sorted(REFS.glob("*.md"))]:
         check_file(path)
     for e in errors:
         print(e)
