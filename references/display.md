@@ -38,10 +38,21 @@ layout tests, not as a replacement for native settings.
   Re-measure line height, baselines and wrapping while the app is running.
 - Bold Text, fallback fonts and accents can increase glyph bounds even at
   the same nominal font size.
+- Custom text renderers and cached layouts miss Bold Text. Check whether
+  the framework already applies the preference before adding an
+  adjustment. Apple exposes
+  [`UIAccessibility.isBoldTextEnabled`](https://developer.apple.com/documentation/uikit/uiaccessibility/isboldtextenabled);
+  Android 12+ (API 31) reports the weight increase as
+  `Configuration.fontWeightAdjustment`. Canvas or custom-drawn text must
+  select an available heavier weight (keep one bundled) and invalidate
+  measurements when the setting changes while running. See
+  [Android `Configuration`](https://developer.android.com/reference/android/content/res/Configuration#fontWeightAdjustment)
+  and [Flutter text notes](flutter.md) for framework handling.
 
 **Verify.** Run [X2](testing.md) with real fonts and native maximum settings;
-inspect clipping and fading as well as reported overflow. Change text size
-with a detail, dialog and editor open. Read every primary label and error
+inspect clipping and fading as well as reported overflow. Repeat with Bold
+Text on at the largest size. Change text size and Bold Text with a detail,
+dialog and editor open. Read every primary label and error
 without shrinking it; ensure actions remain reachable under [L5–L7](layout.md).
 
 ## D2 Localised and long text — P1
@@ -211,10 +222,31 @@ setting changes. Use semantic colors with a tested high-contrast fallback.
   Use system colors and an opaque fallback where needed.
 - System bars, native dialogs and embedded web content remain in the old
   theme after only the main view updates.
+- Colour filters, greyscale and inversion erase a colour-only distinction
+  that passed review in normal colour: red / green status, a coloured
+  selection, chart series. These filters apply system-wide, so the app
+  cannot rely on hue; the redundant cue from the colour-alone trap above
+  must survive them. Apple's
+  [`UIAccessibility.isGrayscaleEnabled`](https://developer.apple.com/documentation/uikit/uiaccessibility/isgrayscaleenabled)
+  reports the grayscale preference; do not infer general colour-filter
+  coverage from that Boolean. Differentiate Without Color is a separate
+  setting. Under Smart Invert,
+  photos, video and similar content can opt out with
+  [`accessibilityIgnoresInvertColors`](https://developer.apple.com/documentation/uikit/uiview/accessibilityignoresinvertcolors).
+  Android has colour correction, greyscale and colour inversion; see
+  [Android display settings](https://support.google.com/accessibility/android/answer/11183305).
+  Windows 11 has colour filters in its accessibility settings.
 
 **Verify.** Measure secondary text, errors, selection, focus and disabled
 states in both themes and over realistic content. Toggle appearance and
 contrast settings with dialogs open; inspect native and web surfaces too.
+Run the main flows under greyscale and one red / green filter (Apple Color
+Filters, Android colour correction, Windows colour filters) and with colour
+inversion; every state and chart must stay distinguishable, and under
+Apple Smart Invert photos and video must not appear inverted (Android's
+inversion applies to everything, media included). See
+[Apple display settings](https://support.apple.com/en-us/111773)
+and the [Apple accessibility testing guide](https://developer.apple.com/documentation/accessibility/performing-accessibility-testing-for-your-app).
 
 ## D7 Reduced motion and animated content — P1
 

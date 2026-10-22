@@ -110,12 +110,31 @@ need not change orientation or cross a breakpoint.
   stale during resize. Recompute them in the current coordinate space.
 - The transition lays out a frame at the new width using the old mode;
   transient overflow still counts as a defect.
+- Android desktop windowing / connected displays: a window can move to a
+  display with a very different density, and the `Display` behind a
+  context can change. Read metrics, density and resources from the
+  Activity (or another UI) context, or Compose `LocalConfiguration` /
+  `LocalDensity` / window metrics, never from the application context or a
+  `Display` / `Build.MODEL` value cached at startup; that keeps phone
+  density and sizes on a monitor. If the external display is disconnected
+  the system moves the Activity to the primary display, which can recreate
+  it; the same state-restoration rules apply. Desktop windowing is stable
+  in Android 16 on compatible tablets. Connected-display support reached
+  general availability with Android 16 QPR3 (announced 3 March 2026) on
+  supported devices; check the actual device and OS build before claiming
+  support. See [connected-display availability](https://developer.android.com/blog/posts/android-devices-extend-seamlessly-to-connected-displays)
+  and [implementation guidance](https://developer.android.com/develop/adaptive-apps/guides/support-connected-displays).
+  Second instances and task movement belong to [B5](lifecycle.md); device
+  coverage to [X1](testing.md).
 
 **Verify.** Rotate / resize across a breakpoint with a draft, selection and
 scrolled detail open; also resize without crossing it. Assert content and
 session continuity, and that one back action returns to the expected list.
 Exercise actual Android Activity recreation as well as framework relayout.
 On Android 17+, also attach / detach an input device without a restart.
+Where Android connected displays are supported, move an editor with an open
+popup between displays of different density, maximise / restore it, then
+unplug the monitor; check sizes, hit testing, state and focus afterwards.
 
 ## L4 Safe areas and system bars — P0
 
@@ -147,11 +166,40 @@ Custom title-bar integration belongs to [W1](desktop.md).
   local to the control, using the [system gesture guidance](https://developer.android.com/develop/ui/views/touch-and-input/gestures/gesturenav).
 - Insets can change when bars hide / reappear or a freeform caption bar
   appears. Update layout and bar-icon contrast while running.
+- Android desktop windowing gives every app window a header bar, even in
+  immersive mode, and the system draws its close / maximise controls over
+  app content. An app that draws into the caption area
+  (`APPEARANCE_TRANSPARENT_CAPTION_BAR_BACKGROUND`) must size it from
+  `WindowInsets.captionBar`, keep its own controls out of the system
+  elements' bounding rects
+  (`WindowInsets.getBoundingRects(WindowInsets.Type.captionBar())`, API 35+),
+  request priority input for interactive caption content with
+  `setSystemGestureExclusionRects()`, and set caption contrast with
+  `APPEARANCE_LIGHT_CAPTION_BARS`. A top bar padded only for the status bar
+  ends up under the header. Insets must be re-read for each window after a
+  move to another display. See [desktop windowing](https://developer.android.com/develop/ui/compose/layouts/adaptive/support-desktop-windowing).
+- iPadOS 26 places window controls on the leading edge of the toolbar.
+  For apps not updated for iPadOS 26 the system adds a permanent safe area
+  above the toolbar for compatibility; Apple recommends wrapping the toolbar
+  around the controls instead. System components such as
+  `UINavigationBar` arrange their items around the controls automatically;
+  custom toolbars and headers must avoid them using
+  `UIView.LayoutRegion.margins(cornerAdaptation:)` layout guides (UIKit) or
+  `containerCornerOffset(_:sizeToFit:)` (SwiftUI), and can choose a scene's
+  `UIWindowScene.WindowingControlStyle`. A cross-platform toolkit that
+  draws its own top bar needs this native integration explicitly; the
+  window's general safe area alone may not cover the control region. Test
+  compact and expanded controls while resizing. See [iPad window controls](https://developer.apple.com/videos/play/wwdc2025/208/)
+  and [layout regions](https://developer.apple.com/documentation/uikit/uiview/layoutregion).
+  iPad menu-bar commands belong to [I2](input.md).
 
 **Verify.** Check notched and unnotched phones, both landscape directions,
 Android gesture and three-button navigation, an emulated cutout, a tablet
 window with a caption bar, and custom desktop title bars. Hit-test controls
-near every edge and reveal system bars while content is open.
+near every edge and reveal system bars while content is open. On Android
+desktop windowing check the header in normal and immersive modes; on
+iPadOS 26+ shrink a window with the window controls expanded and confirm
+leading toolbar items stay visible and tappable.
 
 ## L5 Soft keyboard — P0
 

@@ -1,4 +1,4 @@
-# Permissions, privacy and data (P1–P7)
+# Permissions, privacy and data (P1–P9)
 
 ## P1 Declarations match use on every platform — P0
 
@@ -218,7 +218,9 @@ are separate obligations. Record the policy check date and applicable app type.
   `NSUserTrackingUsageDescription`, request authorization using ATT, and
   honor denial. A privacy manifest does not replace ATT or resource consent.
 - **Google Play:** reconcile Data safety and the privacy policy with actual
-  collection / sharing, retention, account deletion and SDK behavior. Check
+  collection / sharing, retention and SDK behavior, including the data
+  deletion answers and deletion URL (the deletion flows themselves are in
+  [P9](#p9-store-feature-and-audience-requirements--p0-for-release)). Check
   declarations / eligibility for background location, foreground-service
   types, full-screen intents, exact alarms, all-files access and SMS / call
   log access. Occasional photo / video selection must use a system picker
@@ -241,6 +243,9 @@ unchanged, but the submitted binary no longer matches them.
 and privacy report, exercise opted-out network behavior, and compare store
 answers to data flows and retention / deletion behavior. Capture policy
 links and review evidence; a local test cannot guarantee store approval.
+Payment, login, UGC, age-rating, children's and listing rules are in
+[P8](#p8-purchases-subscriptions-and-entitlements--p0-if-monetized) and
+[P9](#p9-store-feature-and-audience-requirements--p0-for-release).
 
 Sources: [Apple privacy manifests](https://developer.apple.com/documentation/bundleresources/privacy-manifest-files),
 [required-reason APIs](https://developer.apple.com/documentation/bundleresources/describing-use-of-required-reason-api),
@@ -385,3 +390,194 @@ Sources: [Android sensitive Activities](https://developer.android.com/security/f
 [Apple scene capture handling](https://developer.apple.com/documentation/swiftui/protecting-sensitive-content-when-screen-sharing),
 [Apple background snapshot preparation](https://developer.apple.com/documentation/uikit/preparing-your-ui-to-run-in-the-background),
 [Windows display affinity](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowdisplayaffinity).
+
+## P8 Purchases, subscriptions and entitlements — P0 if monetized
+
+**Rule.** Choose the payment mechanism per product type, distribution
+channel and storefront, then keep one server-side entitlement record that
+every shipped platform reads. Grant access only for a verified, completed
+transaction; process completion, restoration, renewal, refund and revocation
+idempotently, from any device and while the app is not running.
+
+- **Which mechanism.** Digital content and features generally require the
+  store's billing: App Store in-app purchase (Guideline 3.1.1) and Google
+  Play Billing (Payments policy). Check exclusions separately per store:
+  Apple lets physical goods and services consumed outside the app, and
+  qualifying real-time one-to-one services, use other payment methods, but
+  one-to-few and one-to-many real-time services require IAP (3.1.3(d) /
+  (e)); Play Billing must not be used for peer-to-peer payments or its
+  listed physical-goods and physical-services categories. Exceptions and steering rules differ by
+  storefront and programme: Apple's US-storefront link rule, reader-app and
+  multiplatform-service exceptions (3.1.3(a) / (b)), Play's regional
+  alternative-billing and external-offer programmes. Record the rule, its
+  check date and the storefront; do not ship one global "buy on our website"
+  button. Microsoft Store (policy 10.8.1) requires its purchase API for
+  digital goods in games and Xbox products, except games (and their
+  in-app purchases) offered through a PC gaming subscription product
+  (10.8.6); non-game PC apps may use a secure third-party API.
+- **Cross-platform access.** Apple 3.1.3(b) allows access on iOS to content
+  bought on other platforms or the web only when those items are also
+  offered as in-app purchases in the app. Apple 3.1.2(a) requires
+  subscriptions to be available across all of the user's devices. Key the
+  entitlement to the app account, not to the device or store receipt alone,
+  and decide what an account bought on one store sees on the others.
+- **Transaction lifecycle.**
+  - Google Play: grant only in the `PURCHASED` state, never `PENDING`;
+    acknowledge (or consume) within three days of reaching `PURCHASED`, or
+    the purchase is refunded automatically. Call `queryPurchasesAsync()`
+    after connecting and in `onResume()`; use Real-time developer
+    notifications and the Voided Purchases API for server state.
+  - Apple StoreKit: listen to `Transaction.updates` from launch, verify the
+    transaction, deliver, then `finish()`. Unfinished transactions are
+    redelivered. Handle Ask to Buy / Family Sharing, refunds and
+    `revocationDate`, and use App Store Server Notifications on the backend.
+  - Provide a visible restore action for restorable purchases (Apple
+    3.1.1). Consumables are not restorable from either store; keep their
+    balance on your server if it must survive reinstall or device change.
+- **Subscriptions.** Cancellation normally keeps access until the end of
+  the paid period; billing retry / grace periods, account hold, pauses,
+  upgrades / downgrades and family sharing change entitlement on their own
+  schedule. Describe what the user gets for the price before purchase
+  (Apple 3.1.2(c)) and prevent duplicate subscriptions to variants of the
+  same thing (3.1.2(b)).
+- **Platform coverage.** Check each purchase integration's supported
+  platforms and methods. Unsupported targets need an implementation
+  permitted by their distribution channel (a separate store API or an
+  allowed web checkout) or a disabled purchase UI. See
+  [Flutter purchase notes](flutter.md).
+
+**Traps.** Unlocking on a `PENDING` / deferred purchase; an Android purchase
+silently refunded because the app crashed before acknowledging; trusting the
+client's "success" callback without server verification; losing paid access
+after reinstall because entitlement lived only in local storage; a consumable
+credited twice when consumption / finish failed and was retried; revoking
+access the moment a user cancels; a "manage subscription" link to the wrong
+store for a user who subscribed on another platform; the web price shown in
+an app storefront where steering is not allowed.
+
+**Verify.** Use store sandbox / license-tester accounts on release-signed
+builds. Exercise successful, cancelled, pending-then-approved,
+pending-then-declined and duplicate purchases; kill the app after payment
+but before acknowledgement / finish and relaunch; restore on a fresh
+install and a second device; refund, revoke, renewal failure, grace period
+and expiry; account switch and sign-out. Confirm the entitlement appears on
+every other shipped platform for the same account and that server state
+matches store notifications ([lifecycle.md, B6](lifecycle.md#b6-durable-transfers-and-retry-ownership--p1)
+covers durable retry ownership).
+
+Sources: [Apple payment guidelines](https://developer.apple.com/app-store/review/guidelines/#payments),
+[StoreKit transaction updates](https://developer.apple.com/documentation/storekit/transaction/updates),
+[App Store Server Notifications](https://developer.apple.com/documentation/appstoreservernotifications),
+[Play Payments policy](https://support.google.com/googleplay/android-developer/answer/9858738),
+[Play Billing integration and purchase lifecycle](https://developer.android.com/google/play/billing/integrate),
+[Microsoft Store policies, 10.8](https://learn.microsoft.com/en-us/windows/apps/publish/store-policies),
+[Flutter in_app_purchase](https://pub.dev/packages/in_app_purchase).
+
+## P9 Store feature and audience requirements — P0 for release
+
+**Rule.** Keep a dated channel × territory × feature inventory and check,
+for each shipped store, the review rules triggered by what the app does:
+account deletion, third-party login, user-generated content, age rating,
+children's audience and localized store metadata. These are separate from
+privacy declarations ([P4](#p4-store-privacy-requirements--p0-for-release))
+and from the binary's own localization ([display.md, D2](display.md)).
+
+- **Account deletion.** If the app supports account creation, users must be
+  able to start deletion of the account and its associated data in the app
+  (Apple 5.1.1(v); Play account-deletion policy, which also covers accounts
+  created through an external flow the app links to).
+  - Apple: easy to find (typically account settings); temporary deactivation
+    is insufficient; a link out only when the website completes the
+    process; outside highly regulated industries do not require a call,
+    email or support chat. Guest / auto-created accounts are included.
+    Sign in with Apple accounts must revoke tokens through the Sign in with
+    Apple REST API. Warn that App Store subscription billing continues until
+    the user cancels it.
+  - Google Play: an in-app path **and** a web resource where users can
+    request deletion without reinstalling the app, naming the app or
+    developer as listed on Play; enter that URL in the Data safety form.
+    Non-mobile Play targets need only the web resource. Delete associated
+    data, including copies at service providers; disclose any data retained
+    for security, fraud prevention or regulatory reasons.
+  - Tell users how long deletion takes and confirm completion.
+- **Third-party login (Apple 4.8).** An app that uses a third-party or
+  social login as the primary account must also offer an equivalent login
+  option that limits collection to name and email, lets users keep their
+  email private and does not collect interactions for advertising without
+  consent. Sign in with Apple satisfies this. Exceptions include apps that
+  use only the developer's own account system, education / enterprise /
+  business apps requiring an existing account, government or
+  industry-backed ID, and clients of a specific third-party service. Apply
+  the same login set on iPadOS and macOS builds. If accounts can be created
+  with Sign in with Apple, the non-Apple builds still need a way into the
+  same account (for example Apple's web-based sign-in or an account
+  recovery path) and the same deletion handling.
+- **User-generated content.** Apple 1.2 requires filtering of
+  objectionable material, reporting with timely responses, blocking abusive
+  users and published contact information. Google Play requires accepted
+  terms before posting, ongoing moderation, in-app reporting of content and
+  users, and blocking where users interact one-to-one or publicly. Chat,
+  comments, profiles and shared media all count.
+- **Age ratings.** Answer each store's questionnaire honestly and update it
+  when features change: App Store Connect's questionnaire (Apple 2.3.6),
+  IARC for Google Play and Microsoft Store (Store policy 11.11). Apple's
+  updated system (4+, 9+, 13+, 16+, 18+, shown on OS 26 devices) required
+  answers to the new questions by 2026-01-31 to avoid submission
+  interruptions; its social-media-capability questions (added 2026-07-09)
+  became required for new submissions and updates from September 2026.
+  Store screenshots and previews must still suit a 4+ audience (Apple
+  2.3.8). Ratings can differ per region.
+- **Children and families.** Apple Kids Category / 5.1.4: no third-party
+  analytics or advertising except the narrow allowances in 1.3, no device
+  data or PII to third parties, and links out, purchases or other
+  distractions only behind a parental gate. Google Play Families: declare
+  the target audience accurately. Apps solely for children use only APIs /
+  SDKs approved for child-directed services. Mixed-audience apps may use
+  other SDKs only behind a neutral age screen, or without collecting data
+  from children, and child content must not depend on them. Ads served to
+  children or users of unknown age use Families self-certified ads SDK
+  versions with no interest-based targeting or remarketing, and no AAID or
+  other prohibited identifier is transmitted from children or users of
+  unknown age. SDK behaviour must follow the audience decision at runtime,
+  not just the listing.
+- **Store listing localization.** Store metadata is translated separately
+  from the app. Where no localization matches the user's language, Apple
+  may pick the next most relevant one, otherwise the primary language; new
+  localizations start with the primary language's screenshots. Play shows default-language graphics without
+  localized assets and may offer users a machine translation of untranslated
+  text. Localize name, description, keywords, screenshots with text and
+  in-app product names for each language the app claims to support.
+
+**Traps.** "Deactivate account" or "email us" offered as deletion; deleting
+the login but keeping messages, media or server-side copies; a Sign in with
+Apple user deleted without token revocation; a deletion web page that needs
+the app installed; Google login added to the iOS build without an
+equivalent option; chat shipped without report / block; an age-rating
+answer left from before UGC or chat was added; an analytics or ads SDK that
+keeps sending identifiers after a neutral age screen classifies the user as
+a child; the app translated into ten languages while the listing and
+screenshots stay English-only.
+
+**Verify.** For each store: create and delete an account in the release
+build (including guest and Sign in with Apple accounts) and confirm server
+data, tokens and provider copies are gone or retained as disclosed; use the
+Play deletion web resource from a device without the app. Report and block a
+test user end to end and confirm a moderator receives the report. Record the
+rating answers and check them against current features. Audit SDK
+versions and configurations, then run the child and unknown-age paths
+through a proxy and confirm no prohibited identifiers and only certified
+ads SDK traffic. Inspect every listing language and screenshot set in the store
+consoles. Record policy links and check dates; a local test cannot
+guarantee store approval.
+
+Sources: [Apple App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/),
+[Apple account-deletion guidance](https://developer.apple.com/support/offering-account-deletion-in-your-app/),
+[Play account-deletion requirements](https://support.google.com/googleplay/android-developer/answer/13327111),
+[Play User Generated Content policy](https://support.google.com/googleplay/android-developer/answer/9876937),
+[Play Families policies](https://support.google.com/googleplay/android-developer/answer/9893335),
+[Apple age ratings](https://developer.apple.com/help/app-store-connect/manage-app-information/set-an-app-age-rating),
+[Apple age-rating update (deadline 2026-01-31)](https://developer.apple.com/news/upcoming-requirements/?id=07242025a),
+[Apple social-media age-rating questions](https://developer.apple.com/news/?id=tlur8uvi),
+[Microsoft Store policies, 11.11 / 11.12](https://learn.microsoft.com/en-us/windows/apps/publish/store-policies),
+[Apple metadata localization](https://developer.apple.com/help/app-store-connect/manage-app-information/localize-app-information/),
+[Play listing translation](https://support.google.com/googleplay/android-developer/answer/9844778).

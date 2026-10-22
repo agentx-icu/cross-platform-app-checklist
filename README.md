@@ -18,12 +18,13 @@ framework; Flutter-specific notes are kept in one file.
 SKILL.md                    entry point: when to use, how to answer, the checklist
 references/layout.md        L1–L8  sizes, breakpoints, runtime resize, safe areas, keyboard, orientation, overlays, folds
 references/display.md       D1–D7  large text, localisation, pixel density, runtime scale, icons, theme, motion
-references/input.md         I1–I7  touch targets, pointer / keyboard, text input, back, screen readers, formats, gestures
-references/lifecycle.md     B1–B6  lifecycle states, persistence, process death, background limits, instances, transfers
-references/permissions.md   P1–P7  declarations, runtime flow, degraded paths, store privacy, data at rest, file grants, capture
+references/input.md         I1–I9  touch targets, pointer / keyboard, text input, back, assistive input, time, gestures, links, sharing
+references/lifecycle.md     B1–B8  lifecycle states, persistence, process death, background limits, instances, transfers, migrations, sync
+references/permissions.md   P1–P9  declarations, runtime flow, degraded paths, store privacy, data at rest, file grants, capture, purchases, store rules
 references/media-devices.md M1–M8  audio session / routes, camera, formats, memory, notifications, optional hardware, capture
-references/desktop.md       W1–W4  windows, close / quit / tray, file system, packaging
-references/testing.md       X1–X8  device matrix, layout sweep, rotation, real-device labelling, parity, release, interruptions, networks
+references/desktop.md       W1–W4  windows, close / quit / tray, file system, packaging and Apple compatibility surfaces
+references/performance.md   F1–F3  frame pacing, size and startup, energy and thermal
+references/testing.md       X1–X9  device matrix, layout sweep, rotation, real-device labelling, parity, release / CI, interruptions, networks, diagnostics
 references/flutter.md       Flutter APIs and plugin traps for all of the above
 references/sources.md       official guidelines mapped to IDs, dated version / store gates, related projects
 tools/check_skill.py        consistency check (IDs, links and anchors, YAML frontmatter, basic leak patterns; needs PyYAML)

@@ -165,6 +165,45 @@ working on a machine with the SDK installed is insufficient evidence.
   every bundled native library / helper must support the selected CPU and
   minimum OS. `LSMinimumSystemVersion` cannot make a newer native API work
   on an older OS; test actual minimum-system launch and feature use.
+- **Apple compatibility surfaces are separate shipping surfaces.** A native
+  macOS app, a Mac Catalyst build, an unmodified iPhone / iPad app on Apple
+  silicon Macs ("Designed for iPad"), a compatible iPad / iPhone app on
+  Apple Vision Pro and a native visionOS app have different runtime,
+  hardware and distribution constraints, even where a compatibility
+  offering reuses the iOS binary. Record for each one whether it is offered,
+  which build is distributed and whether every native plugin supports it.
+  - Eligible iPhone / iPad apps reach the Mac App Store on Apple silicon
+    Macs and the Apple Vision Pro App Store by default unless availability
+    is turned off in App Store Connect (an app-level setting covering all
+    versions); apps that have been in the Kids category cannot be offered on
+    visionOS. An iOS release can therefore ship to Macs and Vision Pro that
+    were never tested.
+    See [iPad apps on Mac](https://developer.apple.com/help/app-store-connect/manage-your-apps-availability/manage-availability-of-iphone-and-ipad-apps-on-macs-with-apple-silicon/)
+    and [iPad apps on Vision Pro](https://developer.apple.com/help/app-store-connect/manage-your-apps-availability/manage-availability-of-iphone-and-ipad-apps-on-apple-vision-pro).
+  - Adding and releasing a macOS platform version under the same App Store
+    Connect app record replaces the compatible iOS offering on the Mac App
+    Store and updates existing users to it; a visionOS platform version on
+    the same record likewise replaces it on Vision Pro. A separate native
+    app on its own record does not. Apple documents the update, not
+    what happens to local data: test whether local files, keychain items,
+    settings, purchases and sign-in survive the switch to the native build,
+    and plan a migration or server-side recovery where they do not.
+  - Compatible apps on visionOS cannot use the device cameras for ordinary
+    photo / video capture, but can capture Persona photos with
+    `AVCaptureDevice` at position `.front` and use Continuity Camera. Core
+    Motion, barometer / magnetometer data, HealthKit data and all location
+    services except the standard one are unavailable; use availability
+    checks and fallbacks (M7). See
+    [visionOS compatibility](https://developer.apple.com/documentation/visionos/making-your-app-compatible-with-visionos).
+  - Detect the environment explicitly: `ProcessInfo.isMacCatalystApp` is
+    also true for an iOS app running on Apple silicon; use
+    `isiOSAppOnMac` to tell them apart. `isiOSAppOnVision` identifies a
+    compatible iOS app on visionOS; build with a 26.1+ SDK and guard the
+    query with a runtime availability check when supporting earlier OS
+    versions. Use `#if targetEnvironment(macCatalyst)` for
+    compile-time Catalyst code. See [`isiOSAppOnMac`](https://developer.apple.com/documentation/foundation/processinfo/isiosapponmac).
+  - For Flutter target and plugin support on these surfaces, see
+    [flutter.md](flutter.md).
 - **Windows:** choose installer / MSIX and per-user / machine scope. Sign
   the release appropriately; signing identifies a publisher but does not
   guarantee absence of SmartScreen warnings. Supply the required Visual C++
@@ -197,5 +236,12 @@ update, minimum supported OS / CPU, and uninstall with no orphan process.
 On macOS validate signing and notarization of the distributed artifact; on
 Windows verify dependencies and shell registration; on Linux install into
 each supported package / sandbox and exercise file portals, tray and media.
+For Apple compatibility surfaces, read the App Store Connect availability
+settings for Macs and Vision Pro, then run the distributed build (not only
+a simulator or Xcode "Designed for iPad" run) on an Apple silicon Mac /
+Vision Pro with keyboard, pointer, file import / export and the missing
+hardware. Before either same-record replacement (macOS or visionOS),
+update a signed-in installation containing local files, credentials,
+settings and purchases, and verify continuity or the documented recovery.
 For mobile ABI / native-plugin release checks see [flutter.md](flutter.md)
 and [testing.md](testing.md), rather than shipping simulator binaries.

@@ -1,4 +1,4 @@
-# Process and parity (X1–X8)
+# Process and parity (X1–X9)
 
 Use this reference to choose test profiles and evidence. Platform behaviour
 belongs in [layout](layout.md), [display](display.md), [input](input.md),
@@ -34,6 +34,24 @@ Minimum applicable profiles; one device can cover several rows:
 | Tablet / touch-capable desktop with keyboard and pointer; keyboard-only desktop | Touch-only navigation, hover-only actions, wrong shortcuts and lost focus |
 | A lower-memory physical device within the support policy; constrained storage | Memory pressure, interrupted persistence and storage errors; RAM alone does not prove process-death handling |
 | Optional camera, microphone, location or biometric hardware absent / disabled; external devices disconnected | Permission granted being mistaken for hardware availability |
+
+**Additional surfaces — applicable when the app can reach them.** Store
+availability decides applicability, not the build list: record each
+surface as tested, deliberately excluded (with the setting or declaration
+that excludes it), or `to do`. A surface left at its default availability
+is shipped. Behaviour rules live in L3, M7 and W4; this table only adds
+profiles.
+
+| Surface | Why it can be reached | Profile and failure it catches |
+|---|---|---|
+| Android phone / foldable on a connected display; tablet desktop session across two displays | [Connected displays](https://developer.android.com/blog/posts/android-devices-extend-seamlessly-to-connected-displays) reached general availability in Android 16 QPR3 on supported devices | Move an active editor and popup between displays of different density, resize / maximise, unplug. Catches density / display data read from the application context and state lost when the activity is [moved back and recreated](https://developer.android.com/develop/adaptive-apps/guides/support-connected-displays) (L3) |
+| Android app on ChromeOS | Play on Chromebooks; apps not requiring `android.hardware.touchscreen` can run there | Keyboard / mouse only, free resizing, minimise and restore. ChromeOS runs Android in a container: [inbound connections are generally blocked and multicast is not forwarded, except mDNS](https://developer.android.com/develop/devices/chromeos/learn) — test local discovery separately (X8, M7) |
+| Android TV | Only if the app ships TV manifest entries | Five-way D-pad navigation, Back to the TV home screen, launcher banner, no required touchscreen; see [TV app quality](https://developer.android.com/docs/quality-guidelines/tv-app-quality) (M7) |
+| Android XR headset | [Compatible mobile apps are automatically opted in on Play](https://developer.android.com/docs/quality-guidelines/android-xr) unless unsupported feature requirements make them uninstallable | Core flows with the headset's indirect input; missing telephony / sensors produce a fallback, not a dead control (M7) |
+| iPhone / iPad app on Apple silicon Mac ("Designed for iPad") | [Available on the Mac App Store by default](https://developer.apple.com/help/app-store-connect/manage-your-apps-availability/manage-availability-of-iphone-and-ipad-apps-on-macs-with-apple-silicon/) unless opted out; releasing a macOS platform for the same app record later replaces it and updates existing users | Pointer / keyboard and Touch Alternatives, file access, absent iOS hardware, window resizing; data continuity when a native macOS build replaces it ([iOS apps on Mac](https://developer.apple.com/documentation/apple-silicon/running-your-ios-apps-in-macos); W4) |
+| Mac Catalyst build | Only when a Catalyst target ships; it is a separate build, not the "Designed for iPad" runtime. Flutter's [supported platforms](https://docs.flutter.dev/reference/supported-platforms) list neither Catalyst nor visionOS, so check every plugin | The desktop and macOS profiles in the main table, plus plugin availability (W4) |
+| Compatible iPhone / iPad app on visionOS | [Offered automatically once the updated developer agreement is accepted](https://developer.apple.com/documentation/visionos/making-your-app-compatible-with-visionos), unless availability is turned off. Core Motion and most location services are unavailable; camera capture is limited to Apple's documented exceptions (persona photo, Continuity Camera) | Run the "Designed for iPad" destination in Simulator for core flows; verify supported capture paths and other device-only features on hardware, marking them **needs device** until then (X4, M7) |
+| Web build, **only if one ships** | A hosted web release is its own target | Each declared browser and compile target / renderer; Flutter's supported-platforms page lists browser versions per release. Framework specifics are in [framework notes](flutter.md); release checks are in X6 and X8 |
 
 Apply largest text settings, increased display size / zoom where supported,
 RTL and the longest shipped strings, light / dark, screen reader and
@@ -235,6 +253,30 @@ Use [permissions](permissions.md) for the required declarations and
 | Apple exported app and embedded extensions / frameworks | Inspect built usage strings and localisations, privacy manifests, deployment minima and signed entitlements / provisioning where applicable. Install the distribution build and invoke protected features; debug signing can hide release access failures |
 | Windows shipped package or unpackaged installer | Verify the actual manifest / identity and capabilities where used, then exercise system privacy settings. [Capability requirements depend on the app model](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/app-capability-declarations); an unpackaged build does not validate an MSIX build |
 | Linux shipped package and supported desktop session | Install on a clean supported system; exercise file / device portals with the shipped sandbox permissions. Developer-machine libraries and permission overrides can hide failures. See [Flatpak sandbox and portal guidance](https://docs.flatpak.org/en/latest/sandbox-permissions.html) when applicable |
+| Hosted web release, **only if one ships** | Test the deployed site on the real host, not a local dev server: open nested URLs directly and reload them, use Back / Forward, and deploy a new version while an old tab stays open. Catches 404s on deep links, and a cached entry file loading assets from a different deploy. See [framework notes](flutter.md) |
+
+**Native CI gates.** Analysis and unit tests in shared code do not compile
+native plugins, link libraries or exercise deployment minima. For changes
+to shared code, plugins, native code or dependencies:
+
+- Require a release-mode build of every shipped target on the host its
+  toolchain needs (for example macOS with Xcode for Apple targets) and
+  publish the artifacts that X6 inspects.
+- Install that build and run a smoke test: launch, open the local
+  database / storage, and invoke each changed plugin or native method.
+- Keep minimum-OS and API-boundary cases explicit: run the oldest supported
+  OS (X1) as well as the current one, and guard newer native APIs at
+  runtime, as with Android's [`SDK_INT`
+  checks](https://developer.android.com/training/basics/supporting-devices/platforms);
+  a minimum-SDK lint does not exercise the fallback branch.
+- Treat a dependency that raises a deployment minimum or drops an
+  architecture as a support-policy change, not a routine bump.
+
+Traps: an OS job skipped by a path filter, missing runner or
+`continue-on-error` while the pipeline shows green; a test step that
+reports success with zero tests executed. Record the required jobs per
+platform, their artifacts and actual executed-test counts; cases CI cannot
+run go to a scheduled device-lab run or **needs device** with an owner.
 
 **Verify.** Record artifact identifiers / hashes and installation channel.
 Test both clean install with fresh consent and upgrade from the previous
@@ -309,6 +351,61 @@ also remains a release check for applicable App Store apps.
   from permission denial. Cross-link [permissions](permissions.md) and
   [media / device](media-devices.md) results instead of reporting all
   failures as "no internet".
+- **If a web build ships**, also test from the deployed origin: CORS and
+  credentialed requests against the production API, and storage failure.
+  Browser storage is best-effort by default and can be evicted, and
+  IndexedDB / Cache API writes can throw `QuotaExceededError`; see
+  [storage for the web](https://web.dev/articles/storage-for-the-web).
+  Reopen offline only if offline support is promised and configured.
+
+## X9 Production diagnostics — P1 for released apps
+
+**Rule.** Every shipped platform reports crashes and errors from the
+release build with readable stacks, and logs stay bounded and free of
+private data.
+
+- **Capture.** Initialise framework / runtime error hooks before
+  application startup, including unhandled asynchronous and native-bridge
+  (platform-channel) errors, and forward errors from spawned workers /
+  isolates. Native crashes (signals, uncaught Objective-C / Kotlin / C++
+  exceptions) need a native reporter on each native target, desktop
+  included. Flutter hooks are in [framework notes](flutter.md).
+- **Symbols per build, archived with the artifact (X6).**
+
+  | Code | Keep | Note |
+  |---|---|---|
+  | Dart AOT with `--obfuscate --split-debug-info` | The per-platform / architecture symbols output | [`flutter symbolize`](https://docs.flutter.dev/deployment/obfuscate) needs the file from the crashing build; Windows x64 emits a PDB that `flutter symbolize` does not read — use a debugger such as WinDbg. Web is minified, not obfuscated |
+  | Apple binaries, frameworks, extensions | One dSYM per binary, matched by build UUID; retain the Xcode archive | Set Debug Information Format to DWARF with dSYM File for release; include symbols in App Store Connect uploads ([Apple](https://developer.apple.com/documentation/xcode/building-your-app-to-include-debugging-information)) |
+  | Android Kotlin / Java with R8 | `mapping.txt` of each release | It is overwritten on every build; AABs bundle it ([retrace](https://developer.android.com/topic/performance/app-optimization/test-and-troubleshoot-the-optimization)) |
+  | Android native libraries | Native debug symbols (`debugSymbolLevel`) | Bundled in AABs, manual upload for APKs; prebuilt dependencies may already be stripped ([native symbols](https://developer.android.com/build/include-native-symbols)) |
+  | Windows native code | PDBs matching the shipped binaries | A debugger needs the [symbols for the exact build](https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/symbols-and-symbol-files); archive them with each release |
+  | Linux native code | Separate debug files (`objcopy --only-keep-debug`) linked by build ID or debuglink | GDB checks the [build match](https://www.sourceware.org/gdb/current/onlinedocs/gdb.html/Separate-Debug-Files.html) |
+  | Web JavaScript / Wasm, **only if one ships** | Source maps matching the shipped output | Generate with the toolchain's source-map option, archive per release, keep them off public hosting and verify symbolication; Flutter commands are in [framework notes](flutter.md) |
+
+- **Logs.** Route logging through one sanitiser; never log credentials,
+  tokens, full URLs with query secrets, message / document contents or
+  personal data, and prefer compile-time constant messages. Restrict
+  verbose / system-log output to developer builds
+  ([Android log disclosure](https://developer.android.com/privacy-and-security/risks/log-info-disclosure)).
+  Write detailed logs to app-private storage with size-based rotation, a
+  retention limit and deletion on sign-out where the policy requires it.
+  Upload support bundles only after user action or a documented policy, and
+  disclose the data in store privacy declarations (P4).
+
+**Traps.** A mobile-only crash SDK leaves desktop failures invisible;
+symbols from "the same commit" are insufficient evidence — verify that
+they match the shipped binaries (a rebuild can change UUIDs / mappings); a reporter initialised after the first frame misses
+startup crashes; breadcrumbs, screenshots and HTTP traces in reports carry
+tokens or user content.
+
+**Verify.** On each native target, trigger a controlled application
+error, an unhandled async / native-bridge error and a native crash in a
+release-configured build installed like the shipped one. For web, trigger
+framework and unhandled async errors in every shipped JavaScript / Wasm
+output. Confirm each report arrives and resolves to file / function using
+only the archived symbols or source maps. Run sign-in, sharing and
+a failure recovery with a known marker secret, then search logs, rotated
+files, support bundles and uploaded payloads for it: zero hits.
 
 ## Report template
 
@@ -327,4 +424,5 @@ relevant. Do not put credentials or private user data in artifacts.
 | P2 | to do | declaration inspection complete; fresh-consent denial and Settings revocation not exercised |
 | X4 | needs device | Bluetooth route switch; owner: release QA; plan: paired physical phone / headset, disconnect during playback, verify fallback and continued session |
 | X6 | to do | release APK starts on 4 KB image; 16 KB native-library test pending |
+| X9 | to do | release build A: Android and iOS Dart / native test crashes symbolised from archived mapping, native symbols and dSYMs; Windows / Linux reporter not yet integrated; log marker search clean |
 ```

@@ -256,10 +256,29 @@ sensor enumeration. Do not advertise torch / zoom / vibration or an NFC
 operation until the backend reports support. See
 [feature filtering](https://developer.android.com/guide/topics/manifest/uses-feature-element).
 
+**Other Android device categories.** The same APK / bundle can reach
+categories the team never tested. Decide per category whether it is
+supported, record actual Play availability, and meet that category's
+input expectations; a wide phone layout is not acceptance evidence.
+
+| Category | Reach | Input and capability expectations |
+|---|---|---|
+| ChromeOS | Android apps are offered through Play; declare `android.hardware.touchscreen` `required="false"` when touch is not core, because some Chromebooks have no touchscreen | Full keyboard, mouse and trackpad support; declare `android.hardware.type.pc` with `required="false"` to disable mouse / touchpad input compatibility behaviour while keeping phone availability (without it, distribution can be limited to Chromebooks). Android runs in a container: IPv4 traffic passes through NAT while IPv6 unicast is routed; inbound connections are generally blocked and multicast / broadcast is not forwarded, but mDNS is forwarded, so use network service discovery and test LAN discovery separately. Custom IMEs, widgets, live wallpapers and launchers cannot be installed. See [ChromeOS](https://developer.android.com/develop/devices/chromeos/learn) and its [manifest compatibility](https://developer.android.com/develop/devices/chromeos/learn/manifest) |
+| Android TV | Only treated and reviewed as a TV app with an `ACTION_MAIN` / `CATEGORY_LEANBACK_LAUNCHER` activity, touchscreen and other TV-unavailable hardware declared not required, and a localized 320 × 180 px banner supplied as an xhdpi resource | Everything navigable with a five-way D-pad (or standard game-controller keys if a controller is required and declared); no dependence on a Menu button; Back from the main screen returns home. See [TV app quality](https://developer.android.com/docs/quality-guidelines/tv-app-quality) |
+| Android XR | Existing mobile-track apps are automatically discoverable on XR headsets / wired glasses unless they require an unsupported feature (for example telephony and several camera features); restrict devices in Play Console if needed. A dedicated XR track requires `android.software.xr.api.spatial` or `android.software.xr.api.openxr` | Compatible 2D apps must complete core flows with XR input: larger targets, virtual and external keyboards, game controllers. Query orientation instead of assuming portrait (many XR devices are naturally landscape); where a front-facing camera is available, handle its virtual avatar view and possible horizontal mirroring. See [XR readiness](https://developer.android.com/develop/xr/check-mobile-app-readiness) and [XR distribution](https://developer.android.com/develop/xr/package-and-distribute) |
+
+Apple compatibility surfaces (iPad apps on Apple silicon Macs and on
+visionOS) are covered in [W4](desktop.md); the device matrix in
+[X1](testing.md).
+
 **Verify.** Run a core flow with absent hardware, disabled system services,
 permission denied and device removed mid-use. Check store device filtering,
 fallback controls and explanation text. Hardware-dependent outcomes require
 a physical device; emulated sensors do not prove real sensor / NFC behaviour.
+For each Android category the app can reach, check the Play Console device
+catalog, then complete the core flows with that category's normal input
+only: keyboard and mouse on ChromeOS (and LAN discovery separately from
+internet access), D-pad on TV, XR input on an XR device or emulator.
 
 ## M8 Screen and system-audio capture — P0 if used
 

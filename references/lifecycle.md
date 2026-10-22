@@ -1,4 +1,4 @@
-# Lifecycle and background (B1–B6)
+# Lifecycle and background (B1–B8)
 
 ## B1 Lifecycle states differ per platform — P0
 
@@ -226,6 +226,44 @@ sequence and correct elapsed-time UI.
 Sources: [macOS App Nap](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/power_efficiency_guidelines_osx/AppNap.html),
 [Windows power throttling](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-process_power_throttling_state).
 
+**All platforms: clocks across sleep, restart and resume**
+
+- Wall-clock time can be changed by the user, the network or time sync
+  and can jump in either direction. Measure elapsed intervals (timeouts,
+  retry backoff, call duration, rate limits) with a monotonic clock, and
+  choose deliberately whether it counts sleep: Android `elapsedRealtime()`
+  includes deep sleep while `uptimeMillis()` does not; Linux
+  `CLOCK_BOOTTIME` vs `CLOCK_MONOTONIC`; Apple `mach_continuous_time()` vs
+  `mach_absolute_time()` / `ProcessInfo.systemUptime`; Windows
+  `QueryUnbiasedInterruptTime` excludes sleep. Check which one your
+  framework's timer or stopwatch uses instead of assuming.
+- Values from the same system-wide monotonic clock are comparable across
+  processes on one device until reboot; they restart at reboot and mean
+  nothing on another device or against a different clock. Persist a deadline
+  that must survive restart as an absolute instant (ideally server-issued or
+  server-validated, such as a token expiry), and on launch / resume
+  recompute what remains, expire what is due once, and reschedule.
+- After resume, a timer may fire late, immediately or not at all. Drive
+  countdowns and elapsed-time UI from the clock, not from counted ticks.
+- Calendar and DST semantics (date-only values, recurring wall-clock
+  schedules, formatting) belong in [input.md, I6](input.md).
+
+**Trap.** A session timeout computed from wall-clock time is extended when
+the user sets the clock back, or fires instantly when automatic time
+corrects a wrong clock; a countdown driven by a sleep-excluding clock keeps
+showing time that already passed while the laptop slept.
+
+**Verify.** Change the system time manually forward and backward, toggle
+automatic time / zone, sleep across a deadline and reboot with a pending
+deadline. Assert the chosen sleep semantics, that overdue work is
+reconciled once on launch / resume, and that each timeout or scheduled
+action has one logical effect when the OS lets it run.
+
+Sources: [Android SystemClock](https://developer.android.com/reference/android/os/SystemClock),
+[Linux clock_gettime](https://man7.org/linux/man-pages/man2/clock_gettime.2.html),
+[Apple mach_continuous_time](https://developer.apple.com/documentation/kernel/1646199-mach_continuous_time),
+[Windows unbiased interrupt time](https://learn.microsoft.com/en-us/windows/win32/api/realtimeapiset/nf-realtimeapiset-queryunbiasedinterrupttime).
+
 ## B5 Single instance and multiple windows — P1
 
 **Rule.** Choose a window / process ownership model; resizing support is
@@ -298,3 +336,94 @@ Sources: [Apple background session lifecycle](https://developer.apple.com/docume
 [background transfer constraints](https://developer.apple.com/documentation/foundation/downloading-files-in-the-background),
 [WorkManager unique work](https://developer.android.com/develop/background-work/background-tasks/persistent/how-to/manage-work),
 [user-initiated data transfer jobs](https://developer.android.com/develop/background-work/background-tasks/uidt).
+
+## B7 Local-data migrations — P0
+
+**Rule.** Every persistent format (database schema, preferences / key-value
+stores, saved state, cache and file layouts) carries a version and a tested
+upgrade path from every supported earlier release, including users who skip
+releases. A missing path must fail safely, never by silently recreating an
+empty store. Only disposable caches may be deliberately invalidated and
+rebuilt.
+
+- Run each migration step atomically (a transaction for SQLite-based stores;
+  write-new-then-swap for files) or make it resumable, and record the new
+  version in the same commit as the data. Keep a backup or the old store
+  until the new one opens and validates.
+- Destructive fallbacks are data loss: Room's
+  `fallbackToDestructiveMigration()` permanently deletes table data when no
+  path exists. Use it only for disposable caches, never for user content,
+  drafts or pending operations ([B2](#b2-persist-before-suspension--p0),
+  [B6](#b6-durable-transfers-and-retry-ownership--p1)).
+- Define downgrade behavior: a newer schema left by a rolled-back release,
+  a beta, or a restored backup. Refuse to open it with a clear message, or
+  read it compatibly; do not wipe it. Backup / restore and device transfer
+  can deliver data written by an older or newer app version.
+- Migrate preferences and secure-storage keys explicitly when renaming or
+  re-encrypting. Run migrations once per store under the single-owner rules
+  of [B5](#b5-single-instance-and-multiple-windows--p1): a second window,
+  engine, extension or background task must not open the store mid-migration.
+- Migrations take time on large or slow storage. Do not run them in a
+  lifecycle callback or a time-limited background task; show progress and
+  keep the app usable or clearly blocked, not frozen.
+
+**Traps.** A version flag written before the data commits, so a crash
+leaves a half-migrated store marked as current; a renamed preference key
+that silently resets settings; a migration tested only from the previous
+release with an empty database; low disk space aborting a copy-based
+migration and leaving neither store usable.
+
+**Verify.** Keep populated fixtures for every supported version, plus
+exported schemas where the store supports them; schemas alone cannot prove
+content survives. Upgrade each fixture to the current version and assert content,
+relationships, drafts, settings and pending operations survive. Kill the
+process mid-migration, fill the disk, and relaunch: the store must resume or
+roll back. Open a newer-version store with the older build. On Android Room,
+use `MigrationTestHelper` with exported schemas; it validates the schema,
+while data assertions remain yours ([testing.md](testing.md)).
+
+Sources: [Room migrations and testing](https://developer.android.com/training/data-storage/room/migrating-db-versions),
+[SQLite schema changes in a transaction](https://www.sqlite.org/lang_altertable.html),
+[SQLite `user_version`](https://www.sqlite.org/pragma.html#pragma_user_version),
+[Android `restoreAnyVersion`](https://developer.android.com/guide/topics/manifest/application-element#restoreany).
+
+## B8 Offline state and sync conflicts — P1
+
+**Rule.** Document which reads and writes work offline and what the user
+sees for each. Write user-authored changes locally first, with a durable
+per-record sync state (pending / syncing / failed / synced); define the
+outcome of edit/edit and edit/delete conflicts before shipping, and let the
+server or a documented merge rule decide it.
+
+- Keep the local store the single source the UI reads. Never let a
+  server refresh overwrite a record that still has pending local changes;
+  merge or surface the conflict instead.
+- Propagate deletions explicitly (tombstones or server change feeds). A
+  full refresh that only adds and updates lets deleted records reappear.
+- Order changes with server-assigned versions or revisions, not client
+  wall-clock timestamps: device clocks are wrong, skewed or changed (see the
+  clock notes in [B4](#b4-background-limits--p0)). If last-write-wins is the
+  chosen policy, say so and keep the losing content recoverable when it is
+  user-authored.
+- A sync attempt finishing is not reconciliation succeeding: distinguish
+  transport success, server rejection (validation, permission, conflict)
+  and partial batches; keep rejected edits visible with a recovery action.
+- Partition cached data and queues per account; on sign-out or account
+  switch, stop, flush or discard them explicitly ([B6](#b6-durable-transfers-and-retry-ownership--p1)).
+  Drain queues through the OS mechanisms in B4, idempotently.
+
+**Traps.** A background refresh replacing a newer offline edit; an item
+deleted on one device resurrected by another device's stale upload; a
+"synced" badge shown after the request was sent but before the server
+accepted it; one platform resolving conflicts differently from another
+because each client implemented its own rule.
+
+**Verify.** Use three clients across at least two shipped platforms. Edit
+the same record offline on two clients, delete it on the third, reconnect
+in each order and kill the app mid-sync. Assert the
+documented winner, recoverable losing content, no resurrected deletions, no
+duplicates, honest pending / failed indicators and no data crossing
+accounts. Repeat with a wrong device clock.
+
+Sources: [Android offline-first data layer](https://developer.android.com/topic/architecture/data-layer/offline-first),
+[Flutter offline-first pattern](https://docs.flutter.dev/app-architecture/design-patterns/offline-first).
