@@ -279,7 +279,8 @@ not an instance-control mechanism.
 - Keep launch forwarding separate from ownership. With file locks, do not
   delete / replace the live lock file: contenders can otherwise lock
   different files at the same path. Do not assume another handle can read
-  a locked region; Windows exclusive byte-range locks deny that access.
+  a locked region; Windows exclusive byte-range locks deny ordinary file
+  I/O through other handles, but do not protect memory-mapped file access.
   A separately published activation sidecar is one option; validate its
   current owner and use a bounded acknowledgement before the secondary
   exits. Buffer accepted activation until account / navigation readiness
@@ -381,8 +382,9 @@ rebuilt.
   Incompatible newer data is not corruption: do not quarantine it, prune
   it, replace it with defaults, or overwrite it through an older backup.
   Preserve the unsupported-version error through recovery, repository and
-  startup catches; do not publish a writable default controller after
-  load failure. Explain that an app update is needed and retain the data.
+  startup catches; do not publish a writable default controller after an
+  incompatible-version load failure. Explain that an app update is needed
+  and retain the data.
 - Apply the same compatibility guard to direct writes, merges and delayed
   saves, not just the initial read. A cached object can outlive a restore
   or format change. Serialize the version check and mutation under the
