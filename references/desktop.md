@@ -137,6 +137,16 @@ resolve from inside the packaged app. See the
   and the app's `longPathAware` manifest opt-in are needed. Shells, plugins
   and dependencies may still impose their own limits. See
   [long-path rules](https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation).
+  Inspect the actual runtime / dependency path before prescribing a fix:
+  a runtime that already supplies extended paths need not use the manifest
+  mechanism. When relying on a manifest, inspect the compiled executable's
+  embedded resource, not just its source XML. A native API probe must use
+  the relevant source, ABI and release configuration; it does not replace
+  an installed-app long-path round trip. For a negative control, establish
+  that its short parent exists and is accessible, isolate the changed
+  opt-in, and reject unrelated permission / missing-parent failures rather
+  than accepting any nonzero exit as proof. Record the host policy without
+  silently changing it to make a test pass.
 - Windows open-file deletion / rename depends on access and share modes;
   it is not universally forbidden. Handles opened without
   `FILE_SHARE_DELETE` can block deletion. Close the app's streams and handle

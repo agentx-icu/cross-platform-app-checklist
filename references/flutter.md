@@ -480,6 +480,17 @@ Studio profilers).
   separate: forward with `Isolate.addErrorListener` or catch inside the
   isolate. `ErrorWidget.builder` controls the release build-failure UI.
   See [handling errors](https://docs.flutter.dev/testing/errors).
+- Dart diagnostic inputs are not automatically safe metadata: an object
+  can override `runtimeType` / `toString`, and a caller can supply a custom
+  `StackTrace`. Do not invoke them to derive a supposedly fixed release
+  category or trust a stack merely because it implements that interface.
+  Test such objects and a throwing reporter in compiled-product policy
+  tests. An internal `StackTrace.current` is the reporter's capture point,
+  not the original throw site; X9's readable-stack qualification remains
+  separate.
+- Reduced motion (D7): read inherited animation preferences at the supported
+  widget dependency lifecycle point and respond to later changes, not only
+  once at construction.
 - `--obfuscate --split-debug-info=<dir>` works for Android, iOS, macOS,
   Windows and Linux release builds (not web, which is minified instead).
   Archive the per-architecture `.symbols` files (Windows x64 emits a PDB)

@@ -38,6 +38,11 @@ platform API.
    not verify packaged declarations or runtime behaviour; a local test does
    not establish store approval. See the evidence template in the testing
    reference.
+   Split a partly covered item into its proven and outstanding cases. Keep
+   code defects, missing product decisions, owner materials and device-only
+   qualification distinct; an account requirement does not block unrelated
+   code fixes. Record owner-material names, purpose and acquisition location,
+   never credential values.
 5. **Fix at the cause in shared code** where possible, then check the fix on
    every platform the shared code reaches. When a bug is fixed on one
    platform, state whether it exists on the others and fix it there too or

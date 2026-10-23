@@ -264,6 +264,11 @@ subtle transition when large movement, parallax or zoom is unnecessary.
   is disabled or cancelled. Final state must be correct with zero duration.
 - Essential progress disappears when an animation is removed. Preserve
   a static status and the accessibility announcement under [I5](input.md).
+- Own custom pulse / flash timers as well as animation controllers. On a
+  live preference change, stop repeated motion, retain static feedback and
+  preserve any independent operation deadline; do not restart or strand it.
+  Cancel pending callbacks at disposal and handle a late feedback request
+  safely. Completion and repeated visual motion may need separate timers.
 - Auto-scrolling / animated content cannot be paused, or flashes rapidly.
   Review applicable [pause / stop / hide](https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html)
   and [flash thresholds](https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html)

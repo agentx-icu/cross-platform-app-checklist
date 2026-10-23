@@ -50,6 +50,13 @@ can guarantee saving data after a crash, abrupt termination or power loss.
   power-loss durability; use the storage library's durability guarantees.
 - Keep lifecycle callbacks short. Do not block the UI thread waiting for a
   network response or a large synchronous serialization.
+- Bound the time from the first unsaved edit even during continuous typing;
+  a trailing debounce that restarts forever is not a bounded checkpoint.
+  Capture and enqueue a consistent snapshot before teardown can invalidate
+  its controller. Cancel or invalidate old timers on submit, completion,
+  session replacement and disposal so they cannot restore a finished draft
+  or overwrite a newer one. Preserve queued-write error handling; an
+  enqueued or failed write is not a successful commit.
 - iOS: `UIApplication.beginBackgroundTask(withName:expirationHandler:)`
   requests finite completion time, not a scheduled job or a keep-alive.
   Acquire it before starting work that needs protection; handle an invalid
@@ -71,6 +78,11 @@ process dies before that callback, or when a visible desktop app crashes.
 the last committed draft and database integrity. On a device, test locked
 background work and reboot-before-first-unlock without interpreting an
 unavailable protected file as a corrupt or empty account.
+Also test the visible-edit path with the real file / database store: keep
+the original screen alive, edit without submit or backgrounding, wait the
+documented bound and read through a new store / controller. Do not let test
+disposal or a manual save make an otherwise missing checkpoint pass. Include
+continuous edits, a pending write, completion and a subsequent session.
 
 Sources: [Apple finite background tasks](https://developer.apple.com/documentation/uikit/uiapplication/beginbackgroundtask(withname:expirationhandler:)),
 [file protection](https://developer.apple.com/documentation/foundation/fileprotectiontype).

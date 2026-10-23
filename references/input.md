@@ -79,13 +79,20 @@ and [Android input compatibility](https://developer.android.com/develop/ui/views
   the framework integration populates the native iPad menu bar; see
   [flutter.md](flutter.md). Window-control clearance in the toolbar belongs to
   [L4](layout.md).
+- Native commands can arrive after a route, scene or controller is replaced.
+  Validate the current owner at invocation, and reject stale queued requests.
+  A late asynchronous result must not overwrite a newer authoritative
+  enabled state. Keep one owner for keyboard dispatch when both native
+  menus and framework shortcuts exist; opening a menu is not proof that the
+  command reaches the live application action exactly once.
 
 **Verify.** Complete sign-in, navigation, editing and one modal flow without
 touch. Repeat using trackpad and mouse, with auto-hidden scrollbars, and
 connect / disconnect a keyboard while an editor is focused. Test non-US
 keyboard layouts, held-key repeat, and simultaneous touch / pointer use. On
 iPadOS 26+, reveal the menu bar by touch and by pointer, change focus and
-selection, open a second scene, and invoke commands from each window;
+selection, open a second scene where the app supports multiple scenes, and
+invoke commands from each window;
 check dimmed state and that the target is the active scene.
 
 ## I3 Text input — P0
@@ -112,6 +119,11 @@ toolkit editors over reconstructing text from key-down events.
 - Replacing the entire text value on each keystroke resets the composing
   range, selection, undo or native selection toolbar. Apply supported editor
   updates and let system copy / paste / selection coexist with app menus.
+- A custom paste hook accepts only the left modifier, fires on key-up too,
+  or inserts text alongside the toolkit's default paste action. Test left
+  and right Command / Control, key-down and key-up, plain and supported rich
+  clipboard content in the real editor. Assert one insertion and preserve
+  composition, selection and the normal editor action path.
 - Numeric keyboards may lack a sign, decimal separator or Return key.
   Provide reachable actions and validate pasted / hardware-keyboard input;
   keyboard type is a hint, not an input-validation boundary.

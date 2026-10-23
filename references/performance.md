@@ -98,6 +98,17 @@ network.
   Universal / multi-architecture binaries are larger than any one
   architecture's download.
 
+Where a project has an agreed artifact budget, enforce it against the final
+bytes after packaging / signing, not an intermediate file or a rounded
+display value. Define the metric: compressed installer bytes, logical
+regular-file payload bytes and filesystem allocation are different values;
+state symlink / hard-link treatment and do not follow links outside the
+payload. Retain the measured artifact hash and exact byte count. Build
+artifact measurements are useful regression gates but do not substitute for
+store-delivered variant or device measurements above. If a budget or usable
+startup definition is missing, record that decision separately and still
+report available observations; do not invent a universal threshold.
+
 **Startup**
 - Android: TTID (first frame, reported by the system) and TTFD (usable
   content, reported by the app with `reportFullyDrawn()` /
@@ -183,6 +194,15 @@ wake lock, screen-on flag or desktop sleep inhibitor never released after
 an error; a secondary animation requesting a higher frame rate than the
 main content needs; thermal mitigation that toggles quality every few
 seconds; ignoring battery saver on laptops.
+
+Separate UI observation from core service work. Stop optional status polling
+when its UI is hidden or disposed, and refresh when visible again; a visible
+desktop window that loses focus is not necessarily hidden (B1). Bound slow
+reads to the intended concurrency, discard ordinary timer backlog and
+coalesce at most the required fresh resume read. Stopping a UI timer must
+not stop an active call, transfer or other permitted core task. Test hide,
+resume, slow completion and disposal with a controlled scheduler; those
+tests prove lifecycle behaviour, not a measured energy saving.
 
 **Verify.** On battery-powered hardware run a scripted idle screen (5–10
 minutes) and a sustained workload (for example 15 minutes of video call or

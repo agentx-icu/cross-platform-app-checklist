@@ -303,6 +303,16 @@ reports success with zero tests executed. Record the required jobs per
 platform, their artifacts and actual executed-test counts; cases CI cannot
 run go to a scheduled device-lab run or **needs device** with an owner.
 
+Bind evidence to the final reviewed commit, workflow attempt and artifact
+hash, including after a conflict resolution or dependency fix. Inspect
+individual jobs, steps and raw failure / exit records; an allowed failure
+is still a failure of that case. Explain conditional skips separately from
+executed passes. A failed-job rerun may retain successful jobs from an older
+attempt: retain their original execution records rather than claiming the
+whole matrix rebuilt. Cancelled runs and green checks on an earlier head
+do not qualify the final head. Record test totals and reasons for skips;
+a dedicated layout run covers only the cases it actually executes.
+
 **Verify.** Record artifact identifiers / hashes and installation channel.
 Test both clean install with fresh consent and upgrade from the previous
 released version with existing data and consent. Reinstall, OS update,
@@ -411,6 +421,18 @@ private data.
   | Linux native code | Separate debug files (`objcopy --only-keep-debug`) linked by build ID or debuglink | GDB checks the [build match](https://www.sourceware.org/gdb/current/onlinedocs/gdb.html/Separate-Debug-Files.html) |
   | Web JavaScript / Wasm, **only if one ships** | Source maps matching the shipped output | Generate with the toolchain's source-map option, archive per release, keep them off public hosting and verify symbolication; Flutter commands are in [framework notes](flutter.md) |
 
+  Match against binaries extracted from the final package or installed app,
+  not only an intermediate build directory. For native formats, check the
+  matching identifier (Mach-O architecture / UUID, PE CodeView GUID / age,
+  ELF build ID or GNU debuglink name / CRC as applicable), usable debug
+  content and file hashes. Reject mismatched or empty-symbol fixtures. A
+  cache hit must restore and verify the binary / symbol pair. Preserve
+  release optimisation and runtime configuration when adding debug info;
+  a separately compiled debug helper is not the shipped release binary.
+  Retain symbols separately from user payloads where appropriate, with an
+  owner and retention period that outlasts temporary CI artifact expiry.
+  List engine, vendor and OS symbol coverage separately from app-owned code.
+
 - **Logs.** Route logging through one sanitiser; never log credentials,
   tokens, full URLs with query secrets, message / document contents or
   personal data, and prefer compile-time constant messages. Restrict
@@ -420,6 +442,16 @@ private data.
   retention limit and deletion on sign-out where the policy requires it.
   Upload support bundles only after user action or a documented policy, and
   disclose the data in store privacy declarations (P4).
+
+  Inventory every output, including framework defaults, stderr, native
+  writers and a missing-sink fallback. One bounded file does not bound a
+  second writer. Avoid rendering arbitrary exception objects, caller stacks
+  or context before sanitisation; use closed event / category values when
+  detailed content is unnecessary. A failing diagnostic sink must not
+  escape an error hook or recursively print the original private value.
+  For file sinks, check symlink / hard-link destinations and replacement
+  semantics: an app-private path alone must not permit truncating unrelated
+  application data. Exercise rotation, retention and write failures.
 
 **Traps.** A mobile-only crash SDK leaves desktop failures invisible;
 symbols from "the same commit" are insufficient evidence — verify that
@@ -435,6 +467,11 @@ output. Confirm each report arrives and resolves to file / function using
 only the archived symbols or source maps. Run sign-in, sharing and
 a failure recovery with a known marker secret, then search logs, rotated
 files, support bundles and uploaded payloads for it: zero hits.
+Use release / profile policy tests as well as debug tests, and exercise
+hostile error rendering and a throwing sink. A sanitised fixed event proves
+privacy at that entry point, not readable original stacks or native crash
+capture. Label a newly captured reporter stack as a capture point; do not
+present it as the original failure location.
 
 ## Report template
 

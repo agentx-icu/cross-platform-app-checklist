@@ -86,6 +86,16 @@ current detailed requirements. Console checks, physical-device tests and
 actual review approval are distinct evidence. Preparing a checklist does
 not authorize publication or prove acceptance by a store.
 
+Release evidence must identify the final reviewed head, actual job / step
+outcomes, executed tests, conditional skips and final artifact hashes (X6).
+The references also cover binary / symbol pairing and diagnostic privacy
+(X9), visible-edit checkpoints (B2), live motion preferences (D7), stale
+native command ownership (I2), paste dispatch (I3), filesystem mechanisms
+(W3) and bounded UI polling / exact size metrics (F2–F3). These deepen the
+existing IDs; app-specific budgets and implementation choices remain local.
+Separate outstanding code defects from product decisions, owner materials
+and device qualification, and never collect secret values in the report.
+
 ## Contributing
 
 Add a rule when a real defect shows a gap: the rule, the failure it
