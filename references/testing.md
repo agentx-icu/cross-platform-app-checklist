@@ -470,6 +470,13 @@ private data.
   The app's documented budget must cover all writers it claims to bound;
   record any memory-only fallback and the data lost on process termination.
 
+  Verify which records survive retention, not only file count and byte limits.
+  Exercise equal or coarse timestamps, clock rollback, numeric suffix reuse
+  and process restarts: lexical filenames or modification times alone may
+  discard a just-archived segment while retaining older records. Keep the
+  active file safe, establish ordering for newly retained segments, and
+  document any legacy chronology that cannot be recovered.
+
 **Traps.** A mobile-only crash SDK leaves desktop failures invisible;
 symbols from "the same commit" are insufficient evidence — verify that
 they match the shipped binaries (a rebuild can change UUIDs / mappings); a reporter initialised after the first frame misses
