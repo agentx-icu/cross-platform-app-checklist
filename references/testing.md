@@ -147,6 +147,14 @@ Detectors that fail the test:
 - Use semantics and interaction assertions alongside screenshots; exercise
   native pickers / platform views and actual screen readers on the app.
   Widget-only rendering cannot establish those integrations.
+- Assert that required destinations actually build and display their expected
+  state. A tap, visited-control count or zero overflow records does not prove
+  the destination rendered. Capture build / async / platform-host errors and
+  visible error placeholders too: fail the affected case or explicitly leave
+  it unverified, rather than counting it as a layout pass. Prove this gate
+  with a broken destination and a non-layout failure. Test-host substitutes
+  must implement the exercised contracts, restore global state and retain
+  lifecycle assertions; they do not qualify real camera, picker or audio UI.
 - Keep a representative sweep in PR CI and the larger matrix on a scheduled
   run; record any combinations omitted. See [framework notes](flutter.md)
   for framework-specific test APIs.
@@ -452,6 +460,15 @@ private data.
   For file sinks, check symlink / hard-link destinations and replacement
   semantics: an app-private path alone must not permit truncating unrelated
   application data. Exercise rotation, retention and write failures.
+
+  Where writers or processes share a retained file family, verify ownership
+  across every active-name / history-name alias. Different locks for
+  overlapping families can allow retention to remove another live writer's
+  file. Exercise concurrent owners and ensure failed ownership or uncertain
+  closure cannot authorise deletion or replay of a possibly committed record.
+  A failed directory enumeration is not an empty, complete retention ledger.
+  The app's documented budget must cover all writers it claims to bound;
+  record any memory-only fallback and the data lost on process termination.
 
 **Traps.** A mobile-only crash SDK leaves desktop failures invisible;
 symbols from "the same commit" are insufficient evidence — verify that
