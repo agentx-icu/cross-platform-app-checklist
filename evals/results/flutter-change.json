@@ -1,0 +1,567 @@
+{
+  "scope": {
+    "mode": "change",
+    "project": "Pocket Notes; synthetic input evals/cases/flutter-change.md",
+    "change": "Shared note editor layout and voice attachments; lib/editor.dart, Android RECORD_AUDIO declaration, Windows microphone-denial gap. No app revision or runnable checkout supplied.",
+    "framework": "Flutter; SDK, engine and locked plugin versions unknown",
+    "platforms": [
+      "Android",
+      "Windows"
+    ],
+    "channels": [
+      "Google Play",
+      "direct Windows installer"
+    ],
+    "form_factors": [
+      "Android phones",
+      "Windows desktop"
+    ],
+    "assumptions": [
+      "Shared editor and recorder handler reach both shipped targets.",
+      "Android large-screen, ChromeOS and XR reach is unresolved until declarations and Play availability are inspected; the phone target label alone is insufficient.",
+      "Windows installer format, trust model, architectures and supported OS minima are unknown. No AppContainer assumption is made.",
+      "Audio storage, upload, sharing and background-recording policy are unknown."
+    ]
+  },
+  "metadata": {
+    "agent": "independent Codex forward-test agent /root/eval_flutter",
+    "model": "unknown",
+    "date": "2026-10-27",
+    "skill_version": "0.1.0",
+    "skill_checkout_revision": "0a64c0fdc93fd43e56aea23eadafe587ab9bff5a",
+    "skill_md_sha256": "790b241119818f43b12deba831d5aff3110c349aec9e127f9b9a0e03bd6941bd",
+    "loaded_files": [
+      "SKILL.md",
+      "evals/README.md",
+      "evals/cases/flutter-change.md",
+      "references/layout.md",
+      "references/display.md",
+      "references/lifecycle.md",
+      "references/permissions.md",
+      "references/media-devices.md",
+      "references/testing.md",
+      "references/flutter.md",
+      "references/stores.md"
+    ],
+    "reference_read_boundary": "An initial combined area-reference read was truncated. Relevant sections were subsequently read in bounded chunks: layout L1-L3 and L5; display D1-D2; lifecycle B1-B2; permissions P1-P4; media M1-M2; testing X1-X7 and report template; Flutter layout, text, lifecycle, permissions/media portions and testing; stores scope/common evidence, Google Play, direct channels and report record. Extra portions appeared in the initial truncated output; no claim of reading every line is made."
+  },
+  "selected_ids": [
+    "L1",
+    "L2",
+    "L3",
+    "L5",
+    "D1",
+    "D2",
+    "B1",
+    "B2",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "M1",
+    "M2",
+    "X1",
+    "X2",
+    "X3",
+    "X4",
+    "X5",
+    "X6",
+    "X7"
+  ],
+  "excluded_areas": [
+    {
+      "area": "L4, L6-L8",
+      "reason": "No changed safe-area ownership, orientation declaration, overlay or fold posture supplied. Keyboard and live geometry regression checks are retained under L1/L3/L5/X2/X3. Expand if X1 finds reachable large-screen surfaces or native chrome changes; these areas are unreviewed, not N/A."
+    },
+    {
+      "area": "D3-D7",
+      "reason": "No assets, theme or animation changed. Size/text combinations remain in the scoped test plan; a complete density, contrast or motion audit is outside this daily diff."
+    },
+    {
+      "area": "I1-I9",
+      "reason": "No changed navigation, input handler, links, sharing or shortcuts supplied. Editor reachability, focus and keyboard geometry are checked under L1/L3/L5/X2/X3; this does not establish accessibility or IME readiness."
+    },
+    {
+      "area": "B3-B8",
+      "reason": "No process restoration, background-service feature, multi-instance, transfer, migration or sync implementation supplied. B2 and X7 retain immediate draft/attachment durability and interruption gaps. Determine background voice policy before expanding B4; do not infer unsupported background work."
+    },
+    {
+      "area": "P5-P9",
+      "reason": "No changed backup, file-grant, sensitive-screen, billing or listing feature supplied. P4 separately retains possible new audio disclosure impact. Storage/data-flow unknowns could expand P5/P6; billing, notifications and links are explicitly unchanged."
+    },
+    {
+      "area": "M3-M8",
+      "reason": "No camera, codec exchange, large-media memory, notification, optional non-audio sensor or screen-capture change supplied. Microphone absence is covered by P3; newly reachable Android surfaces would expand M7 after X1."
+    },
+    {
+      "area": "W1-W4",
+      "reason": "No desktop window, close/quit, path or installer change supplied. Windows native microphone integration and actual distribution package remain reviewed under P1-P3/X6; this is not a full Windows packaging audit."
+    },
+    {
+      "area": "F1-F3",
+      "reason": "No frame, startup or energy measurements or related implementation supplied; performance qualification is outside this scoped review."
+    },
+    {
+      "area": "X8-X9",
+      "reason": "No network flow or diagnostics change supplied; voice upload and backend behavior are unknown. Expand X8 if attachments are uploaded. No production diagnostic coverage is claimed."
+    }
+  ],
+  "references_loaded": [
+    "references/layout.md",
+    "references/display.md",
+    "references/lifecycle.md",
+    "references/permissions.md",
+    "references/media-devices.md",
+    "references/testing.md",
+    "references/flutter.md",
+    "references/stores.md"
+  ],
+  "rows": [
+    {
+      "id": "L1",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "lib/editor.dart supplies Row(children: [Text(note.title), TextField(controller: draft)]) inside SizedBox(height: 40), with no Flexible/Expanded width constraint on the TextField. A Row normally gives a non-flex child unbounded horizontal constraints; this is a source-level layout defect/risk, not an observed run.",
+      "next_step": "Constrain/reflow the text field at the shared cause; run narrow and short editor states with long titles, keyboard and essential actions. Retain build, logical dimensions, fonts and observed result.",
+      "reason": "The shared editor must function at the smallest supported content area on this target.",
+      "release_blocker": true
+    },
+    {
+      "id": "L1",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "lib/editor.dart supplies Row(children: [Text(note.title), TextField(controller: draft)]) inside SizedBox(height: 40), with no Flexible/Expanded width constraint on the TextField. A Row normally gives a non-flex child unbounded horizontal constraints; this is a source-level layout defect/risk, not an observed run.",
+      "next_step": "Constrain/reflow the text field at the shared cause; run narrow and short editor states with long titles, keyboard and essential actions. Retain build, logical dimensions, fonts and observed result.",
+      "reason": "The shared editor must function at the smallest supported content area on this target.",
+      "release_blocker": true
+    },
+    {
+      "id": "D1",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "The shared editor has an unconditional 40-logical-pixel height; no maximum native text-size run exists. This fixed height and rigid row risk clipping the title, text field, caret and validation. Clipping has not been observed in execution.",
+      "next_step": "Use content-based height/minimum sizing and reflow; preserve native TextScaler behavior. Test native maximum text size plus narrow/short geometry and update settings while the editor is open.",
+      "reason": "Essential text enlargement applies on desktop as well as phones.",
+      "release_blocker": true
+    },
+    {
+      "id": "D1",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "The shared editor has an unconditional 40-logical-pixel height; no maximum native text-size run exists. This fixed height and rigid row risk clipping the title, text field, caret and validation. Clipping has not been observed in execution.",
+      "next_step": "Use content-based height/minimum sizing and reflow; preserve native TextScaler behavior. Test native maximum text size plus narrow/short geometry and update settings while the editor is open.",
+      "reason": "Essential text enlargement applies on desktop as well as phones.",
+      "release_blocker": true
+    },
+    {
+      "id": "B1",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "The now-shared recording handler calls recorder.stop() on every AppLifecycleState.inactive. Inactive can be visible without focus; it is not a universal hidden/background signal. No runtime transitions or stop result are supplied.",
+      "next_step": "Choose and document recording policy for visible/unfocused, hidden, actual audio-resource loss and user stop. Use separate focus/visibility and backend interruption signals; preserve/finalize partial audio deliberately. Do not mechanically substitute hidden-only behavior.",
+      "reason": "On Android a system overlay or multi-window focus change can deactivate a visible editor; on Windows clicking another window can do so. Resource-specific behavior must be qualified for each backend.",
+      "release_blocker": true
+    },
+    {
+      "id": "B1",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "The now-shared recording handler calls recorder.stop() on every AppLifecycleState.inactive. Inactive can be visible without focus; it is not a universal hidden/background signal. No runtime transitions or stop result are supplied.",
+      "next_step": "Choose and document recording policy for visible/unfocused, hidden, actual audio-resource loss and user stop. Use separate focus/visibility and backend interruption signals; preserve/finalize partial audio deliberately. Do not mechanically substitute hidden-only behavior.",
+      "reason": "On Android a system overlay or multi-window focus change can deactivate a visible editor; on Windows clicking another window can do so. Resource-specific behavior must be qualified for each backend.",
+      "release_blocker": true
+    },
+    {
+      "id": "P1",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Android source manifest adds RECORD_AUDIO, but merged release declarations, hardware features and SDK levels are absent. Windows has no supplied package manifest, trust model or native backend declaration inventory.",
+      "next_step": "Inspect final Android variant manifest including optional microphone filtering when voice is nonessential. Identify actual Windows installer/app model and only require capabilities its API path needs; inspect distributed metadata and privacy behavior. Inventory exact backend and SDK versions.",
+      "reason": "Declarations, package model, hardware presence and consent are separate. Do not assume a direct installer is AppContainer or add UWP capabilities blindly.",
+      "release_blocker": true
+    },
+    {
+      "id": "P1",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Android source manifest adds RECORD_AUDIO, but merged release declarations, hardware features and SDK levels are absent. Windows has no supplied package manifest, trust model or native backend declaration inventory.",
+      "next_step": "Inspect final Android variant manifest including optional microphone filtering when voice is nonessential. Identify actual Windows installer/app model and only require capabilities its API path needs; inspect distributed metadata and privacy behavior. Inventory exact backend and SDK versions.",
+      "reason": "Declarations, package model, hardware presence and consent are separate. Do not assume a direct installer is AppContainer or add UWP capabilities blindly.",
+      "release_blocker": true
+    },
+    {
+      "id": "P2",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Android only supplies a source RECORD_AUDIO addition; runtime grant/denial/revocation logic is absent from the case. Windows runner explicitly adds no microphone-denial handling. No permission run was made.",
+      "next_step": "After user initiation, recheck actual access and handle the first result once. Exercise grant/refuse/cancel and Settings change while preserving draft/pending action; distinguish policy/global privacy blocks from requestable permission and avoid prompt loops.",
+      "reason": "A source declaration is not runtime consent and Windows privacy settings still affect desktop capture.",
+      "release_blocker": true
+    },
+    {
+      "id": "P2",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Android only supplies a source RECORD_AUDIO addition; runtime grant/denial/revocation logic is absent from the case. Windows runner explicitly adds no microphone-denial handling. No permission run was made.",
+      "next_step": "After user initiation, recheck actual access and handle the first result once. Exercise grant/refuse/cancel and Settings change while preserving draft/pending action; distinguish policy/global privacy blocks from requestable permission and avoid prompt loops.",
+      "reason": "A source declaration is not runtime consent and Windows privacy settings still affect desktop capture.",
+      "release_blocker": true
+    },
+    {
+      "id": "M1",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "needs device",
+      "evidence": "Voice recording is new; no audio-focus/session ownership, external interruption or recovery evidence exists. The inactive-stop shortcut is not an audio-resource policy.",
+      "next_step": "Run the physical interruption scenarios in device_plan with the actual backend; inspect one recorder owner and serialized start/stop. Define safe continuation/stop and preserve user intent on resume; only apply playback focus APIs if this implementation actually uses playback.",
+      "reason": "Real microphone availability, focus interactions and recovery cannot be qualified from a widget golden.",
+      "release_blocker": true
+    },
+    {
+      "id": "M1",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "needs device",
+      "evidence": "Voice recording is new; no audio-focus/session ownership, external interruption or recovery evidence exists. The inactive-stop shortcut is not an audio-resource policy.",
+      "next_step": "Run the physical interruption scenarios in device_plan with the actual backend; inspect one recorder owner and serialized start/stop. Define safe continuation/stop and preserve user intent on resume; only apply playback focus APIs if this implementation actually uses playback.",
+      "reason": "Real microphone availability, focus interactions and recovery cannot be qualified from a widget golden.",
+      "release_blocker": true
+    },
+    {
+      "id": "X1",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Only Android phones and Windows desktop are named. No OS/build/SDK minima, dimensions/scales, package architectures or profile matrix is supplied. Phone-only Play reach has no declaration/availability evidence.",
+      "next_step": "Publish the changed-feature matrix per build: supported OS minima/current stable, native text settings, narrow/short/keyboard geometry and audio capability. Inspect Play device reach/settings before excluding Android large screens/ChromeOS/XR; establish supported Windows installer and input profiles.",
+      "reason": "Shared code reaches both targets and potentially additional Android runtime surfaces; a build target label does not settle distribution reach.",
+      "release_blocker": true
+    },
+    {
+      "id": "X1",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Only Android phones and Windows desktop are named. No OS/build/SDK minima, dimensions/scales, package architectures or profile matrix is supplied. Phone-only Play reach has no declaration/availability evidence.",
+      "next_step": "Publish the changed-feature matrix per build: supported OS minima/current stable, native text settings, narrow/short/keyboard geometry and audio capability. Inspect Play device reach/settings before excluding Android large screens/ChromeOS/XR; establish supported Windows installer and input profiles.",
+      "reason": "Shared code reaches both targets and potentially additional Android runtime surfaces; a build target label does not settle distribution reach.",
+      "release_blocker": true
+    },
+    {
+      "id": "X2",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Developer describes a golden at 800 x 600, but its result/artifact is not supplied. No layout/text-scale run exists. Even a genuine single golden could capture the rigid row defect and would cover only that rendered case.",
+      "next_step": "Run the scoped editor sweep with real fonts, long titles, native/nonlinear text scaling, breakpoint-adjacent widths, short heights, keyboard/insets and declared scales. Fail on overflow, silent clip, missing destination/error state and obscured actions; retain per-case output.",
+      "reason": "A single unsupplied screenshot cannot verify mobile and desktop layout or native integrations.",
+      "release_blocker": true
+    },
+    {
+      "id": "X2",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Developer describes a golden at 800 x 600, but its result/artifact is not supplied. No layout/text-scale run exists. Even a genuine single golden could capture the rigid row defect and would cover only that rendered case.",
+      "next_step": "Run the scoped editor sweep with real fonts, long titles, native/nonlinear text scaling, breakpoint-adjacent widths, short heights, keyboard/insets and declared scales. Fail on overflow, silent clip, missing destination/error state and obscured actions; retain per-case output.",
+      "reason": "A single unsupplied screenshot cannot verify mobile and desktop layout or native integrations.",
+      "release_blocker": true
+    },
+    {
+      "id": "X4",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "needs device",
+      "evidence": "No microphone or physical-headset run exists on either target. The described golden cannot produce acoustic or route evidence.",
+      "next_step": "Assign an owner to device_plan and keep route, real interruption, hardware-mute and device removal cases outstanding until actual devices produce logs and test recordings bound to the build.",
+      "reason": "Simulated flow or source inspection cannot prove physical input route, audio quality or peripheral recovery.",
+      "release_blocker": true
+    },
+    {
+      "id": "X4",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "needs device",
+      "evidence": "No microphone or physical-headset run exists on either target. The described golden cannot produce acoustic or route evidence.",
+      "next_step": "Assign an owner to device_plan and keep route, real interruption, hardware-mute and device removal cases outstanding until actual devices produce logs and test recordings bound to the build.",
+      "reason": "Simulated flow or source inspection cannot prove physical input route, audio quality or peripheral recovery.",
+      "release_blocker": true
+    },
+    {
+      "id": "X5",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Layout and lifecycle logic are shared; Android declaration addition does not implement Windows denial handling. No feature-by-platform support or verification table exists.",
+      "next_step": "Record layout/editing, voice start/stop, permission fallback, interruption, route recovery and persistence as implemented/partial/missing separately from test status. Reproduce each common fix scenario on Android and Windows, then link per-target build evidence.",
+      "reason": "A shared patch or an Android-only change is not proof of behavioral parity.",
+      "release_blocker": true
+    },
+    {
+      "id": "X5",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Layout and lifecycle logic are shared; Android declaration addition does not implement Windows denial handling. No feature-by-platform support or verification table exists.",
+      "next_step": "Record layout/editing, voice start/stop, permission fallback, interruption, route recovery and persistence as implemented/partial/missing separately from test status. Reproduce each common fix scenario on Android and Windows, then link per-target build evidence.",
+      "reason": "A shared patch or an Android-only change is not proof of behavioral parity.",
+      "release_blocker": true
+    },
+    {
+      "id": "X6",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No native package/build, final manifest, plugin registration/support matrix, binary inventory, artifact hash or installed release smoke evidence supplied. The new microphone path depends on native code.",
+      "next_step": "Without building in this read-only review, request the final Android delivered APK/AAB and Windows installer evidence. Inspect final declarations/package/trust model and compatible app/engine/plugin payload architectures; require per-target native release build plus standard-user install, voice-method, denial and upgrade smoke records tied to the reviewed revision. Record actual SDK/plugin versions and current channel rules later.",
+      "reason": "Source RECORD_AUDIO and widget tests do not verify the native plugin or distributed capture path; all packaging and load tests remain unrun.",
+      "release_blocker": true
+    },
+    {
+      "id": "X6",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No native package/build, final manifest, plugin registration/support matrix, binary inventory, artifact hash or installed release smoke evidence supplied. The new microphone path depends on native code.",
+      "next_step": "Without building in this read-only review, request the final Android delivered APK/AAB and Windows installer evidence. Inspect final declarations/package/trust model and compatible app/engine/plugin payload architectures; require per-target native release build plus standard-user install, voice-method, denial and upgrade smoke records tied to the reviewed revision. Record actual SDK/plugin versions and current channel rules later.",
+      "reason": "Source RECORD_AUDIO and widget tests do not verify the native plugin or distributed capture path; all packaging and load tests remain unrun.",
+      "release_blocker": true
+    },
+    {
+      "id": "X7",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "New stateful microphone flow reuses the inactive-stop handler; no consent interruption, focus-loss, lock/resume, revocation or finalization race evidence exists.",
+      "next_step": "Exercise permission UI open while resizing/rotating, focus-away while visibly recording, lock/unlock and Settings revocation; verify the actual transition, preserved draft, single recorder owner and one attachment or recoverable retry. Record native/framework event order and result counts.",
+      "reason": "No crash alone is insufficient; interrupted recording and access changes must preserve work and user intent.",
+      "release_blocker": true
+    },
+    {
+      "id": "X7",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "New stateful microphone flow reuses the inactive-stop handler; no consent interruption, focus-loss, lock/resume, revocation or finalization race evidence exists.",
+      "next_step": "Exercise permission UI open while resizing/rotating, focus-away while visibly recording, lock/unlock and Settings revocation; verify the actual transition, preserved draft, single recorder owner and one attachment or recoverable retry. Record native/framework event order and result counts.",
+      "reason": "No crash alone is insufficient; interrupted recording and access changes must preserve work and user intent.",
+      "release_blocker": true
+    },
+    {
+      "id": "L2",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "final compact = Platform.isAndroid classifies by OS rather than current component/window constraints. The supplied return does not consume compact, so its actual presentation effect cannot be traced from this snippet.",
+      "next_step": "Trace compact consumers and centralize adaptive policy in current LayoutBuilder constraints or containing-view geometry with explicit pane context. Exercise the same width on both targets and windows on either side of real breakpoints.",
+      "reason": "A wide Android window and a narrow Windows window cannot be classified correctly by the OS flag.",
+      "release_blocker": true
+    },
+    {
+      "id": "L2",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "final compact = Platform.isAndroid classifies by OS rather than current component/window constraints. The supplied return does not consume compact, so its actual presentation effect cannot be traced from this snippet.",
+      "next_step": "Trace compact consumers and centralize adaptive policy in current LayoutBuilder constraints or containing-view geometry with explicit pane context. Exercise the same width on both targets and windows on either side of real breakpoints.",
+      "reason": "A wide Android window and a narrow Windows window cannot be classified correctly by the OS flag.",
+      "release_blocker": true
+    },
+    {
+      "id": "L3",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "New layout and recording share the editor, but no state ownership or OS-driven live geometry evidence is supplied. Existing draft controller presence alone does not prove it survives a layout switch.",
+      "next_step": "Drive real rotation/resize in both directions and within one mode with a draft, selection, caret, focus and active recording; assert continuity, no controller recreation/duplicate session, and actual logical-size change.",
+      "reason": "Geometry changes must not lose the edited note or recording session.",
+      "release_blocker": true
+    },
+    {
+      "id": "L3",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "New layout and recording share the editor, but no state ownership or OS-driven live geometry evidence is supplied. Existing draft controller presence alone does not prove it survives a layout switch.",
+      "next_step": "Drive real rotation/resize in both directions and within one mode with a draft, selection, caret, focus and active recording; assert continuity, no controller recreation/duplicate session, and actual logical-size change.",
+      "reason": "Geometry changes must not lose the edited note or recording session.",
+      "release_blocker": true
+    },
+    {
+      "id": "L5",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "The editor contains a TextField, but the snippet omits surrounding scroll/inset ownership and no keyboard run exists.",
+      "next_step": "On Android open the IME in portrait/landscape at large text; on supported Windows touch/onscreen-keyboard configurations open the keyboard at minimum client size. Verify caret, errors and voice/submit controls can be reached; use actual occlusion and avoid duplicate inset padding.",
+      "reason": "Desktop form factor is not evidence that keyboard occlusion is inapplicable; supported Windows input profiles remain to be established.",
+      "release_blocker": false
+    },
+    {
+      "id": "L5",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "The editor contains a TextField, but the snippet omits surrounding scroll/inset ownership and no keyboard run exists.",
+      "next_step": "On Android open the IME in portrait/landscape at large text; on supported Windows touch/onscreen-keyboard configurations open the keyboard at minimum client size. Verify caret, errors and voice/submit controls can be reached; use actual occlusion and avoid duplicate inset padding.",
+      "reason": "Desktop form factor is not evidence that keyboard occlusion is inapplicable; supported Windows input profiles remain to be established.",
+      "release_blocker": false
+    },
+    {
+      "id": "D2",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "note.title is unconstrained user text in the same rigid Row as the field. No long-title, script/fallback-font or locale evidence exists.",
+      "next_step": "Test long/unbroken titles, CJK and mixed RTL text with shipped/fallback fonts and actual supported locale strings; ensure the title does not starve editing width or hide essential content.",
+      "reason": "User-authored titles can expand even if app localizations are unchanged.",
+      "release_blocker": false
+    },
+    {
+      "id": "D2",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "note.title is unconstrained user text in the same rigid Row as the field. No long-title, script/fallback-font or locale evidence exists.",
+      "next_step": "Test long/unbroken titles, CJK and mixed RTL text with shipped/fallback fonts and actual supported locale strings; ensure the title does not starve editing width or hide essential content.",
+      "reason": "User-authored titles can expand even if app localizations are unchanged.",
+      "release_blocker": false
+    },
+    {
+      "id": "B2",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No draft checkpoint, voice-file ownership or durable attachment commit implementation is supplied. recorder.stop() says nothing about whether returned audio is awaited, retained or linked safely.",
+      "next_step": "Inspect bounded draft persistence and serialized recording finalization; test interruption/error during stop/write and a subsequent session. Retain the last committed draft and exactly one complete or explicitly partial attachment; do not depend on a final lifecycle callback.",
+      "reason": "The changed editor and attachment can contain user work; absence of source is a gap, not proof of data loss.",
+      "release_blocker": true
+    },
+    {
+      "id": "B2",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No draft checkpoint, voice-file ownership or durable attachment commit implementation is supplied. recorder.stop() says nothing about whether returned audio is awaited, retained or linked safely.",
+      "next_step": "Inspect bounded draft persistence and serialized recording finalization; test interruption/error during stop/write and a subsequent session. Retain the last committed draft and exactly one complete or explicitly partial attachment; do not depend on a final lifecycle callback.",
+      "reason": "The changed editor and attachment can contain user work; absence of source is a gap, not proof of data loss.",
+      "release_blocker": true
+    },
+    {
+      "id": "P3",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No usable denial/no-microphone fallback evidence is supplied; Windows denial handling is explicitly absent. A microphone grant does not prove usable hardware, an unmuted device or an available stream.",
+      "next_step": "Keep text editing and existing notes available when voice capture is denied, muted, busy, absent or disconnected; show actionable error and safe retry without losing the draft.",
+      "reason": "Voice is an attachment in a notes editor, so reduced audio access should not disable the remaining editor.",
+      "release_blocker": true
+    },
+    {
+      "id": "P3",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No usable denial/no-microphone fallback evidence is supplied; Windows denial handling is explicitly absent. A microphone grant does not prove usable hardware, an unmuted device or an available stream.",
+      "next_step": "Keep text editing and existing notes available when voice capture is denied, muted, busy, absent or disconnected; show actionable error and safe retry without losing the draft.",
+      "reason": "Voice is an attachment in a notes editor, so reduced audio access should not disable the remaining editor.",
+      "release_blocker": true
+    },
+    {
+      "id": "P4",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "The feature now captures audio; no evidence states whether voice remains local, is uploaded/shared, or is collected by SDKs. Store listings being unchanged does not establish that privacy answers remain correct.",
+      "next_step": "Owner/product: document audio data flows, recipients, retention/deletion and SDK behavior; assess whether Play privacy policy/Data safety or sensitive-feature declarations need changes. At release, reopen official guidance and retain dated, redacted channel/territory evidence. No console action is authorized or performed here.",
+      "reason": "This scoped review identifies possible disclosure impact without asserting a policy violation or a particular current rule.",
+      "release_blocker": true
+    },
+    {
+      "id": "M2",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "needs device",
+      "evidence": "The case explicitly states there is no route-disconnect handling and no physical-headset tests. Actual selected microphone/input availability is unknown.",
+      "next_step": "Handle active-input removal/default-input changes and stale route UI, then test supported wired/USB/Bluetooth devices mid-recording. Retain route chronology and a playable resulting sample; do not infer recording-route support from Bluetooth playback.",
+      "reason": "This is a voice attachment, not a call, so call-only earpiece/proximity rules are not assumed. Physical input-route change behavior still applies.",
+      "release_blocker": true
+    },
+    {
+      "id": "M2",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "needs device",
+      "evidence": "The case explicitly states there is no route-disconnect handling and no physical-headset tests. Actual selected microphone/input availability is unknown.",
+      "next_step": "Handle active-input removal/default-input changes and stale route UI, then test supported wired/USB/Bluetooth devices mid-recording. Retain route chronology and a playable resulting sample; do not infer recording-route support from Bluetooth playback.",
+      "reason": "This is a voice attachment, not a call, so call-only earpiece/proximity rules are not assumed. Physical input-route change behavior still applies.",
+      "release_blocker": true
+    },
+    {
+      "id": "X3",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No OS resize/rotation run was made; golden viewport injection would not prove native lifecycle or window behavior.",
+      "next_step": "Use OS controls to rotate the supported Android phone and resize the Windows window with draft/selection/focus/voice active; repeat during the permission flow. Assert changed dimensions, state/session outcome and exactly-once results; retain evidence.",
+      "reason": "Actual host events and live transitions require integration evidence beyond widget rendering.",
+      "release_blocker": true
+    },
+    {
+      "id": "X3",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No OS resize/rotation run was made; golden viewport injection would not prove native lifecycle or window behavior.",
+      "next_step": "Use OS controls to rotate the supported Android phone and resize the Windows window with draft/selection/focus/voice active; repeat during the permission flow. Assert changed dimensions, state/session outcome and exactly-once results; retain evidence.",
+      "reason": "Actual host events and live transitions require integration evidence beyond widget rendering.",
+      "release_blocker": true
+    },
+    {
+      "id": "P4",
+      "platform": "Windows",
+      "priority": "P2",
+      "status": "not applicable",
+      "evidence": "The only Windows channel in the case is a direct installer; no Microsoft Store submission is in scope.",
+      "next_step": "If a Microsoft Store channel is later selected, reopen its applicable privacy/capability review. Direct-install runtime privacy and package evidence stay open under P1-P3/X6.",
+      "reason": "Store-submission-specific P4 checks do not apply to this stated Windows channel; this does not exempt capture consent or general audio data-flow decisions.",
+      "release_blocker": false
+    }
+  ],
+  "device_plan": [
+    "Owner: Android QA (assignment pending). Physical supported Android phone at recorded OS/API, targetSdk, build hash, logical dimensions and scale: start a voice note on built-in mic, then connect and disconnect each supported wired/USB/Bluetooth microphone mid-recording and change the route. Expected: UI reports the actual input, interruption/fallback follows the chosen policy, no silent or corrupt attachment, no accidental private-audio playback, and a new recording works. Retain timestamped route/session logs and playable before/after samples without private content.",
+    "Owner: Android QA (assignment pending). On a physical phone, record while opening notification shade, focusing another app in a supported multi-window mode, receiving a real call/assistant interruption, locking/unlocking and returning. Expected: focus alone follows an explicit recording policy, actual microphone loss is recoverable, user stop is respected, draft and accepted recording are preserved, and recorder start/stop occurs once. Retain lifecycle/native audio chronology, UI capture and attachment result.",
+    "Owner: Windows QA (assignment pending). Clean supported physical Windows machine using the actual installer and backend: use built-in/USB/Bluetooth mic, switch default input and unplug the active mic; repeat with no mic, hardware mute, desktop microphone privacy disabled and another app occupying the device. Expected: actionable distinction between denial/unavailable/busy, usable text editor, correct route UI, recoverable attachment state and successful subsequent retry. Retain installed artifact hash, Windows build/trust model, native errors, route logs and test recordings.",
+    "Owner: cross-platform QA (assignment pending). Physical Android phone at native maximum text size, long title and landscape IME; physical Windows desktop at minimum client size, native enlarged text and supported fractional/high display scale. Expected: editor text/caret/actions remain visible and usable without shrinking essential text. Resize/rotate while draft, selection and voice session are active; expected state continuity. Retain logical/pixel dimensions, text settings, screenshots and interaction results."
+  ],
+  "release_blockers": [
+    "Code: replace the OS-derived compact policy with current constraints where it is used; the supplied snippet does not show compact being consumed, so trace all callers before judging its full runtime effect.",
+    "Code: resolve the unconstrained TextField in Row and fixed 40-logical-pixel editor height; demonstrate usable essential text and editing at narrow/short widths, long titles and maximum native text size on both targets.",
+    "Code/product decision: define visible-unfocused, hidden, interrupted and user-stopped recording behavior and remove unconditional focus-loss termination where it contradicts that policy; preserve a recoverable attachment and draft.",
+    "Code: Windows microphone-denial and unavailable-device handling is explicitly absent; implement and qualify a clear fallback while retaining text editing. Android runtime consent and revocation handling also lack evidence.",
+    "Hardware qualification: physical Android and Windows microphone routing, disconnection and interruption scenarios above remain unrun.",
+    "Evidence/materials: provide per-target release artifacts and hashes, SDK/plugin/backend/architecture matrix, merged declarations and Windows package/trust metadata, native builds and installed changed-feature smoke runs. No app build was supplied.",
+    "Owner decision/materials: establish audio collection/sharing/retention and review resulting Play privacy/Data safety impact with current official policy and redacted console evidence if affected. Territories and Play availability are unknown; this does not block unrelated code analysis.",
+    "Evidence: replace the unsupported mobile-and-desktop verified claim with actual per-case results. No golden artifact, OS resize, text-scale, microphone or Windows run exists in the input."
+  ],
+  "limitations": [
+    "This is a scoped daily change review; release readiness was not assessed and no store-acceptance or merge-readiness assurance is given.",
+    "Only synthetic snippets and statements in the case were inspected. No actual lib/editor.dart, manifest, runner, package, test result or recording was available.",
+    "No whole selected ID is verified. Source facts do not establish a rendered result, native consent, audio quality, OS lifecycle behavior or packaged configuration.",
+    "No app, build, test, emulator, physical device, installer, store console or network request was run. Repository files were not modified; only this report was written outside the checkout.",
+    "The developer request to call mobile and desktop verified is unsupported. The described 800 x 600 golden is not supplied; even a real golden would not prove native OS resize, runtime text settings, permissions or headset routing.",
+    "App revision/build hashes, OS minima, actual OS versions, window/scale/text settings, SDK/targetSdk, backend support and locked plugin versions are unknown. The recorded git revision identifies the skill checkout, not an app build.",
+    "Official policy links in local references were not reopened because network use was prohibited. Local reference date 2026-10-22 is not fresh policy or console evidence; no dynamic version gate is treated as established.",
+    "Rubrics, example reports, results and other agents reports were not read. The evaluation harness was not run. Exact model identifier is unavailable."
+  ]
+}

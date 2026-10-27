@@ -12,10 +12,15 @@ import yaml
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SKILL = ROOT / "SKILL.md"
 REFS = ROOT / "references"
+CATALOG = REFS / "checklist.md"
+STABLE_IDS = {f"{prefix}{number}" for prefix, count in
+              (("L", 8), ("D", 7), ("I", 9), ("B", 8), ("P", 9),
+               ("M", 8), ("W", 4), ("F", 3), ("X", 9))
+              for number in range(1, count + 1)}
 
 ID_IN_CHECKLIST = re.compile(r"^- \*\*([A-Z]\d+[a-z]?) ", re.M)
 ID_HEADING = re.compile(r"^## ([A-Z]\d+[a-z]?) ", re.M)
-SECTION = re.compile(r"^### .*?\]\((references/[\w.-]+\.md)\)", re.M)
+SECTION = re.compile(r"^### .*?\]\(([\w.-]+\.md)\)", re.M)
 LINK = re.compile(r"\]\(([^)#\s]*)(?:#([^)\s]*))?\)")
 HEADING = re.compile(r"^#{1,6} (.+?)\s*$", re.M)
 FORBIDDEN = [
@@ -59,25 +64,39 @@ def check_frontmatter(text):
         err("SKILL.md: name must be lowercase letters, digits and hyphens")
     if not desc or len(desc) > 1024:
         err("SKILL.md: description must be 1-1024 characters")
+    if fields.get("license") != "MIT-0":
+        err("SKILL.md: license must be MIT-0")
+    metadata = fields.get("metadata")
+    version = metadata.get("version") if isinstance(metadata, dict) else None
+    version_file = ROOT / "VERSION"
+    if not isinstance(version, str) or not re.fullmatch(r"\d+\.\d+\.\d+", version):
+        err("SKILL.md: metadata.version must be a semantic version string")
+    elif not version_file.exists() or version_file.read_text().strip() != version:
+        err("SKILL.md: metadata.version differs from VERSION")
 
 
 def check_ids(text):
+    listed_all = ID_IN_CHECKLIST.findall(text)
+    if set(listed_all) != STABLE_IDS or len(listed_all) != len(STABLE_IDS):
+        err("references/checklist.md: stable ID set must contain all 65 IDs exactly once")
     # Map each checklist section to its reference file, then compare IDs.
     sections = list(SECTION.finditer(text))
+    if len(sections) != 9:
+        err("references/checklist.md: expected nine linked area sections")
     for i, sec in enumerate(sections):
         end = sections[i + 1].start() if i + 1 < len(sections) else len(text)
         listed = ID_IN_CHECKLIST.findall(text[sec.end():end])
-        ref = ROOT / sec.group(1)
+        ref = REFS / sec.group(1)
         if not ref.exists():
-            err(f"SKILL.md: section links to missing {sec.group(1)}")
+            err(f"references/checklist.md: section links to missing {sec.group(1)}")
             continue
         defined = ID_HEADING.findall(ref.read_text(encoding="utf-8"))
         for missing in sorted(set(listed) - set(defined)):
-            err(f"{sec.group(1)}: no '## {missing} ...' heading for a SKILL.md item")
+            err(f"{sec.group(1)}: no '## {missing} ...' heading for a catalog item")
         for extra in sorted(set(defined) - set(listed)):
-            err(f"SKILL.md: {extra} is defined in {sec.group(1)} but not listed")
+            err(f"references/checklist.md: {extra} is defined in {sec.group(1)} but not listed")
         for dup in sorted({x for x in listed if listed.count(x) > 1}):
-            err(f"SKILL.md: {dup} listed twice")
+            err(f"references/checklist.md: {dup} listed twice")
 
 
 def anchors(path):
@@ -110,10 +129,15 @@ def check_file(path):
 
 
 def main():
+    errors.clear()
     text = SKILL.read_text(encoding="utf-8")
     check_frontmatter(text)
-    check_ids(text)
-    for path in [SKILL, *sorted(ROOT.glob("README*.md")), *sorted(REFS.glob("*.md"))]:
+    if CATALOG.exists():
+        check_ids(CATALOG.read_text(encoding="utf-8"))
+    else:
+        err("references/checklist.md: missing catalog")
+    paths = [p for p in sorted(ROOT.rglob("*.md")) if ".git" not in p.relative_to(ROOT).parts]
+    for path in paths:
         check_file(path)
     for e in errors:
         print(e)

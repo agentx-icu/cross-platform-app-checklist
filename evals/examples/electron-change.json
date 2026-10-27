@@ -1,0 +1,272 @@
+{
+  "scope": {
+    "mode": "change",
+    "project": "electron-change",
+    "change": "Synthetic fixture review",
+    "framework": "Electron",
+    "platforms": [
+      "Windows",
+      "Linux"
+    ],
+    "channels": [
+      "direct Windows MSI",
+      "Flathub"
+    ]
+  },
+  "selected_ids": [
+    "W1",
+    "W2",
+    "W3",
+    "W4",
+    "B2",
+    "B5",
+    "X1",
+    "X4",
+    "X5",
+    "X6"
+  ],
+  "excluded_areas": [
+    {
+      "area": "layout",
+      "reason": "No changed behavior or reachable dependency in this fixture."
+    },
+    {
+      "area": "display",
+      "reason": "No changed behavior or reachable dependency in this fixture."
+    },
+    {
+      "area": "input",
+      "reason": "No changed behavior or reachable dependency in this fixture."
+    },
+    {
+      "area": "permissions",
+      "reason": "No changed behavior or reachable dependency in this fixture."
+    },
+    {
+      "area": "media-devices",
+      "reason": "No changed behavior or reachable dependency in this fixture."
+    },
+    {
+      "area": "performance",
+      "reason": "No changed behavior or reachable dependency in this fixture."
+    }
+  ],
+  "references_loaded": [
+    "references/desktop.md",
+    "references/lifecycle.md",
+    "references/testing.md",
+    "references/stores.md"
+  ],
+  "rows": [
+    {
+      "id": "W1",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Saved monitor bounds are passed without clamping or checking current displays.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "W1",
+      "platform": "Linux",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Saved monitor bounds are passed without clamping or checking current displays.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Linux; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "W2",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Async before-quit does not hold quit ownership; timeout does not cancel flush before teardown.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    },
+    {
+      "id": "W2",
+      "platform": "Linux",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Async before-quit does not hold quit ownership; timeout does not cancel flush before teardown.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Linux; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    },
+    {
+      "id": "W3",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Writing next to process.execPath fails installed app and sandbox path rules.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "W3",
+      "platform": "Linux",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Writing next to process.execPath fails installed app and sandbox path rules.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Linux; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "W4",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "MSI arm64 label conflicts with known x64 executable; addon and final package need inventory.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    },
+    {
+      "id": "W4",
+      "platform": "Linux",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "MSI arm64 label conflicts with known x64 executable; addon and final package need inventory.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Linux; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    },
+    {
+      "id": "B2",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Persistence before quit/suspension is unproven; pending writes may race teardown.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    },
+    {
+      "id": "B2",
+      "platform": "Linux",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Persistence before quit/suspension is unproven; pending writes may race teardown.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Linux; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    },
+    {
+      "id": "B5",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Multiple writers and instance ownership are not established.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "B5",
+      "platform": "Linux",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Multiple writers and instance ownership are not established.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Linux; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "X1",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "X1",
+      "platform": "Linux",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Linux.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Linux; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "X4",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "needs device",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "On physical Windows hardware, exercise the affected flow, observe cleanup/state and record build/OS/settings.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "X4",
+      "platform": "Linux",
+      "priority": "P1",
+      "status": "needs device",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Linux.",
+      "next_step": "On physical Linux hardware, exercise the affected flow, observe cleanup/state and record build/OS/settings.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "X5",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "X5",
+      "platform": "Linux",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Linux.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Linux; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "X6",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No binary headers, extracted MSI metadata or target-machine load evidence; filename is insufficient.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    },
+    {
+      "id": "X6",
+      "platform": "Linux",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No binary headers, extracted MSI metadata or target-machine load evidence; filename is insufficient.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Linux; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    }
+  ],
+  "device_plan": [
+    "Use physical Windows target hardware: verify affected resource cleanup, disconnection and state recovery; retain build, OS and observations.",
+    "Use physical Linux target hardware: verify affected resource cleanup, disconnection and state recovery; retain build, OS and observations."
+  ],
+  "release_blockers": [
+    "Outstanding runtime, package or release evidence must be resolved before the affected change ships."
+  ],
+  "limitations": [
+    "Hand-authored contract example, not an agent run; no application, package, hardware or store execution occurred."
+  ]
+}

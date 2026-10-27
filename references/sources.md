@@ -4,7 +4,7 @@ The checklist IDs are this skill's own; this file maps them to the official
 guidelines they align with, lists dated platform / store gates, and points
 to related projects. Last checked: **2026-10-22**. Dates and thresholds
 change: re-check the linked source before relying on one, and record the
-date you checked in the evidence (SKILL.md step 6).
+date you checked in the evidence (see the entrypoint’s version-gate guidance).
 
 ## Official guidelines
 

@@ -1,0 +1,443 @@
+{
+  "scope": {
+    "mode": "change",
+    "project": "Desk Ledger; synthetic artifacts in evals/cases/electron-change.md; skill checkout .",
+    "change": "Daily read-only review of save location, quit flow and restored window bounds, plus the supplied MSI architecture discrepancy and Flatpak confinement evidence. The synthetic app has no supplied app revision/build or actual source checkout.",
+    "framework": "Electron; exact version unknown; no Flutter dependency",
+    "platforms": [
+      "Windows",
+      "Linux"
+    ],
+    "form_factors": [
+      "desktop; native windowing and multi-monitor/docking reach"
+    ],
+    "channels": [
+      "Windows direct MSI",
+      "Linux Flathub (Flatpak)"
+    ],
+    "assumptions": [
+      "The supplied snippets and build note are the complete available app evidence, not a runnable app.",
+      "No additional target, import/export feature, tray behavior, backup/encryption policy or supported OS/CPU list is inferred.",
+      "Native ARM64 is an advertised label whose intended product support requires a decision; x64 emulation and native ARM64 are separate claims.",
+      "The explicit Electron desktop distribution scope introduces no Apple or Android store compatibility surfaces."
+    ]
+  },
+  "selected_ids": [
+    "B2",
+    "B3",
+    "B5",
+    "B7",
+    "W1",
+    "W2",
+    "W3",
+    "W4",
+    "X1",
+    "X3",
+    "X4",
+    "X5",
+    "X6",
+    "X7"
+  ],
+  "excluded_areas": [
+    {
+      "area": "Layout L1-L8 and display D1-D7",
+      "reason": "No responsive widget, text, theme or asset change is supplied. Changed outer-window bounds, work areas and monitor scale handling are reviewed under W1/X3; complete UI adaptation and accessibility sweeps are outside this narrow review."
+    },
+    {
+      "area": "Input I1-I9",
+      "reason": "No navigation, input, locale/time, link or sharing behavior changed in the supplied snippets; standard quit entry-point behavior is covered under W2."
+    },
+    {
+      "area": "Lifecycle B1,B4,B6,B8",
+      "reason": "No focus policy, scheduled background work, network transfer or sync feature is shown. Desktop persistence, restart, writer ownership and path migration remain selected; desktop-only does not make lifecycle rules N/A."
+    },
+    {
+      "area": "Permissions/privacy P1-P9",
+      "reason": "No camera, microphone, billing, selected external document or privacy/audience change is supplied. Package confinement and the private save directory are covered under W3/W4/X6; portal use is conditional on an actual external-file workflow. Full privacy, backup and store-console readiness is not assessed."
+    },
+    {
+      "area": "Media/devices M1-M8",
+      "reason": "The case has no camera or microphone and supplies no changed audio, notification, capture or optional-hardware feature."
+    },
+    {
+      "area": "Performance F1-F3",
+      "reason": "No frame, startup, size or energy change is supplied. The unsafe shutdown timeout is reviewed as lifecycle/ownership correctness rather than a measured performance regression."
+    },
+    {
+      "area": "Testing X2,X8,X9",
+      "reason": "No UI sweep, network or diagnostics implementation changed or was supplied. Scoped evidence plans require retained sanitized diagnostics and event order, but no full layout sweep, network qualification or production crash/log-retention audit was performed."
+    }
+  ],
+  "references_loaded": [
+    "references/lifecycle.md",
+    "references/desktop.md",
+    "references/testing.md",
+    "references/permissions.md",
+    "references/stores.md"
+  ],
+  "rows": [
+    {
+      "id": "B2",
+      "platform": "Linux",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md, main.js snippet: the supplied durability operation is flushLedger() during before-quit, raced against a one-second delay. No executed persistence or write-interruption evidence exists; earlier checkpoint and atomic-write implementations were not supplied.",
+      "next_step": "Inspect the real storage implementation; checkpoint edits with a bounded maximum delay during use and use transactions or safe atomic replacement. Test visible continuous editing, failed writes, abrupt termination during a write and relaunch against the last committed ledger, without a manual save or test disposal completing the checkpoint.",
+      "reason": "Code risk and evidence gap: desktop crashes and session termination do not promise a final callback; a timeout is neither a successful commit nor cancellation of its writer.",
+      "release_blocker": true
+    },
+    {
+      "id": "B2",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md, main.js snippet: the supplied durability operation is flushLedger() during before-quit, raced against a one-second delay. No executed persistence or write-interruption evidence exists; earlier checkpoint and atomic-write implementations were not supplied.",
+      "next_step": "Inspect the real storage implementation; checkpoint edits with a bounded maximum delay during use and use transactions or safe atomic replacement. Test visible continuous editing, failed writes, abrupt termination during a write and relaunch against the last committed ledger, without a manual save or test disposal completing the checkpoint.",
+      "reason": "Code risk and evidence gap: desktop crashes and session termination do not promise a final callback; a timeout is neither a successful commit nor cancellation of its writer.",
+      "release_blocker": true
+    },
+    {
+      "id": "B7",
+      "platform": "Linux",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md explicitly changes the save location, but supplies no old path, supported prior versions, populated upgrade fixture or migration procedure.",
+      "next_step": "Identify earlier ledger locations and define a versioned, single-owner path migration. Preserve the old store until the destination validates; test populated upgrades including skipped versions, denied access, low disk and interruption, plus a safe policy for a newer-format primary or backup.",
+      "reason": "Product decision and evidence gap: changing location must not silently strand existing ledgers or interpret a failed lookup as a new empty account.",
+      "release_blocker": true
+    },
+    {
+      "id": "B7",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md explicitly changes the save location, but supplies no old path, supported prior versions, populated upgrade fixture or migration procedure.",
+      "next_step": "Identify earlier ledger locations and define a versioned, single-owner path migration. Preserve the old store until the destination validates; test populated upgrades including skipped versions, denied access, low disk and interruption, plus a safe policy for a newer-format primary or backup.",
+      "reason": "Product decision and evidence gap: changing location must not silently strand existing ledgers or interpret a failed lookup as a new empty account.",
+      "release_blocker": true
+    },
+    {
+      "id": "W2",
+      "platform": "Linux",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md, main.js: async before-quit listener neither receives the event nor synchronously prevents default quit. Electron does not await a returned listener Promise. Promise.race([flushLedger(), delay(1000)]) leaves the losing flush running, then tearDownDatabase() is called; a rejected flush is also unhandled in the snippet.",
+      "next_step": "Use one guarded, shared shutdown sequence that synchronously intercepts cancellable local quit requests and explicitly completes quit afterwards. Separate a failed cancellable checkpoint from irreversible teardown; actually cancel or join unfinished writes before database disposal, retain writer ownership, and define a terminal recovery path. Test repeated quit, slow/rejected flush, disposal beyond the deadline and window-close versus application-quit; test OS session end separately.",
+      "reason": "Code defect: the one-second wait does not own the exit lifecycle or terminate its outstanding operation. Returning to usable UI after irreversible disposal would also be unsafe.",
+      "release_blocker": true
+    },
+    {
+      "id": "W2",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md, main.js: async before-quit listener neither receives the event nor synchronously prevents default quit. Electron does not await a returned listener Promise. Promise.race([flushLedger(), delay(1000)]) leaves the losing flush running, then tearDownDatabase() is called; a rejected flush is also unhandled in the snippet.",
+      "next_step": "Use one guarded, shared shutdown sequence that synchronously intercepts cancellable local quit requests and explicitly completes quit afterwards. Separate a failed cancellable checkpoint from irreversible teardown; actually cancel or join unfinished writes before database disposal, retain writer ownership, and define a terminal recovery path. Test repeated quit, slow/rejected flush, disposal beyond the deadline and window-close versus application-quit; test OS session end separately.",
+      "reason": "Code defect: the one-second wait does not own the exit lifecycle or terminate its outstanding operation. Returning to usable UI after irreversible disposal would also be unsafe.",
+      "release_blocker": true
+    },
+    {
+      "id": "W4",
+      "platform": "Linux",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md: Flathub is selected; the Flatpak has no broad filesystem grant and no sandbox-path or portal test is supplied. No final Flatpak, manifest/runtime inventory or installed-session evidence was supplied.",
+      "next_step": "Inspect the final Flatpak identity, version, architecture/runtime and actual sandbox permissions; install on a clean supported Linux session without developer overrides. Verify private ledger persistence, SQLite loading, relevant portal workflow only if external file selection is offered, update retention and quit/relaunch. At a later submission stage have the human owner recheck current Flathub requirements and handle any human-only provenance/submission steps.",
+      "reason": "Artifact and channel evidence gap: the lack of a broad grant is not by itself a defect. Sandbox-owned storage and any scoped external-file access must work in the shipped package. This synthetic review is not a Flathub submission review or approval.",
+      "release_blocker": true
+    },
+    {
+      "id": "W4",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md: packaging/ledger.wxs labels the MSI platform arm64, while the build note says only an x64 app executable was produced. Native SQLite addon headers were not inspected; no final MSI was extracted or installed.",
+      "next_step": "Decide whether the supported product is x64 (including any deliberately tested emulated path) or native ARM64. Correct the build/package contract accordingly. Extract the final MSI; inspect its actual Template Summary and all included PE Machine headers, including Electron/runtime, executable, helpers and SQLite .node modules, then clean-install and exercise SQLite on each claimed CPU. Retain signature/identity, version, hashes and update/uninstall results.",
+      "reason": "Code/artifact defect: an arm64 source label or filename cannot turn an x64 executable into an ARM64 payload. Package metadata, payload ABI compatibility and target-machine loading are distinct requirements.",
+      "release_blocker": true
+    },
+    {
+      "id": "X1",
+      "platform": "Linux",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md identifies Linux desktop via Flathub Flatpak; exact OS minima/current versions, Electron version, CPU support, Linux backend support and device profiles are not supplied.",
+      "next_step": "Record the supported Linux OS/CPU/window/scale matrix and Flathub Flatpak identity. Include smallest supported work area, maximized/fullscreen, fractional/high and mixed scales, fresh and populated-upgrade installs; attach app revision, package hash, OS build, native backend and settings to each result.",
+      "reason": "Scope decision: both shipped desktops are reached by shared main.js. No iOS, Android, macOS, web or Apple compatibility surface is implied by this explicit desktop-only Electron scope; desktop lifecycle remains applicable.",
+      "release_blocker": false
+    },
+    {
+      "id": "X1",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md identifies Windows desktop via direct MSI; exact OS minima/current versions, Electron version, CPU support, Linux backend support and device profiles are not supplied.",
+      "next_step": "Record the supported Windows OS/CPU/window/scale matrix and direct MSI identity. Include smallest supported work area, maximized/fullscreen, fractional/high and mixed scales, fresh and populated-upgrade installs; attach app revision, package hash, OS build, native backend and settings to each result.",
+      "reason": "Scope decision: both shipped desktops are reached by shared main.js. No iOS, Android, macOS, web or Apple compatibility surface is implied by this explicit desktop-only Electron scope; desktop lifecycle remains applicable.",
+      "release_blocker": false
+    },
+    {
+      "id": "X4",
+      "platform": "Linux",
+      "priority": "P0",
+      "status": "needs device",
+      "evidence": "evals/cases/electron-change.md: no physical-device evidence. Genuine monitor removal/docking and mixed-scale window behavior are untested on Linux.",
+      "next_step": "Release QA must run the physical multi-monitor scenario in device_plan on the installed release package, retaining before/after display topology, work areas, scale, window geometry, screenshots and process/storage observations.",
+      "reason": "Hardware qualification: headless virtual screens or injected scale factors cannot close genuine docking and display-transition cases.",
+      "release_blocker": true
+    },
+    {
+      "id": "X4",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "needs device",
+      "evidence": "evals/cases/electron-change.md: no physical-device evidence. Genuine monitor removal/docking and mixed-scale window behavior are untested on Windows. Additional outstanding case: evals/cases/electron-change.md: native ARM64 is claimed by the MSI label but no native ARM64 payload or Windows-on-ARM execution evidence exists.",
+      "next_step": "Release QA must run the physical multi-monitor scenario in device_plan on the installed release package, retaining before/after display topology, work areas, scale, window geometry, screenshots and process/storage observations. Additional outstanding case: After the architecture product decision and payload correction, if native ARM64 remains supported, use a physical Windows ARM64 machine with the final MSI, confirm actual native process/module architectures, load SQLite, write/recover a ledger and quit. Record any deliberately supported x64 emulation as a separate path.",
+      "reason": "Hardware qualification: headless virtual screens or injected scale factors cannot close genuine docking and display-transition cases. Additional outstanding case: Conditional hardware qualification: an x64 build running under emulation would not prove native ARM64 support.",
+      "release_blocker": true
+    },
+    {
+      "id": "X5",
+      "platform": "Linux",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md: shared Electron main.js changes persistence, quit and bounds for both Windows and Linux, with no platform results supplied.",
+      "next_step": "Keep save-path, commit/recovery, overlapping quit, writer ownership and bounds-restoration scenarios in a Windows \u00d7 Linux table. Record implementation support separately from verification, rerun equivalent scenarios on both packages after shared fixes and explain backend/package-specific behavior.",
+      "reason": "Parity gap: a patch or result on one desktop does not prove the other package has the same storage permissions or shutdown/window behavior.",
+      "release_blocker": false
+    },
+    {
+      "id": "X5",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md: shared Electron main.js changes persistence, quit and bounds for both Windows and Linux, with no platform results supplied.",
+      "next_step": "Keep save-path, commit/recovery, overlapping quit, writer ownership and bounds-restoration scenarios in a Windows \u00d7 Linux table. Record implementation support separately from verification, rerun equivalent scenarios on both packages after shared fixes and explain backend/package-specific behavior.",
+      "reason": "Parity gap: a patch or result on one desktop does not prove the other package has the same storage permissions or shutdown/window behavior.",
+      "release_blocker": false
+    },
+    {
+      "id": "X6",
+      "platform": "Linux",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md: no final Flatpak extraction, ELF/native-module architecture inventory, runtime/dependency baseline, sandbox inspection or install test exists.",
+      "next_step": "Archive the final Flatpak tied to the reviewed commit and hash; inventory app/Electron/native SQLite ELF class/machine and relevant ABI/dependency baseline for each declared architecture, inspect installed sandbox permissions and exercise SQLite plus save/restart and quit inside the actual package. Record supported native Wayland and/or X11/XWayland sessions, clean install and populated upgrade with actual test totals.",
+      "reason": "Required shipping evidence: a development runner and source sandbox declaration do not establish final Flatpak behavior.",
+      "release_blocker": true
+    },
+    {
+      "id": "X6",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md: x64-only build note conflicts with arm64 MSI source label; no binary headers, native SQLite ABI inventory, extracted MSI, install record or actual test counts exist.",
+      "next_step": "Archive the final MSI for the reviewed app commit/workflow attempt and hash. Independently compare actual MSI architecture metadata, PE Machine headers for the app/Electron and each in-process native SQLite module, and advertised CPU support. Prove CI rejects a mismatched native addon fixture. On clean supported target systems, install and launch, open/write/reopen SQLite and perform the changed save/quit/window smoke cases. Record native versus emulated execution explicitly; headers alone do not prove runtime loading.",
+      "reason": "Required shipping evidence: host CPU, build job names and package filenames cannot substitute for final payload inspection or target execution.",
+      "release_blocker": true
+    },
+    {
+      "id": "X7",
+      "platform": "Linux",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md: flushLedger, delay and database teardown interact, but there is no executed fault-injection, session-end or abrupt-exit evidence.",
+      "next_step": "Test slow, failing and pending writes; overlapping quit; timeout then attempted cancellation; forced process termination; and OS logoff/shutdown with unsaved edits. Test sleep/wake during a pending write and recovery from unavailable/full storage. Record the initial ledger, precise interruption, writer/teardown event order and counts, process exit and recovered content; do not treat one forced-exit test as all lifecycle cases.",
+      "reason": "Evidence gap: persistence and interruption handling are reachable desktop requirements; the request to mark all lifecycle checks N/A is unsupported.",
+      "release_blocker": true
+    },
+    {
+      "id": "X7",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md: flushLedger, delay and database teardown interact, but there is no executed fault-injection, session-end or abrupt-exit evidence.",
+      "next_step": "Test slow, failing and pending writes; overlapping quit; timeout then attempted cancellation; forced process termination; and OS logoff/shutdown with unsaved edits. Test sleep/wake during a pending write and recovery from unavailable/full storage. Record the initial ledger, precise interruption, writer/teardown event order and counts, process exit and recovered content; do not treat one forced-exit test as all lifecycle cases.",
+      "reason": "Evidence gap: persistence and interruption handling are reachable desktop requirements; the request to mark all lifecycle checks N/A is unsupported.",
+      "release_blocker": true
+    },
+    {
+      "id": "B3",
+      "platform": "Linux",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md supplies savedBounds but no cold-start or durable-ledger recovery implementation or results.",
+      "next_step": "On the installed Flathub Flatpak build, terminate with pending edits and restart; assert committed entries, selection and usable window restoration, with a safe explanation for unavailable or invalid state instead of silently opening an empty writable ledger.",
+      "reason": "Evidence gap: restoring an in-memory object or reopening after a clean exit does not demonstrate process-death recovery.",
+      "release_blocker": true
+    },
+    {
+      "id": "B3",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md supplies savedBounds but no cold-start or durable-ledger recovery implementation or results.",
+      "next_step": "On the installed direct MSI build, terminate with pending edits and restart; assert committed entries, selection and usable window restoration, with a safe explanation for unavailable or invalid state instead of silently opening an empty writable ledger.",
+      "reason": "Evidence gap: restoring an in-memory object or reopening after a clean exit does not demonstrate process-death recovery.",
+      "release_blocker": true
+    },
+    {
+      "id": "B5",
+      "platform": "Linux",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md, main.js snippet: no quit guard, shared shutdown completion or cross-process writer ownership is shown. flushLedger may still be active when tearDownDatabase runs after the timeout. The rest of instance management is unknown.",
+      "next_step": "Establish the supported single-writer or coordinated-multiwriter model. Hold per-profile OS ownership until all writers have stopped; route overlapping quit requests to one completion. Test simultaneous independent launches, a second launch during slow shutdown and owner crash, asserting no second writer or duplicate teardown.",
+      "reason": "Ownership gap: desktop lifecycle and concurrent process rules apply to the shipped targets; their absence from these snippets is not proof the complete app lacks them.",
+      "release_blocker": true
+    },
+    {
+      "id": "B5",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md, main.js snippet: no quit guard, shared shutdown completion or cross-process writer ownership is shown. flushLedger may still be active when tearDownDatabase runs after the timeout. The rest of instance management is unknown.",
+      "next_step": "Establish the supported single-writer or coordinated-multiwriter model. Hold per-profile OS ownership until all writers have stopped; route overlapping quit requests to one completion. Test simultaneous independent launches, a second launch during slow shutdown and owner crash, asserting no second writer or duplicate teardown.",
+      "reason": "Ownership gap: desktop lifecycle and concurrent process rules apply to the shipped targets; their absence from these snippets is not proof the complete app lacks them.",
+      "release_blocker": true
+    },
+    {
+      "id": "W1",
+      "platform": "Linux",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md, main.js: new BrowserWindow(savedBounds) consumes unvalidated coordinates from an old monitor. No native window result or dimensions/scale are supplied.",
+      "next_step": "Validate saved size against the available work area and handle removed-monitor coordinates on supported X11/XWayland sessions. On native Wayland, respect compositor placement rather than requiring portable global coordinates. Record supported backends and test undocking, mixed scale, tiling and restart.",
+      "reason": "Code defect and runtime gap: stale monitor geometry can make the app unreachable; valid multi-monitor negative positions must not simply be rejected.",
+      "release_blocker": true
+    },
+    {
+      "id": "W1",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md, main.js: new BrowserWindow(savedBounds) consumes unvalidated coordinates from an old monitor. No native window result or dimensions/scale are supplied.",
+      "next_step": "Validate finite restored dimensions and bounds against current logical work areas, retain legitimate negative coordinates, keep title bar and usable content reachable, clamp sizes and persist normal bounds separately from maximized/fullscreen state. Exercise changed taskbar, mixed scale, undocking and restart.",
+      "reason": "Code defect and runtime gap: stale monitor geometry can make the app unreachable; valid multi-monitor negative positions must not simply be rejected.",
+      "release_blocker": true
+    },
+    {
+      "id": "W3",
+      "platform": "Linux",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md, main.js: dataFile = path.join(path.dirname(process.execPath), ledger.json), placing mutable user data beside the executable.",
+      "next_step": "Resolve Electron/OS per-user durable storage from inside the Flatpak sandbox, respecting absolute XDG locations and sandbox remapping. Test the installed Flatpak without permission overrides; use a document portal only for a real user-selected external file workflow, retain its scoped access if needed, and test relaunch and revoked/unavailable access. Broad filesystem permission is not needed merely to store the private ledger.",
+      "reason": "Code defect: executable and installation directories are replaceable and may be read-only; the path is neither a per-user durable-data policy nor a sandbox grant.",
+      "release_blocker": true
+    },
+    {
+      "id": "W3",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md, main.js: dataFile = path.join(path.dirname(process.execPath), ledger.json), placing mutable user data beside the executable.",
+      "next_step": "Resolve an app-specific per-user durable data directory through Electron/OS APIs; choose Local versus genuinely roamable AppData deliberately. Test the installed MSI as a standard non-administrator, update retention, Unicode and long paths, full/read-only storage and interrupted replacement.",
+      "reason": "Code defect: executable and installation directories are replaceable and may be read-only; the path is neither a per-user durable-data policy nor a sandbox grant.",
+      "release_blocker": true
+    },
+    {
+      "id": "X3",
+      "platform": "Linux",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md supplies no live native resize, monitor transition, state-retention or restored-bounds test. No tests were run.",
+      "next_step": "Run the installed build with an edited ledger and dialog open; resize across supported limits in both directions, snap/tile, maximize/restore, change scale and reopen after a saved display is removed. Assert edit state survives and window/dialog controls remain reachable; retain native observations and screenshots with logical sizes and scale.",
+      "reason": "Evidence gap: a mocked rectangle or screenshot alone cannot establish native window behavior.",
+      "release_blocker": false
+    },
+    {
+      "id": "X3",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "evals/cases/electron-change.md supplies no live native resize, monitor transition, state-retention or restored-bounds test. No tests were run.",
+      "next_step": "Run the installed build with an edited ledger and dialog open; resize across supported limits in both directions, snap/tile, maximize/restore, change scale and reopen after a saved display is removed. Assert edit state survives and window/dialog controls remain reachable; retain native observations and screenshots with logical sizes and scale.",
+      "reason": "Evidence gap: a mocked rectangle or screenshot alone cannot establish native window behavior.",
+      "release_blocker": false
+    }
+  ],
+  "device_plan": [
+    {
+      "platform": "Windows",
+      "owner": "release QA (assignment pending)",
+      "device": "Physical supported Windows laptop/desktop with two monitors or dock, fractional/high mixed scaling and a standard-user account",
+      "scenario": "Install the final supported-CPU MSI. Save bounds on the non-primary display with a draft and dialog open; undock/remove that display, change taskbar work area, close/relaunch, then reconnect and move between scales. Repeat snap/maximize/restore and sleep/wake during a pending write.",
+      "expected_observation": "Window/title bar/dialog remain reachable without accumulated scaling drift, legitimate negative coordinates are supported, edits/last committed data survive and only one writer/teardown runs.",
+      "evidence_to_retain": "App commit, MSI hash, OS build, CPU, monitor topology, logical work areas/scale, before/after screenshots, process transitions, sanitized ordered flush/teardown events and recovered-ledger assertions."
+    },
+    {
+      "platform": "Linux",
+      "owner": "release QA (assignment pending)",
+      "device": "Physical supported Linux laptop/desktop and dock/two displays with the actual supported native Wayland and/or X11/XWayland compositor sessions",
+      "scenario": "Install the final Flathub Flatpak without local filesystem permission overrides. Save/reopen a ledger, move between mixed-scale displays, remove the saved display, tile/maximize/restart and sleep/wake during a pending write. If an external-file workflow exists, use the shipped document portal, restart and revoke or remove the selected resource.",
+      "expected_observation": "Private ledger storage works without broad filesystem access, any external access remains scoped and recoverable, compositor placement is respected, controls remain reachable and data survives interrupted quit/relaunch.",
+      "evidence_to_retain": "Flatpak app/version/commit/hash/runtime and permissions, OS/compositor/backend, display topology/work areas/scale, screenshots, portal result if applicable, process transitions and sanitized write/recovery observations."
+    },
+    {
+      "platform": "Windows",
+      "owner": "release engineering and QA (assignment pending)",
+      "device": "Physical Windows ARM64 system, conditional on native ARM64 remaining an advertised target",
+      "scenario": "After producing matching payloads and correcting metadata, install the final MSI, identify the actual executing process and SQLite module architecture, perform database create/open/write/reopen and the save/quit recovery smoke cases. Treat x64 emulation as a separate explicitly supported run.",
+      "expected_observation": "Every in-process module is compatible with the declared ABI; native ARM64 support is demonstrated by actual native execution and database use, rather than package names or an emulated x64 launch.",
+      "evidence_to_retain": "Final package hash and architecture metadata, PE header inventory, physical CPU/OS, actual runtime process/module architecture and retained SQLite/runtime smoke results."
+    }
+  ],
+  "release_blockers": [
+    "Code defect: resolve mutable ledger data to per-user durable app storage inside each shipped installation/sandbox; demonstrate standard-user save/reopen and retain existing data across updates.",
+    "Code defect: give cancellable Electron quit an explicit owner; prevent exit from outrunning persistence, cancel or join timed-out writers before disposal, handle flush rejection and serialize repeated quit without returning to a disposed session.",
+    "Code defect: validate stale restored bounds against current work areas and supported compositor behavior so the primary window remains usable after monitor removal.",
+    "Product decision and code/artifact correction: choose the Windows CPU support contract; reconcile the arm64 MSI declaration with the currently x64-only app and all SQLite/runtime dependencies. Native ARM64 cannot be claimed from the filename.",
+    "Product decision/evidence: identify old ledger locations, supported populated upgrade paths and retention/downgrade behavior; prove interrupted relocation preserves user data.",
+    "Owner materials/evidence: release engineering must provide final MSI/Flatpak artifacts, hashes, identities/signing verification as applicable, architecture/dependency inventories, minimum OS/backend matrix and actual clean-install/upgrade/smoke results. No secret values are needed for this review.",
+    "Hardware qualification: execute the physical monitor/docking tests on both desktops and native Windows ARM64 qualification if that support is retained; retain scoped results.",
+    "Channel owner follow-up: before a real Flathub submission, the human owner must recheck current official requirements and any applicable provenance/human-submission conditions; the bundled reference date and this synthetic review establish no submission approval."
+  ],
+  "limitations": [
+    "Release readiness was not assessed. These are scoped change findings and outstanding shipping conditions, not a complete release checklist or a store-acceptance guarantee.",
+    "No application execution, code mutation, snippet fix, dependency installation, build, package extraction, test, store action, submission, account access, native binary inspection or network request occurred.",
+    "All app evidence comes from synthetic case text. main.js, packaging/ledger.wxs, earlier releases, final binaries, manifests, SQLite headers and CI/test/diagnostic artifacts were unavailable.",
+    "No row is verified: source observations establish only narrow snippet facts; every runtime/package/device outcome remains unproved. Suggested tests are future actions, not recorded results.",
+    "Supported OS versions, Electron/runtime version, architecture support decision, Linux sessions/backends, ordinary close/tray policy and data migration history remain unknown.",
+    "references/stores.md and references/testing.md carry public-source dates of 2026-10-22. No current policy or version gate was checked online, as the evaluation prohibits network use; no fresh rule or store-approval claim is made.",
+    "The model identifier is not exposed to this agent and is recorded as unknown.",
+    "The checkout is not identical to git HEAD: SKILL.md and references/testing.md are modified; evals/README.md and the case are untracked. Hashes identify the inspected skill and case text.",
+    "Permission references were read to decide applicability; no encryption, backup, selected-file feature or broad grant requirement is invented. Flutter references were not loaded.",
+    "No rubrics.json, example report, previous result or other agent report was read; no Claude or RTK tool was used."
+  ],
+  "evaluation_metadata": {
+    "agent": "Codex delegated independent evaluator /root/eval_electron",
+    "model": "unknown",
+    "date": "2026-10-27",
+    "skill_version": "0.1.0",
+    "skill_revision": {
+      "git_head": "0a64c0fdc93fd43e56aea23eadafe587ab9bff5a",
+      "worktree": "SKILL.md and references/testing.md modified; evals/README.md and evals/cases/electron-change.md untracked",
+      "skill_sha256": "790b241119818f43b12deba831d5aff3110c349aec9e127f9b9a0e03bd6941bd",
+      "case_sha256": "0c1078b858788b259ee7535805b7e1ddaf81dad3002d51a0951115e0eaba3dcc"
+    },
+    "loaded_files": [
+      "SKILL.md",
+      "evals/README.md",
+      "evals/cases/electron-change.md",
+      "references/lifecycle.md",
+      "references/desktop.md",
+      "references/testing.md",
+      "references/permissions.md",
+      "references/stores.md"
+    ],
+    "store_sections_read": [
+      "Scope and evidence",
+      "Common release evidence",
+      "Flathub",
+      "Other selected distribution channels",
+      "Report record"
+    ],
+    "checks_run": [
+      "Read-only case/reference inspection",
+      "Read-only git HEAD/status and SHA-256 identification",
+      "JSON serialization/structural sanity check of this report only",
+      "Re-read clarified evals/README.md and checked one unique row per ID/platform"
+    ]
+  }
+}

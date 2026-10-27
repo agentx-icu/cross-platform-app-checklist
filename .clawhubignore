@@ -1,0 +1,10 @@
+.github/
+docs/
+evals/
+tools/
+README.md
+README.zh-CN.md
+CHANGELOG.md
+__pycache__/
+*.pyc
+.DS_Store

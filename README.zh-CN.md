@@ -15,7 +15,8 @@ Android、macOS、Windows、Linux 的窗口尺寸与断点、DPI、旋转／分�
 
 | 文件 | 内容 |
 |---|---|
-| [SKILL.md](SKILL.md) | 技能入口、适用场景、工作方法及稳定的 65 个清单 ID |
+| [SKILL.md](SKILL.md) | 精简入口：两种模式、按需加载、证据及输出契约 |
+| [完整清单](references/checklist.md) | 发布审查使用，保留全部 65 个稳定 ID |
 | [layout](references/layout.md)、[display](references/display.md) | L1–L8 布局与屏幕；D1–D7 字体、密度、资源、主题、动效 |
 | [input](references/input.md) | I1–I9 触摸、指针、键盘、无障碍、系统格式、链接和跨应用内容 |
 | [lifecycle](references/lifecycle.md) | B1–B8 生命周期、持久化、进程死亡、后台、实例、任务、迁移、同步 |
@@ -27,8 +28,11 @@ Android、macOS、Windows、Linux 的窗口尺寸与断点、DPI、旋转／分�
 | [flutter](references/flutter.md) | 对应 Flutter API、插件和验证注意事项 |
 | [sources](references/sources.md) | 官方来源、版本／商店规则日期、商店来源索引、相关项目 |
 | [商店发布指南](references/stores.zh-CN.md)／[English](references/stores.md) | 在 P4／P8／P9／W4／X6 下细化不同渠道的提审与发布证据 |
-| [tools/check_skill.py](tools/check_skill.py) | frontmatter、ID、全部 README／reference 的链接、锚点、行尾和基础泄漏检查 |
+| [tools/check_skill.py](tools/check_skill.py) | frontmatter、ID、项目 Markdown 链接／锚点、行尾和基础泄漏检查 |
 | [tools/test_check_skill.py](tools/test_check_skill.py) | 临时副本中的校验器正例、断链和锚点负例 |
+| [evals](evals/README.md) | 三个复现案例、报告契约、手写样例及独立 agent 实测记录 |
+| [ClawHub 准备](docs/CLAWHUB.md)／[来源核查](docs/PROVENANCE.md) | 发布文件准备及 MIT-0 许可核查 |
+| [CHANGELOG](CHANGELOG.md)／[VERSION](VERSION) | 首个明确版本：0.1.0 |
 
 ## 安装
 
@@ -42,16 +46,44 @@ ln -s "$PWD/cross-platform-app-checklist" ~/.agents/skills/cross-platform-app-ch
 
 可在项目 `AGENTS.md` 中约定：
 
-> UI、生命周期、权限、媒体、打包及商店发布变更使用
-> `cross-platform-app-checklist` 检查；在设计记录／PR 中记录
-> verified、to do、needs device 或附理由的 not applicable。
+> 日常 UI／平台变更使用 `cross-platform-app-checklist` 的 change 模式，
+> 发布前使用 release 模式。默认只读；记录范围、ID、平台、证据、真机计划和阻塞。
 
 ## 使用与渠道范围
 
-先明确实际分发的平台和可达形态，再逐项给出状态及证据，适用时读取对应
-reference 后再改代码。共享代码到达的其他平台也要检查；只有截图或模拟器
-不能证明真实硬件、原生系统能力或商店批准。记录构建、OS、逻辑尺寸、缩放、
-语言和相关设置；功能支持状态与实际验证状态分开。
+默认**只读审查**。输入明确项目／路径及 revision、变更 diff 或发布候选、
+框架、目标平台／形态、渠道／包模型／地区；能从文件推断则先检查，未知项明确标注。
+共享代码到达的其他平台也纳入范围，X1 检查商店默认可达形态。
+
+- **change（日常变更）**：仅展开受影响领域及关联风险；考虑 X1／X4／X5，
+  产物／分发变化另纳入 X6。报告所选 ID、排除领域及范围理由；不输出全部
+  65 行，也不把未审领域写成 N/A。
+- **release（完整发布）**：读取 [完整清单](references/checklist.md)，对每个
+  实际分发平台覆盖全部 65 个 ID；按领域和所选渠道逐步加载详细参考。
+
+输出先列范围与假设，再按优先级列 `ID／平台／状态／证据或缺口／下一步`，
+并单列**真机计划**、**发布阻塞**及未验证限制。状态为 verified、to do、
+needs device 或附理由的 not applicable。部分通过须拆分已证实与待验证案例。
+记录构建、OS、逻辑尺寸、缩放、语言等；源码、正式产物、运行、真机及商店批准
+互不替代。使用技能不自动授权修改、签名、上传、收集秘密或接受平台条款。
+
+调用示例（项目、版本请替换为真实值）：
+```text
+使用 $cross-platform-app-checklist，change 模式，只读检查 ./app 的 base..HEAD。
+Flutter；Android 手机 + Windows；Google Play + 站外安装器。
+审查共享编辑器／麦克风变更，列范围、优先级问题、证据、真机计划和阻塞。
+
+使用 $cross-platform-app-checklist，change 模式，检查 ./ledger 的 base..HEAD。
+Electron；Windows + Linux；MSI + Flathub。检查持久化和退出流程。
+
+使用 $cross-platform-app-checklist，release 模式，检查 ./app 的 RC1。
+Flutter；Android + Windows；Google Play + Microsoft Store，美国。
+逐平台覆盖全部 65 个 ID，区分缺失证据和实际验证。
+```
+
+参见 [三个复现案例与评测边界](evals/README.md)、[版本变更](CHANGELOG.md)
+及 [ClawHub 准备文档](docs/CLAWHUB.md)。本次未上传 ClawHub，当前可用 Git
+克隆／链接方式安装；Codex 用户也可链接到 `~/.codex/skills`。
 
 提审、更新或分发变更时读取 [商店发布指南](references/stores.zh-CN.md)，
 按“渠道／包模型 × 国家地区 × 应用类型”选择适用路径。覆盖 App Store
@@ -75,7 +107,8 @@ reference 后再改代码。共享代码到达的其他平台也要检查；只�
 ## 贡献规则
 
 仅在实际缺陷暴露缺口时增加规则，写清防止的失败及验证方法。能由原有要求
-覆盖时深化既有条目；新增 ID 必须在 `SKILL.md` 与对应 reference 中一致。
+覆盖时深化既有条目；新增 ID 必须在完整清单与对应 reference 中一致，
+不能改变既有稳定 ID；确需新增时主动同步校验器的稳定 ID 集。
 中英文项目文档和商店指南同步维护，来源索引保持可发现。
 
 商店规则使用官方直链，标注日期、准确渠道／地区／触发条件、要求等级和
@@ -88,12 +121,14 @@ reference 后再改代码。共享代码到达的其他平台也要检查；只�
 ```bash
 python3 -B -m unittest discover -s tools -p 'test_*.py' -v
 python3 tools/check_skill.py
+python3 tools/evaluate_review.py --examples
 git diff --check
 ```
 
 [CI](.github/workflows/check.yml) 在 push 和 pull request 上运行校验器回归与
-一致性检查，覆盖 frontmatter、ID 对应、全部 README 和 reference 的本地
-链接／标题锚点、换行和选定泄漏模式。负例证明中文 README 断链和中文
+一致性检查，覆盖 frontmatter、ID 对应、项目 Markdown 的本地
+链接／标题锚点、换行和选定泄漏模式，以及完整 ID 集、版本与许可元数据。
+CI 也重新评分已保存的合成场景 agent 报告，不启动新 agent。负例证明中文 README 断链和中文
 reference 错误锚点会被拒绝。这些检查不验证远程政策时效、agent 遵守情况、
 应用二进制或真实商店提审；后者按 [发布证据模板](references/stores.zh-CN.md#报告记录)
 单独记录。
@@ -105,4 +140,6 @@ reference 错误锚点会被拒绝。这些检查不验证远程政策时效、a
 
 ## 许可证
 
-GPL-3.0，见 [LICENSE](LICENSE)。
+MIT-0（MIT No Attribution），见 [LICENSE](LICENSE) 和
+[许可来源核查](docs/PROVENANCE.md)。外链作品保留自身许可证，本次不重授外部作品，
+也不改写历史快照已经授予的许可。

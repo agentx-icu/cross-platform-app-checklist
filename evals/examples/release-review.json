@@ -1,0 +1,1409 @@
+{
+  "scope": {
+    "mode": "release",
+    "project": "release-review",
+    "change": "Synthetic fixture review",
+    "framework": "Flutter",
+    "platforms": [
+      "Android",
+      "Windows"
+    ],
+    "channels": [
+      "Google Play",
+      "Microsoft Store"
+    ]
+  },
+  "selected_ids": [
+    "L1",
+    "L2",
+    "L3",
+    "L4",
+    "L5",
+    "L6",
+    "L7",
+    "L8",
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "I1",
+    "I2",
+    "I3",
+    "I4",
+    "I5",
+    "I6",
+    "I7",
+    "I8",
+    "I9",
+    "B1",
+    "B2",
+    "B3",
+    "B4",
+    "B5",
+    "B6",
+    "B7",
+    "B8",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "P6",
+    "P7",
+    "P8",
+    "P9",
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "M6",
+    "M7",
+    "M8",
+    "W1",
+    "W2",
+    "W3",
+    "W4",
+    "F1",
+    "F2",
+    "F3",
+    "X1",
+    "X2",
+    "X3",
+    "X4",
+    "X5",
+    "X6",
+    "X7",
+    "X8",
+    "X9"
+  ],
+  "excluded_areas": [],
+  "references_loaded": [
+    "references/layout.md",
+    "references/display.md",
+    "references/input.md",
+    "references/lifecycle.md",
+    "references/permissions.md",
+    "references/media-devices.md",
+    "references/desktop.md",
+    "references/performance.md",
+    "references/testing.md",
+    "references/flutter.md",
+    "references/stores.md"
+  ],
+  "rows": [
+    {
+      "id": "L1",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "L1",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "L2",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "L2",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "L3",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "L3",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "L4",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "L4",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "L5",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "L5",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "L6",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "L6",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "L7",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "L7",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "L8",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "L8",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "D1",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "D1",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "D2",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "D2",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "D3",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "D3",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "D4",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "D4",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "D5",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "D5",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "D6",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "D6",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "D7",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "D7",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "I1",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "I1",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "I2",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "I2",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "I3",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "I3",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "I4",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "I4",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "I5",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "I5",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "I6",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "I6",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "I7",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "I7",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "I8",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "I8",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "I9",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "I9",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "B1",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "B1",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "B2",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    },
+    {
+      "id": "B2",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    },
+    {
+      "id": "B3",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "B3",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "B4",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "B4",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "B5",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "B5",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "B6",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "B6",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "B7",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Fresh database only; skipped releases and newer-format restore/downgrade remain untested.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    },
+    {
+      "id": "B7",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Fresh database only; skipped releases and newer-format restore/downgrade remain untested.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    },
+    {
+      "id": "B8",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "B8",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "P1",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    },
+    {
+      "id": "P1",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    },
+    {
+      "id": "P2",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "P2",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "P3",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "P3",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "P4",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Last-release privacy answers omit new audio SDK assessment and dated channel policy evidence.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    },
+    {
+      "id": "P4",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Last-release privacy answers omit new audio SDK assessment and dated channel policy evidence.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    },
+    {
+      "id": "P5",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "P5",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "P6",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "P6",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "P7",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "P7",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "P8",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Subscription transaction verification, restore/refund/revoke need channel-specific proof.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    },
+    {
+      "id": "P8",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Subscription transaction verification, restore/refund/revoke need channel-specific proof.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    },
+    {
+      "id": "P9",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "P9",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "M1",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "M1",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "M2",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "needs device",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "On physical Android hardware, exercise the affected flow, observe cleanup/state and record build/OS/settings.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "M2",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "needs device",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "On physical Windows hardware, exercise the affected flow, observe cleanup/state and record build/OS/settings.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "M3",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "M3",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "M4",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "M4",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "M5",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "M5",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "M6",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "M6",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "M7",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "M7",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "M8",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "M8",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "W1",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "W1",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "W2",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    },
+    {
+      "id": "W2",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    },
+    {
+      "id": "W3",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "W3",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "W4",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Filenames and ARM64 CI host do not prove native payload or MSIX architecture.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    },
+    {
+      "id": "W4",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Filenames and ARM64 CI host do not prove native payload or MSIX architecture.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    },
+    {
+      "id": "F1",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "F1",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "F2",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "F2",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "F3",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "F3",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "X1",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "X1",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "X2",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "X2",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "X3",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "X3",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "X4",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "needs device",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "On physical Android hardware, exercise the affected flow, observe cleanup/state and record build/OS/settings.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "X4",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "needs device",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "On physical Windows hardware, exercise the affected flow, observe cleanup/state and record build/OS/settings.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "X5",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "X5",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "X6",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Final app/engine/plugin headers, package metadata and target load tests are absent.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    },
+    {
+      "id": "X6",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Final app/engine/plugin headers, package metadata and target load tests are absent.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    },
+    {
+      "id": "X7",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "X7",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "X8",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Android.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "X8",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Synthetic input supplies no execution evidence for this item on Windows.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": false
+    },
+    {
+      "id": "X9",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Latest-link text does not prove retained real directories, writer ownership or chronology across equal timestamps.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Android; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    },
+    {
+      "id": "X9",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Latest-link text does not prove retained real directories, writer ownership or chronology across equal timestamps.",
+      "next_step": "Inspect the matching rule and execute its applicable cases on Windows; retain build, OS, settings and observations.",
+      "reason": "",
+      "release_blocker": true
+    }
+  ],
+  "device_plan": [
+    "Use physical Android target hardware: verify affected resource cleanup, disconnection and state recovery; retain build, OS and observations.",
+    "Use physical Windows target hardware: verify affected resource cleanup, disconnection and state recovery; retain build, OS and observations."
+  ],
+  "release_blockers": [
+    "Outstanding runtime, package or release evidence must be resolved before the affected change ships."
+  ],
+  "limitations": [
+    "Hand-authored contract example, not an agent run; no application, package, hardware or store execution occurred."
+  ]
+}

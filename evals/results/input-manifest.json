@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-27",
+  "base_commit": "0a64c0fdc93fd43e56aea23eadafe587ab9bff5a",
+  "baseline_skill_sha256": "9147b014228bdb859270b223a34a9558c30ab71a16e0f4548ef512e6b0f5c148",
+  "reviewed_entrypoint_sha256": "790b241119818f43b12deba831d5aff3110c349aec9e127f9b9a0e03bd6941bd",
+  "prepared_input_sha256": {
+    "SKILL.md": "790b241119818f43b12deba831d5aff3110c349aec9e127f9b9a0e03bd6941bd",
+    "references/checklist.md": "ff84f3628e0ca02ccb805593be854673b297cc9c8429480e31942582cf535df5",
+    "references/desktop.md": "84210fd125508486b0f2fb1ade7ba6925f6770dc63e9f5c05cd5423a774a7ead",
+    "references/display.md": "2335fb4f21f7107998176bea52265e99321058f10c1bbd8b7d4d5b24c5353da7",
+    "references/flutter.md": "acb9e7cd525aa198cc6e4600ca61dcb639166f14f7669221741c8bc06c04bd7e",
+    "references/input.md": "cc8d89350282f6f403d39c6fef734ea4e5168d1835ab817c3eb2810a6b241570",
+    "references/layout.md": "e61fd8e1c57867c1218c8bdc7f1b25b14ca541848fc09bc5a6a9fbf9f84f671e",
+    "references/lifecycle.md": "6d984c2551cf9824d29e23d5f00f3d662f150286806d06eee8257d542cf64dc1",
+    "references/media-devices.md": "e6f189f4982dc48656fc2e81207df2acbe9921979c83957f79413cf7dc5848ef",
+    "references/performance.md": "526baa3cdba972bc3aeffdf6bcc9ddc835d4da3a3d207d421892b7a5110279d3",
+    "references/permissions.md": "2f4650c41ce4dbd49c40a9f9e1e58f55e6690f83771b16036a38873613563bd4",
+    "references/sources.md": "b6b49699aeab539adbd3ca7abf623ec7b900e7f1386541346641b08d421c42a1",
+    "references/stores.md": "612265c3c7d6d39540dd3b5020ade6f8286277141390c9da1c613bfdf2fe9116",
+    "references/stores.zh-CN.md": "313888c7224aaa9fbb2d63ded82141f97fa3922f595894204403163487a997ed",
+    "references/testing.md": "9f42f3766a1a9f180bc9f1c3006a6e94c259ceb32a934db3c18d10bda294d68c",
+    "evals/cases/electron-change.md": "0c1078b858788b259ee7535805b7e1ddaf81dad3002d51a0951115e0eaba3dcc",
+    "evals/cases/flutter-change.md": "fcac90006ea3538000a9e5ff91fa57ff9a3c8b234e5e18d3ee471ad16dba49d3",
+    "evals/cases/release-review.md": "8a0e6249cba7dd7a47a2172740b6c9e0e07de0dc64efe15b320b657f9e4fd24a"
+  },
+  "report_normalization": "Only the local workstation checkout prefix was replaced with a dot; no findings, status, selection or evidence claims were edited.",
+  "agent_model": "Inherited Codex subagent; exact runtime model identifier not exposed."
+}

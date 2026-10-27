@@ -20,7 +20,8 @@ framework; Flutter-specific notes are kept in one file.
 ## Layout
 
 ```
-SKILL.md                    entry point: when to use, how to answer, the checklist
+SKILL.md                    short entry point: modes, routing, evidence and output contract
+references/checklist.md     complete catalog of 65 stable IDs (full release coverage)
 references/layout.md        L1–L8  sizes, breakpoints, runtime resize, safe areas, keyboard, orientation, overlays, folds
 references/display.md       D1–D7  large text, localisation, pixel density, runtime scale, icons, theme, motion
 references/input.md         I1–I9  touch targets, pointer / keyboard, text input, back, assistive input, time, gestures, links, sharing
@@ -34,8 +35,13 @@ references/flutter.md       Flutter APIs and plugin traps for all of the above
 references/sources.md       official guidelines mapped to IDs, dated version / store gates, related projects
 references/stores.md        store-specific submission / release evidence under existing P4 / P8 / P9 / W4 / X6
 references/stores.zh-CN.md  Chinese counterpart of the store release guide
-tools/check_skill.py        consistency check (IDs, all README / reference links and anchors, YAML frontmatter, basic leak patterns; needs PyYAML)
+tools/check_skill.py        consistency check (IDs, project Markdown links/anchors, metadata, hygiene; needs PyYAML)
 tools/test_check_skill.py   isolated positive / negative validator regressions
+evals/                     three reproducible review cases, contract examples and actual agent results
+tools/evaluate_review.py    synthetic report-contract grader, not an app verifier
+VERSION / CHANGELOG.md      first versioned preparation: 0.1.0
+docs/CLAWHUB.md             publication preparation only; no upload
+docs/PROVENANCE.md          bounded license/source audit
 README.zh-CN.md             Chinese project documentation
 ```
 
@@ -45,6 +51,9 @@ Clone the repository and link it into your agent's skills directory:
 
 ```bash
 git clone https://github.com/agentx-icu/cross-platform-app-checklist.git
+# Codex (user level)
+mkdir -p ~/.codex/skills
+ln -s "$PWD/cross-platform-app-checklist" ~/.codex/skills/cross-platform-app-checklist
 # Claude Code (user level)
 mkdir -p ~/.claude/skills
 ln -s "$PWD/cross-platform-app-checklist" ~/.claude/skills/cross-platform-app-checklist
@@ -56,18 +65,50 @@ ln -s "$PWD/cross-platform-app-checklist" ~/.agents/skills/cross-platform-app-ch
 To make a project apply it on every UI or platform change, add a line to the
 project's `CLAUDE.md` / `AGENTS.md`, for example:
 
-> UI, lifecycle, permission, media and packaging changes are checked against
-> the `cross-platform-app-checklist` skill; the answers (verified / to do /
-> not applicable with reason) go into the PR description.
+> Use `cross-platform-app-checklist` in change mode for UI/platform changes,
+> and release mode before shipping. Keep reviews read-only unless fixes are
+> requested; report scoped IDs, target-specific evidence, device plans and blockers.
 
 ## Using it
 
-The agent loads the skill when a change touches UI or platform behaviour.
-It scopes the platforms and form factors the change reaches, answers every
-checklist item as **verified** (with evidence), **to do** or **not
-applicable** (with a reason), opens the matching reference before writing
-code, and reports the answers as a table. Items that need real hardware are
-marked "needs device", never "verified" from a simulator.
+Default behavior is **read-only review**. Inputs are the project/path and revision,
+changed files/diff or release candidate, framework, shipped platforms/form factors,
+and channels/package models/territories. Unknowns are labelled. Shared changes
+reach every shipped target; default store availability is checked as part of X1.
+
+- **Change mode:** expand only affected areas and their reachable dependencies;
+  consider X1/X4/X5 and X6 for artifact/distribution changes. Report selected IDs
+  and excluded-area reasons, without 65 boilerplate rows or blanket N/A.
+- **Release mode:** account for all **65 stable IDs** per shipped target using the
+  [complete catalog](references/checklist.md), then load detailed area and chosen
+  channel references as needed. Missing evidence stays outstanding.
+
+Output starts with scope and assumptions, followed by
+`priority | ID | platform | status | evidence / gap | next step`, then separate
+physical-device plans, release blockers and limitations. Status is **verified**,
+**to do**, **needs device**, or **not applicable with reason**. Split partial
+coverage by case/target. Source, packaged-artifact, runtime, hardware and store
+approval evidence remain distinct. Reading the skill does not authorize fixes,
+signing, uploading, credential collection or acceptance of new terms.
+
+Example invocations (replace project and revision with real inputs):
+```text
+Use $cross-platform-app-checklist in change mode for ./app, diff base..HEAD.
+Framework Flutter; Android phones + Windows; Google Play + direct installer.
+Review the shared editor and microphone change read-only; list selected IDs,
+prioritized findings, physical-device plans and release blockers.
+
+Use $cross-platform-app-checklist in change mode for ./ledger, diff base..HEAD.
+Framework Electron; Windows + Linux; MSI + Flathub. Review persistence and quit.
+
+Use $cross-platform-app-checklist in release mode for ./app, candidate RC1.
+Framework Flutter; Android + Windows; Google Play + Microsoft Store, US.
+Cover all 65 IDs per target; distinguish unavailable evidence from verification.
+```
+
+See [reproducible cases and evaluation boundaries](evals/README.md),
+[0.1.0 changes](CHANGELOG.md) and [ClawHub preparation](docs/CLAWHUB.md).
+The ClawHub listing is not published by this preparation; clone/link works today.
 
 For submission or release work, open the [store release guide](references/stores.md)
 ([简体中文](references/stores.zh-CN.md)) and choose the actual channel,
@@ -100,8 +141,9 @@ and device qualification, and never collect secret values in the report.
 
 Add a rule when a real defect shows a gap: the rule, the failure it
 prevents, and how to verify it. Give new checklist items an ID in the
-reference file (`## L8 ...`) and list it in `SKILL.md`. Prefer deepening an
-existing item when the same acceptance rule covers the issue. Keep the
+reference file (`## L8 ...`) and the complete catalog. Preserve existing IDs;
+update the stable-set validator deliberately if an addition is justified.
+Prefer deepening an existing item when the same acceptance rule covers the issue. Keep the
 English and Chinese project / store documentation in sync. For a store
 rule, link the current official source, date, exact channel / territory /
 feature trigger, rule level and observable evidence; do not turn fees,
@@ -114,13 +156,16 @@ Install PyYAML in the Python environment used for these commands, then run:
 ```bash
 python3 -B -m unittest discover -s tools -p 'test_*.py' -v
 python3 tools/check_skill.py
+python3 tools/evaluate_review.py --examples
 git diff --check
 ```
 
 The [CI workflow](.github/workflows/check.yml) runs the validator regressions
 and consistency check on pushes and pull requests. It checks frontmatter,
 checklist / reference ID correspondence, local links and heading anchors
-in every README and reference, line endings and selected leak patterns.
+in project Markdown, line endings and selected leak patterns. Version/license
+metadata and the complete stable ID set are checked as well.
+CI also regrades the saved synthetic agent reports; it does not launch fresh agents.
 Negative fixtures prove a broken translated README link / reference anchor
 is rejected. It does **not** validate remote policy freshness, agent
 compliance, an app's binaries or a real store submission. Capture those
@@ -134,4 +179,6 @@ target-machine smoke evidence; this repository's CI does not provide them.
 
 ## License
 
-GPL-3.0, see [LICENSE](LICENSE).
+MIT-0 (MIT No Attribution), see [LICENSE](LICENSE) and the
+[provenance review](docs/PROVENANCE.md). External linked resources retain their
+own licenses; the change does not relicense those works or rewrite old snapshots.

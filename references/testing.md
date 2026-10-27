@@ -504,6 +504,11 @@ device or simulator, logical size, pixel ratio, text / locale settings,
 steps, expected / observed result, and test / log / screenshot link as
 relevant. Do not put credentials or private user data in artifacts.
 
+Use the entrypoint's current output contract: scope and selected/excluded IDs,
+then priority, ID, platform, status, evidence and next step, followed by separate
+device plans and release blockers. The compact rows below illustrate evidence
+wording only; add the target, priority and next action in a real report.
+
 ```markdown
 | ID | Status | Evidence |
 |----|--------|----------|

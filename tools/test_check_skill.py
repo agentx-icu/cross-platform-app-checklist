@@ -48,6 +48,38 @@ class DocumentationValidationTest(unittest.TestCase):
         self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
         self.assertIn("broken anchor #missing-anchor", result.stdout)
 
+    def test_missing_stable_id_is_rejected(self):
+        # Works before and after moving the catalog out of the entrypoint.
+        catalog = self.repo / "references" / "checklist.md"
+        if not catalog.exists():
+            catalog = self.repo / "SKILL.md"
+        text = catalog.read_text().replace("- **L1 Size range.", "- **Z1 Size range.")
+        catalog.write_text(text)
+        result = self.check()
+        self.assertEqual(result.returncode, 1, result.stdout)
+        self.assertIn("stable ID set", result.stdout)
+
+    def test_broken_release_doc_link_is_rejected(self):
+        docs = self.repo / "docs"
+        docs.mkdir(exist_ok=True)
+        (docs / "fixture.md").write_text("[release](missing.md)\n")
+        result = self.check()
+        self.assertEqual(result.returncode, 1, result.stdout)
+        self.assertIn("broken link missing.md", result.stdout)
+
+    def test_metadata_license_conflict_is_rejected(self):
+        path = self.repo / "SKILL.md"
+        path.write_text(path.read_text().replace("license: MIT-0", "license: GPL-3.0"))
+        result = self.check()
+        self.assertEqual(result.returncode, 1, result.stdout)
+        self.assertIn("license must be MIT-0", result.stdout)
+
+    def test_version_drift_is_rejected(self):
+        (self.repo / "VERSION").write_text("9.9.9\n")
+        result = self.check()
+        self.assertEqual(result.returncode, 1, result.stdout)
+        self.assertIn("version", result.stdout)
+
 
 if __name__ == "__main__":
     unittest.main()
