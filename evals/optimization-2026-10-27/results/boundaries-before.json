@@ -1,0 +1,944 @@
+{
+  "skill_sha256": "790b241119818f43b12deba831d5aff3110c349aec9e127f9b9a0e03bd6941bd",
+  "model": "unknown",
+  "probes": [
+    {
+      "case": "A",
+      "applies": false,
+      "rationale": "The user requests exactly one documentation typo correction and explicitly excludes app/release review; no platform behavior changes.",
+      "mode": "none",
+      "response": "Windows",
+      "selected_ids": [],
+      "status_claims": [],
+      "references_loaded": [],
+      "actions_performed": []
+    },
+    {
+      "case": "B",
+      "applies": true,
+      "rationale": "An explicit shipping/readiness question about a Flutter voice-note permission fix invokes release mode. Missing inputs limit conclusions and do not justify verification or N/A.",
+      "mode": "release",
+      "response": "Release mode — first evidence review. Flutter is reported by the README; Android and Windows are mentioned, but neither the complete shipping matrix nor their shipping status is established. Project/path, revision, release candidate, OS/support ranges, form factors, channels/package models and territories are unknown. No app artifact or runtime result was inspected. Selected: all 65 IDs (L1–L8, D1–D7, I1–I9, B1–B8, P1–P9, M1–M8, W1–W4, F1–F3, X1–X9). Excluded areas: none from release scope; detailed assessment outside the voice-note risks remains pending evidence.\n\nShipping is not established by this evidence. I would not mark the fix verified or convert unavailable Windows checks into N/A. The supplied source-manifest change establishes only the reported addition of RECORD_AUDIO, not the merged release declarations, permission flow, microphone behavior or packaged Windows support. “CI green” needs the actual platform jobs, executed test counts, skips, revision and artifact identities.\n\nPriority | ID | platform | status | evidence / gap | next step\nP0 | X1 | unconfirmed shipping matrix | to do | README mentions are not a target inventory | confirm every shipped target/form factor, supported OS/CPU and channel, including reachable compatibility/store surfaces or documented exclusions.\nP0 | P1/P2/X6 | Android, if shipped | to do | reported source permission only; no final manifest, candidate or consent results | inspect the merged release/flavor manifest and native payload; install the identified release and test first grant/denial, Settings revocation, return and exactly-once recording.\nP0 | P1/P2/P3/X5/X6 | Windows, if shipped | to do | no artifact or backend/package-model evidence | establish the recording plugin/backend and package/trust model; inspect required declarations and test desktop privacy switches, denial, recovery and parity. Unavailability is an evidence gap.\nP0 | M1/M2/X4 | each shipped recording target | needs device | no real recording, interruption or routing evidence | execute the physical plan below.\nP1 | B1/B2/B3/X7 | each shipped recording target | to do | no lifecycle or draft-recovery results | exercise focus change, background/lock, interrupted consent, process loss and safe resume; check saved notes and duplicate results.\nP1 | M4/M7/X9 | each shipped target | to do | format interoperability, absent/disconnected microphone handling and readable/redacted release diagnostics are unknown | retain cross-platform voice-note fixtures, device-loss results and real release diagnostic evidence.\n\nCoverage ledger: every one of the 65 IDs remains to do on the provisional Android and Windows columns except M1, M2 and X4 hardware cases, which are needs device. These columns are planning placeholders, not a claim that these are the only shipped targets. No ID is verified or N/A; feature-dependent applicability and the remaining areas need project/feature evidence and target-specific reasons. Add any further shipped target to the same ledger.\n\nPhysical-device plan: release QA (owner to confirm) records and plays a note on supported physical Android and Windows machines with built-in, wired/USB and supported Bluetooth microphones. Connect/disconnect a device and change the default route mid-recording; interrupt, lock/resume, deny/revoke access and retry. Expect the intended route, a recoverable explanation when unavailable, no unintended recording, one durable note and correct playback on the other platform. Retain build/hash, device/OS, process/backend, route, settings, steps and observed results; do not retain private recordings in diagnostics.\n\nRelease blockers: scope/candidate identity and all outstanding release evidence block a ship recommendation. No concrete code defect is proved yet. Product decisions: shipping/feature matrix, microphone optionality and supported background recording. Owner materials: candidate artifacts, CI records, package/signing identity and channel/territory records; obtain these from the release owner/CI and selected channel console without requesting secret values. Hardware qualification remains separate. No current store policy or approval was checked.\n\nTo proceed, which targets/form factors actually ship, from what project/diff and revision/candidate, through which channels/package models and territories? Supply the locked Flutter/recording-plugin versions, support ranges and the relevant CI jobs/artifact/test evidence. The review can continue incrementally while missing owner materials are collected.",
+      "selected_ids": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7",
+        "L8",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6",
+        "D7",
+        "I1",
+        "I2",
+        "I3",
+        "I4",
+        "I5",
+        "I6",
+        "I7",
+        "I8",
+        "I9",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7",
+        "B8",
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "P8",
+        "P9",
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8",
+        "W1",
+        "W2",
+        "W3",
+        "W4",
+        "F1",
+        "F2",
+        "F3",
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X5",
+        "X6",
+        "X7",
+        "X8",
+        "X9"
+      ],
+      "status_claims": [
+        {
+          "id": "L1",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "L2",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "L3",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "L4",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "L5",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "L6",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "L7",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "L8",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "D1",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "D2",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "D3",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "D4",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "D5",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "D6",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "D7",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "I1",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "I2",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "I3",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "I4",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "I5",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "I6",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "I7",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "I8",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "I9",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "B1",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "B2",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "B3",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "B4",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "B5",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "B6",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "B7",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "B8",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "P1",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "P2",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "P3",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "P4",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "P5",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "P6",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "P7",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "P8",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "P9",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "M1",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "needs device",
+          "evidence": "No physical recording/interruption/routing evidence; release QA must qualify the identified release on supported physical microphones/devices."
+        },
+        {
+          "id": "M2",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "needs device",
+          "evidence": "No physical recording/interruption/routing evidence; release QA must qualify the identified release on supported physical microphones/devices."
+        },
+        {
+          "id": "M3",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "M4",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "M5",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "M6",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "M7",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "M8",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "W1",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "W2",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "W3",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "W4",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "F1",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "F2",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "F3",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "X1",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "X2",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "X3",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "X4",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "needs device",
+          "evidence": "No physical recording/interruption/routing evidence; release QA must qualify the identified release on supported physical microphones/devices."
+        },
+        {
+          "id": "X5",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "X6",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "X7",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "X8",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "X9",
+          "platform": "Android (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "L1",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "L2",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "L3",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "L4",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "L5",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "L6",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "L7",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "L8",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "D1",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "D2",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "D3",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "D4",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "D5",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "D6",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "D7",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "I1",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "I2",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "I3",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "I4",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "I5",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "I6",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "I7",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "I8",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "I9",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "B1",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "B2",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "B3",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "B4",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "B5",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "B6",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "B7",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "B8",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "P1",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "P2",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "P3",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "P4",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "P5",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "P6",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "P7",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "P8",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "P9",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "M1",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "needs device",
+          "evidence": "No physical recording/interruption/routing evidence; release QA must qualify the identified release on supported physical microphones/devices."
+        },
+        {
+          "id": "M2",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "needs device",
+          "evidence": "No physical recording/interruption/routing evidence; release QA must qualify the identified release on supported physical microphones/devices."
+        },
+        {
+          "id": "M3",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "M4",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "M5",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "M6",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "M7",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "M8",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "W1",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "W2",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "W3",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "W4",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "F1",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "F2",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "F3",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "X1",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "X2",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "X3",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "X4",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "needs device",
+          "evidence": "No physical recording/interruption/routing evidence; release QA must qualify the identified release on supported physical microphones/devices."
+        },
+        {
+          "id": "X5",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "X6",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "X7",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "X8",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        },
+        {
+          "id": "X9",
+          "platform": "Windows (README-mentioned; shipping unconfirmed)",
+          "status": "to do",
+          "evidence": "No identified revision/candidate, project artifacts or target-qualified test/inspection evidence. Applicability and verification remain open; README targets are provisional."
+        }
+      ],
+      "references_loaded": [
+        "references/checklist.md",
+        "references/testing.md",
+        "references/permissions.md",
+        "references/media-devices.md",
+        "references/lifecycle.md",
+        "references/desktop.md",
+        "references/flutter.md",
+        "references/stores.md"
+      ],
+      "actions_performed": []
+    },
+    {
+      "case": "C",
+      "applies": true,
+      "rationale": "The user explicitly requests scoped change mode for a Windows Electron MSI architecture change; upcoming release timing does not override that scope.",
+      "mode": "change",
+      "response": "Change mode — Windows installer architecture only. Electron; Windows MSI and Linux Flathub ship. Revision/build, supported OS/CPU matrix, final artifact and Windows delivery channel/territory are unknown. Evidence supplied: MSI source label changes x64 → arm64, build note says the executable remains x64, and shared application code is unchanged. Selected: W4, X1, X4, X5, X6. Excluded: layout, display, input, lifecycle, permissions, media, performance and unrelated testing areas because this supplied change alters installer architecture labeling only. Linux Flathub submission/readiness work is outside this Windows change scope; it creates no new submission action here.\n\nPriority | ID | platform | status | evidence / gap | next step\nP0 | W4/X6 | Windows MSI | to do | the reported arm64 label conflicts with the reported x64 payload; no final MSI establishes the actual package metadata or payload | resolve the intended product claim: native Arm64, or an accurately described x64 build with deliberately supported emulation. A label change does not produce an Arm64 executable. Propose restoring truthful x64 metadata or producing the intended compatible Arm64 payload; do not perform either correction in this review.\nP0 | X6 | Windows | to do | final package, Electron/runtime and native-addon headers, signing evidence and target load/install logs are missing | inspect the final MSI Template Summary/architecture and extracted PE Machine values for the app, Electron runtime and every loaded native addon/FFI module; document intentional helpers/hybrid designs separately. Match final hashes and architecture to the distribution record. Check the final signature/publisher identity, then clean install, launch/load every relevant addon, upgrade and uninstall on the supported target machines. Headers and labels cannot replace those runtime tests.\nP0 | X1 | Windows | to do | intended supported CPU/OS matrix and executed cases unknown | record build tool/process ABI, host CPU/emulation and target architecture separately; select minimum/current supported OS and each claimed CPU mode.\nP0 | X4 | Windows Arm64 claim | needs device | no actual target-machine qualification was supplied | retain the target test described below and identify physical/virtualized environment and any emulation; do not call x64-under-emulation native Arm64.\nP1 | X5 | Linux Flathub | not applicable | this specific regression concerns Windows MSI architecture metadata; the supplied scope has no shared-code change or Linux package change | keep this reason with the narrow parity record; it says nothing about Linux release readiness. Reopen parity if build tooling or native dependencies are also shared/changed.\n\nPhysical-device plan: release QA (owner to confirm) installs the exact final MSI on a clean supported Windows Arm64 machine and on supported x64 hardware if x64 remains a claim. Record OS/build, CPU, process architecture/emulation, artifact hash, dependency load and clean-install/upgrade results. Expect architecture claims to match metadata and the loaded app/addons, with successful standard-user launch and upgrade. No unrelated peripheral qualification is needed for this change.\n\nRelease blockers in this scope: the reported label/payload contradiction, missing final package/native-module evidence, final signing validation and install/upgrade/load qualification prevent signing off the Windows architecture change. The native-versus-emulated support decision belongs to the product/release owner. Request the final artifact, revision/build note, intended CPU claim and expected signing identity from the release engineer/CI; no private key or credential value is needed. Whether MSI is direct distribution or Microsoft Store hosted MSI remains consequential for channel-specific requirements; do not assume the Store route. Policy requirements were not refreshed, and no account was accessed.\n\nRelease readiness was not assessed. No full 65-item release review, source fix, build, signing or submission was performed.",
+      "selected_ids": [
+        "W4",
+        "X1",
+        "X4",
+        "X5",
+        "X6"
+      ],
+      "status_claims": [
+        {
+          "id": "W4",
+          "platform": "Windows MSI",
+          "status": "to do",
+          "evidence": "Supplied label says arm64 while supplied build note says x64 executable; final package/signature and target install evidence absent."
+        },
+        {
+          "id": "X1",
+          "platform": "Windows",
+          "status": "to do",
+          "evidence": "Supported OS/CPU claims, host/tool/process ABI and executed matrix are unknown."
+        },
+        {
+          "id": "X4",
+          "platform": "Windows Arm64 claim",
+          "status": "needs device",
+          "evidence": "No actual target-machine qualification; plan records hardware/OS, emulation, exact final artifact and installed native-module loading."
+        },
+        {
+          "id": "X5",
+          "platform": "Linux Flathub",
+          "status": "not applicable",
+          "evidence": "Windows MSI-specific architecture-label scenario has no Linux package path; supplied scope states shared application code unchanged. Linux release readiness is unassessed."
+        },
+        {
+          "id": "X6",
+          "platform": "Windows MSI",
+          "status": "to do",
+          "evidence": "No final MSI, PE headers for app/runtime/native addons, signing validation or clean target-machine install/upgrade/load logs."
+        }
+      ],
+      "references_loaded": [
+        "references/testing.md",
+        "references/desktop.md",
+        "references/stores.md"
+      ],
+      "actions_performed": []
+    }
+  ],
+  "limitations": [
+    "Three independent synthetic requests were answered; no runnable project or release candidate was supplied or inspected.",
+    "Original entrypoint was read with git show fc3d246:SKILL.md; references were read from the repository. Some initial batched output was truncated, so consequential testing, packaging, permission, audio, lifecycle and Flutter sections were reread in bounded excerpts.",
+    "Release B has an all-65 provisional coverage ledger, but detailed non-voice area assessment and confirmed per-shipped-target coverage remain pending project/scope evidence. No unknown feature or absent artifact was converted into N/A.",
+    "No network, app execution, build, account access, secret access, source edit, commit, signing, upload, Claude or RTK action was performed. Tool use was limited to reading the specified skill/cases and relevant references and writing this record.",
+    "Version-sensitive/store guidance in repository references was not independently refreshed; no current policy compliance or store acceptance is claimed.",
+    "The exact executing model identifier was not exposed; model is recorded as unknown."
+  ]
+}

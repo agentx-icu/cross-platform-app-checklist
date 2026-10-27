@@ -1,0 +1,72 @@
+{
+  "base_commit": "fc3d2463df2391e5671819bb49b4d899a705f0e1",
+  "published_tag": "v0.1.0",
+  "before": {
+    "bytes": 7141,
+    "lines": 110,
+    "words": 944,
+    "sha256": "790b241119818f43b12deba831d5aff3110c349aec9e127f9b9a0e03bd6941bd"
+  },
+  "after": {
+    "bytes": 8350,
+    "lines": 129,
+    "words": 1081,
+    "sha256": "027674af80136f15bd95879fe5cffa777c9e86d35983e974dd34a5a441286c48"
+  },
+  "unchanged_file_sha256": {
+    ".github/workflows/check.yml": "21fd9913c00d7e1dcfaca639d92ff480f3949b1a6c1b60d1a16b8271c00fc984",
+    "LICENSE": "34a439a12ae127416ee0fb539a23485a1d795463a218ef5983a292040f2ec804",
+    "README.md": "060bba574ad6cd4f97144b497f3a856eb8e3e47685c68e3748afeb2604af5e82",
+    "README.zh-CN.md": "5e77834e839c8dc5a3ec4df4d3279218a438d73603e2ed4a830a855631fe26df",
+    "VERSION": "e9dd8507f4bf0c6f42458e41aea833ad0bd3f6127272335eee9bf4d58541ed67",
+    "evals/cases/electron-change.md": "0c1078b858788b259ee7535805b7e1ddaf81dad3002d51a0951115e0eaba3dcc",
+    "evals/cases/flutter-change.md": "fcac90006ea3538000a9e5ff91fa57ff9a3c8b234e5e18d3ee471ad16dba49d3",
+    "evals/cases/release-review.md": "8a0e6249cba7dd7a47a2172740b6c9e0e07de0dc64efe15b320b657f9e4fd24a",
+    "evals/rubrics.json": "cd3982625fc03548d7f5406e15ba7e442ba3e92d88ac2f5c1542c503f6ac530f",
+    "references/checklist.md": "ff84f3628e0ca02ccb805593be854673b297cc9c8429480e31942582cf535df5",
+    "references/desktop.md": "84210fd125508486b0f2fb1ade7ba6925f6770dc63e9f5c05cd5423a774a7ead",
+    "references/display.md": "2335fb4f21f7107998176bea52265e99321058f10c1bbd8b7d4d5b24c5353da7",
+    "references/flutter.md": "acb9e7cd525aa198cc6e4600ca61dcb639166f14f7669221741c8bc06c04bd7e",
+    "references/input.md": "cc8d89350282f6f403d39c6fef734ea4e5168d1835ab817c3eb2810a6b241570",
+    "references/layout.md": "e61fd8e1c57867c1218c8bdc7f1b25b14ca541848fc09bc5a6a9fbf9f84f671e",
+    "references/lifecycle.md": "6d984c2551cf9824d29e23d5f00f3d662f150286806d06eee8257d542cf64dc1",
+    "references/media-devices.md": "e6f189f4982dc48656fc2e81207df2acbe9921979c83957f79413cf7dc5848ef",
+    "references/performance.md": "526baa3cdba972bc3aeffdf6bcc9ddc835d4da3a3d207d421892b7a5110279d3",
+    "references/permissions.md": "2f4650c41ce4dbd49c40a9f9e1e58f55e6690f83771b16036a38873613563bd4",
+    "references/sources.md": "b6b49699aeab539adbd3ca7abf623ec7b900e7f1386541346641b08d421c42a1",
+    "references/stores.md": "612265c3c7d6d39540dd3b5020ade6f8286277141390c9da1c613bfdf2fe9116",
+    "references/stores.zh-CN.md": "313888c7224aaa9fbb2d63ded82141f97fa3922f595894204403163487a997ed",
+    "references/testing.md": "9f42f3766a1a9f180bc9f1c3006a6e94c259ceb32a934db3c18d10bda294d68c",
+    "tools/check_skill.py": "98e1efe7aff64f1d3085374decce38165fd51bc5e5668c092e42655bec937435",
+    "tools/evaluate_review.py": "2e2c7438ab884c2036702be74e4ad055301aaf0227b7ce697f5344433b2e4479",
+    "tools/test_check_skill.py": "2ad3772de33a8596e562991e185836d343e92c463a107af1c915d93ce689cee0",
+    "tools/test_evaluate_review.py": "7aad553630d5b2eae69b66bb75af021862ddb6aec58bb7c138b096ab64d84551"
+  },
+  "historical_before_reports": [
+    "evals/results/flutter-change.json",
+    "evals/results/release-review.json"
+  ],
+  "boundary_before_input_sha256": "df5db1aa601eaa06623debf8e76e996edf9ba2665581496ffdd46a36958b3cf1",
+  "boundary_after_input_sha256": "16e59db845a7203e947bbe8e9eea7450d220abd1710d457dfbd06f3bf11ab9ce",
+  "release_action": "No ClawHub upload, tag or GitHub Release change authorized or performed in this optimization.",
+  "result_records": {
+    "boundaries-before.json": {
+      "raw_sha256": "6ac44569c13ca8123cd97d8d1751cda1a567d07e0393a9fda423e8c1e6d9b9f5",
+      "saved_sha256": "6ac44569c13ca8123cd97d8d1751cda1a567d07e0393a9fda423e8c1e6d9b9f5"
+    },
+    "boundaries-after.json": {
+      "raw_sha256": "e259d209f514e9b0344444a1477f9d7f697c273ba96454875a3cc672c0cd65e3",
+      "saved_sha256": "e259d209f514e9b0344444a1477f9d7f697c273ba96454875a3cc672c0cd65e3"
+    },
+    "flutter-change-after.json": {
+      "raw_sha256": "198d736484323ecf717197d33ead3a769490bee1d3b5b0762a8d94e10f470482",
+      "saved_sha256": "198d736484323ecf717197d33ead3a769490bee1d3b5b0762a8d94e10f470482"
+    },
+    "release-review-after.json": {
+      "raw_sha256": "8dbc30ced51ca7428b32d3aced69ca20fb212da84a6a58bdd42f1e3d1a176f5f",
+      "saved_sha256": "8dbc30ced51ca7428b32d3aced69ca20fb212da84a6a58bdd42f1e3d1a176f5f"
+    }
+  },
+  "report_normalization": "Only the local checkout prefix was replaced with a dot; responses, status, selection and evidence claims were not edited.",
+  "model_identity": "Exact runtime model identifiers unavailable; no model-specific or statistical claim."
+}

@@ -1,0 +1,638 @@
+{
+  "skill_sha256": "027674af80136f15bd95879fe5cffa777c9e86d35983e974dd34a5a441286c48",
+  "model": "unknown",
+  "probes": [
+    {
+      "case": "A",
+      "applies": false,
+      "rationale": "A one-word README typo correction has no app-behavior or distribution impact, and the request explicitly excludes review.",
+      "mode": "none",
+      "response": "Windows",
+      "selected_ids": [],
+      "status_claims": [],
+      "references_loaded": [
+        "SKILL.md",
+        "evals/optimization-2026-10-27/cases/boundaries.md"
+      ],
+      "actions_performed": []
+    },
+    {
+      "case": "B",
+      "applies": true,
+      "rationale": "A shipping decision for a voice-note fix requires cross-platform release evidence. Missing shipping scope permits only a provisional readiness response.",
+      "mode": "release",
+      "response": "I cannot establish that this candidate is ready to ship. Scope: Flutter per supplied README; Android and Windows are mentioned, but neither is confirmed as a shipped target. Which targets/form factors actually ship, and can you provide the app/revision, precise fix, final candidate artifacts, package models/channels, supported OS/SDK versions and CI job/step/test evidence?\nCoverage: release mode selects all 65 catalog IDs. Each remains to do for unresolved shipping scope/evidence; no full per-target review has been completed, and no item is verified or N/A. Provisional focus: P0 | P1/P2/X6 | Android if shipped | to do | source RECORD_AUDIO and a green-CI assertion do not establish final merged declarations, release plugin behavior, permission consent or installed behavior. Inspect the final artifact and exercise grant, first denial, repeated denial where supported, Settings revocation and recovery. P1 | P3/B2/B3/X7 | each confirmed target | to do | fallback, saved voice-note drafts and interruption/restart recovery are untested. P0 | X1/X5/X6 | all confirmed targets | to do | establish actual reach, parity and final-head release evidence, including executed jobs/tests, skips and artifact hashes. Windows checks remain outstanding while shipping scope and its package/privacy model are unknown; unavailable evidence does not make them N/A.\nPhysical-device plan: M1/M2/X4 need device evidence on each shipped audio target: record/play, interrupt and lock/resume, switch or disconnect supported input/output routes, verify recovery, saved data and privacy behavior; retain device/OS/build/settings and observed-result logs. Owner remains to be assigned.\nRelease blockers: unresolved shipping/candidate scope, unverified core recording/permission behavior and absent final-artifact/parity evidence prevent a ship recommendation. Other catalog areas are unreviewed, not presumed defective or inapplicable. Limitations: supplied statements only; no project, artifacts, runtime or CI inspected, and no current channel policy checked.",
+      "selected_ids": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7",
+        "L8",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6",
+        "D7",
+        "I1",
+        "I2",
+        "I3",
+        "I4",
+        "I5",
+        "I6",
+        "I7",
+        "I8",
+        "I9",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7",
+        "B8",
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "P8",
+        "P9",
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7",
+        "M8",
+        "W1",
+        "W2",
+        "W3",
+        "W4",
+        "F1",
+        "F2",
+        "F3",
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X5",
+        "X6",
+        "X7",
+        "X8",
+        "X9"
+      ],
+      "status_claims": [
+        {
+          "id": "L1",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "L2",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "L3",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "L4",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "L5",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "L6",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "L7",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "L8",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "D1",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "D2",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "D3",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "D4",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "D5",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "D6",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "D7",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "I1",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "I2",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "I3",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "I4",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "I5",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "I6",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "I7",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "I8",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "I9",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "B1",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "B2",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "B3",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "B4",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "B5",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "B6",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "B7",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "B8",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "P1",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "P2",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "P3",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "P4",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "P5",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "P6",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "P7",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "P8",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "P9",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "M1",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "M2",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "M3",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "M4",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "M5",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "M6",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "M7",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "M8",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "W1",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "W2",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "W3",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "W4",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "F1",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "F2",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "F3",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "X1",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "X2",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "X3",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "X4",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "X5",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "X6",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "X7",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "X8",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "X9",
+          "platform": "shipping targets unresolved",
+          "status": "to do",
+          "evidence": "No confirmed shipped-target inventory, project/revision or candidate evidence; applicability and full per-target release coverage remain outstanding."
+        },
+        {
+          "id": "P1",
+          "platform": "Android, if shipped",
+          "status": "to do",
+          "evidence": "Only a supplied source-manifest RECORD_AUDIO addition; no final merged/packaged manifest or runtime evidence."
+        },
+        {
+          "id": "P1",
+          "platform": "Windows, shipping unconfirmed",
+          "status": "to do",
+          "evidence": "README mention only; package/privacy model and packaged declarations not supplied."
+        },
+        {
+          "id": "M1",
+          "platform": "each shipped audio target, unresolved",
+          "status": "needs device",
+          "evidence": "No physical recording/playback interruption or route evidence; proposed device scenarios remain unrun."
+        },
+        {
+          "id": "M2",
+          "platform": "each shipped audio target, unresolved",
+          "status": "needs device",
+          "evidence": "Supported input/output route behavior and headset disconnect not tested on physical hardware."
+        },
+        {
+          "id": "X4",
+          "platform": "each shipped audio target, unresolved",
+          "status": "needs device",
+          "evidence": "Physical audio qualification is absent; device/OS/build/results must be retained."
+        }
+      ],
+      "references_loaded": [
+        "SKILL.md",
+        "evals/optimization-2026-10-27/cases/boundaries.md",
+        "references/checklist.md",
+        "references/permissions.md",
+        "references/media-devices.md",
+        "references/lifecycle.md",
+        "references/testing.md",
+        "references/flutter.md",
+        "references/desktop.md",
+        "references/stores.md"
+      ],
+      "actions_performed": []
+    },
+    {
+      "case": "C",
+      "applies": true,
+      "rationale": "Changing a Windows installer's declared architecture affects package compatibility and distribution even when application code is unchanged. Explicit change mode controls the scope.",
+      "mode": "change",
+      "response": "Change mode: Windows MSI architecture only; Electron; shipped targets are Windows MSI and Linux Flathub. Selected W4/X6 with X1/X4/X5 considered. The Windows MSI channel beyond its package format and intended CPU/OS support remain unspecified.\nP0 | W4/X6 | Windows | to do | the proposed arm64 label conflicts with the supplied note that the executable remains x64. This is not evidence of a native arm64 build. Decide whether the deliverable is x64 under a supported emulation path or a native arm64 product, then align the real MSI Template Summary/package metadata with the final payload and intended support. This is a proposed correction only.\nP0 | X6 | Windows | to do | no final MSI, payload/native-addon PE Machine inventory, final signing checks or target install/load results were supplied. Retain final-head/job/step/test/skip evidence and artifact hashes; inspect all in-process Electron/native modules and test clean install, launch, changed native functionality and upgrade on intended target architectures. CPU of the runner, tool ABI and filename/label cannot close these checks; headers alone do not prove successful loading or native execution.\nX1: obtain the declared Windows CPU/minimum-OS matrix. X5: the stated Windows-only packaging change and unchanged shared code justify excluding unrelated Linux Flathub packaging/runtime review; no Linux pass is claimed. No Flathub submission action is in scope. X4 physical-device plan: obtain Windows-on-ARM target-machine install/load evidence, recording hardware, OS and whether execution is native or emulated; owner remains to be assigned.\nRelease blockers within this change: the architecture contradiction and missing final package/signing/install evidence. Limitations: supplied notes only; no artifacts inspected, policy freshness check or tests executed. Other checklist areas are excluded by the narrow scope; overall release readiness was not assessed.",
+      "selected_ids": [
+        "W4",
+        "X1",
+        "X4",
+        "X5",
+        "X6"
+      ],
+      "status_claims": [
+        {
+          "id": "W4",
+          "platform": "Windows MSI",
+          "status": "to do",
+          "evidence": "Supplied MSI label changes x64 to arm64 while supplied build note says executable remains x64; real MSI metadata and final payload absent."
+        },
+        {
+          "id": "X6",
+          "platform": "Windows MSI",
+          "status": "to do",
+          "evidence": "No final MSI, native-addon headers, final signing or install/load logs. Label is not binary architecture evidence."
+        },
+        {
+          "id": "X1",
+          "platform": "Windows",
+          "status": "to do",
+          "evidence": "Intended CPU architectures and minimum/current supported Windows test matrix unspecified."
+        },
+        {
+          "id": "X4",
+          "platform": "Windows on ARM, if intended",
+          "status": "needs device",
+          "evidence": "No target-machine install/load results; test native versus emulated behavior on the intended hardware."
+        }
+      ],
+      "references_loaded": [
+        "SKILL.md",
+        "evals/optimization-2026-10-27/cases/boundaries.md",
+        "references/desktop.md",
+        "references/testing.md",
+        "references/stores.md"
+      ],
+      "actions_performed": []
+    },
+    {
+      "case": "D",
+      "applies": true,
+      "rationale": "Privacy disclosures and store declarations describe app/SDK behavior and affect distribution. A declaration-only PR with contradictory SDK evidence is within the skill even without code changes.",
+      "mode": "change",
+      "response": "Change mode: changed Play Data safety answers and privacy-policy claim only. Flutter; Android through Google Play and Windows by direct installer. Selected P4/X6; considered X1/X4/X5. Unrelated UI, lifecycle, payment and installer changes are excluded; full release readiness was not assessed.\nP0 | P4 | Android / Google Play | to do | 'all voice audio stays on-device' conflicts with the supplied SDK note that audio is sent to the vendor API for transcription. Block these answers/claim until the actual shipped SDK version, enabled configuration and data flows resolve the contradiction. Code unchanged does not validate changed disclosures. Obtain the SDK data inventory and purposes, off-device transmission conditions, retention/deletion and vendor handling; then draft accurate answers and policy text. Off-device processing alone does not determine every Play collection/sharing classification or exception: check the current official form definitions against the established facts before deciding exact answers.\nP0 | P4/X5 | Windows direct installer / shared privacy policy | to do | determine whether the same SDK path and policy claim cover Windows; Android-only behavior cannot prove Windows behavior or justify a global on-device promise. The Windows direct channel does not acquire a Google Play Data safety form requirement.\nP0 | X6 | affected final builds | to do | no source, binary, SDK configuration or controlled runtime/network evidence establishes which behavior ships. Bind inspection/configuration and data-flow evidence to the final reviewed revision/build/hash before closing P4. X1: confirmed target/channel reach is Android/Play and Windows/direct; check whether the changed declaration covers every offered Android surface. X4: no hardware qualification conclusion is needed for this textual consistency finding.\nPhysical-device plan: none required to identify the supplied contradiction; runtime data-flow validation remains to do and must record the actual test environment. Release blockers within scope: the contradictory declaration and unresolved shipped data flow. Limitations: supplied SDK note is provisional evidence, not observed traffic; exact disclosure classifications and current policy compliance remain unverified. No declarations, accounts or app behavior were changed.",
+      "selected_ids": [
+        "P4",
+        "X1",
+        "X4",
+        "X5",
+        "X6"
+      ],
+      "status_claims": [
+        {
+          "id": "P4",
+          "platform": "Android / Google Play",
+          "status": "to do",
+          "evidence": "Proposed on-device-only Data safety/policy claim contradicts supplied vendor-API transcription note; shipped behavior and exact form classifications unverified."
+        },
+        {
+          "id": "P4",
+          "platform": "Windows / direct installer",
+          "status": "to do",
+          "evidence": "Global privacy-policy scope and Windows SDK transmission behavior not established; no Play-form obligation inferred for direct Windows distribution."
+        },
+        {
+          "id": "X5",
+          "platform": "Android and Windows",
+          "status": "to do",
+          "evidence": "No per-target SDK/configuration or data-flow evidence supports parity of the privacy claim."
+        },
+        {
+          "id": "X6",
+          "platform": "Android and Windows affected final builds",
+          "status": "to do",
+          "evidence": "No final binaries, SDK configurations or revision/build/hash-bound runtime/network evidence supplied."
+        },
+        {
+          "id": "X1",
+          "platform": "Android / Google Play",
+          "status": "to do",
+          "evidence": "Play distribution supplied, but offered device-surface reach and declaration coverage not established."
+        }
+      ],
+      "references_loaded": [
+        "SKILL.md",
+        "evals/optimization-2026-10-27/cases/boundaries.md",
+        "references/permissions.md",
+        "references/stores.md",
+        "references/testing.md",
+        "references/flutter.md"
+      ],
+      "actions_performed": []
+    }
+  ],
+  "limitations": [
+    "Independent synthetic probes; responses use supplied assertions and skill guidance only.",
+    "Only SKILL.md, the requested boundary-case file and the listed relevant reference files/sections were read. No rubrics, evaluation examples, prior results, optimization assessments, diffs or other agent outputs were consulted.",
+    "No network, app, build, account, signing, source edit, commit, upload, Claude or RTK action was performed. Only the requested JSON record and its output directory were written.",
+    "Model identity is not exposed; recorded as unknown. Reference policy links were not opened and do not constitute a current policy check."
+  ]
+}

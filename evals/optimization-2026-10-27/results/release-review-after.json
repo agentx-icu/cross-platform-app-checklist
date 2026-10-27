@@ -1,0 +1,1809 @@
+{
+  "scope": {
+    "mode": "release",
+    "project": "Field Journal 2.0 RC1",
+    "change": "Full synthetic release-candidate review; no diff, runnable app or signed binaries supplied.",
+    "framework": "Flutter; SDK/engine/locked plugin versions not supplied",
+    "platforms": [
+      "Android",
+      "Windows"
+    ],
+    "channels": [
+      "Google Play",
+      "Microsoft Store (MSIX)"
+    ],
+    "form_factors": {
+      "Android": [
+        "phone",
+        "tablet"
+      ],
+      "Windows": [
+        "desktop",
+        "multiple windows"
+      ]
+    },
+    "territories": [
+      "US"
+    ],
+    "revision": "RC1 label only; final source commit/build/artifact hashes unknown"
+  },
+  "selected_ids": [
+    "L1",
+    "L2",
+    "L3",
+    "L4",
+    "L5",
+    "L6",
+    "L7",
+    "L8",
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "I1",
+    "I2",
+    "I3",
+    "I4",
+    "I5",
+    "I6",
+    "I7",
+    "I8",
+    "I9",
+    "B1",
+    "B2",
+    "B3",
+    "B4",
+    "B5",
+    "B6",
+    "B7",
+    "B8",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "P6",
+    "P7",
+    "P8",
+    "P9",
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "M6",
+    "M7",
+    "M8",
+    "W1",
+    "W2",
+    "W3",
+    "W4",
+    "F1",
+    "F2",
+    "F3",
+    "X1",
+    "X2",
+    "X3",
+    "X4",
+    "X5",
+    "X6",
+    "X7",
+    "X8",
+    "X9"
+  ],
+  "excluded_areas": [],
+  "references_loaded": [
+    "references/checklist.md",
+    "references/layout.md",
+    "references/display.md",
+    "references/input.md",
+    "references/lifecycle.md",
+    "references/permissions.md",
+    "references/media-devices.md",
+    "references/desktop.md",
+    "references/performance.md",
+    "references/testing.md",
+    "references/flutter.md",
+    "references/stores.md",
+    "references/sources.md"
+  ],
+  "rows": [
+    {
+      "id": "L1",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "One default-text emulator screenshot; smallest phone, short landscape and tablet panes untested.",
+      "next_step": "Sweep supported content widths/heights, including 320-dp stress width, phone landscape and narrow tablet panes; retain reachable-action evidence.",
+      "reason": "Core editor, login and attachment actions must remain reachable; dimensions are test profiles, not universal OS minima.",
+      "release_blocker": true
+    },
+    {
+      "id": "L1",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No minimum-window, maximized or high-DPI layout evidence.",
+      "next_step": "Set supported minimum client size; exercise short, minimum, maximized and ultrawide windows at actual scaling.",
+      "reason": "Core editor, login and attachment actions must remain reachable; dimensions are test profiles, not universal OS minima.",
+      "release_blocker": true
+    },
+    {
+      "id": "L2",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No source inspection or breakpoint tests; screenshot cannot prove available-width decisions.",
+      "next_step": "Inspect LayoutBuilder/current-view constraints; test below/at/above breakpoints and embedded versus routed detail.",
+      "reason": "Flutter layout must use available constraints; no OS-based layout defect can be asserted without source.",
+      "release_blocker": true
+    },
+    {
+      "id": "L2",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No shell/component breakpoint or width-constraint evidence.",
+      "next_step": "Inspect shared width policy; resize across every breakpoint with matching shell, dialogs and embedded editor behavior.",
+      "reason": "Flutter layout must use available constraints; no OS-based layout defect can be asserted without source.",
+      "release_blocker": true
+    },
+    {
+      "id": "L3",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No live rotation, Activity recreation, fold or display-transition evidence.",
+      "next_step": "Rotate and resize both directions with draft, selection, scroll, popup and media active; test recreation and reachable connected displays.",
+      "reason": "Editor and media continuity are core; static screenshots cannot verify native transitions.",
+      "release_blocker": true
+    },
+    {
+      "id": "L3",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No live resize, cross-display or display-removal evidence.",
+      "next_step": "Resize both ways with an open draft/popup; move displays and unplug one; assert state, focus and single result delivery.",
+      "reason": "Editor and media continuity are core; static screenshots cannot verify native transitions.",
+      "release_blocker": true
+    },
+    {
+      "id": "L4",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "OS/target SDK and final insets behavior absent; default screenshot covers one configuration only.",
+      "next_step": "Record runtime/target SDK separately; test edge-to-edge, cutouts, both landscape directions, gesture/button navigation and caption bars.",
+      "reason": "System occlusions can hide core controls; source labels do not establish runtime insets.",
+      "release_blocker": true
+    },
+    {
+      "id": "L4",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No title-bar, caption-button or drag-region hit-test evidence.",
+      "next_step": "Inspect installed custom/native chrome; test interactive controls near caption buttons and each window edge at supported scales.",
+      "reason": "System occlusions can hide core controls; source labels do not establish runtime insets.",
+      "release_blocker": true
+    },
+    {
+      "id": "L5",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No soft-keyboard, validation or landscape editor evidence.",
+      "next_step": "Open each input/dialog with IMEs and keyboard in landscape; verify caret, errors and submit remain visible without double inset handling.",
+      "reason": "Both shipped platforms have text entry; desktop alone is not an exclusion.",
+      "release_blocker": true
+    },
+    {
+      "id": "L5",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Desktop touch/software-keyboard paths were not exercised.",
+      "next_step": "On a touch Windows device open software keyboard in editor/login/dialogs; check caret/actions, scrolling and keyboard attachment changes.",
+      "reason": "Both shipped platforms have text entry; desktop alone is not an exclusion.",
+      "release_blocker": true
+    },
+    {
+      "id": "L6",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No merged orientation declarations, minimum/target SDK or large-screen behavior results.",
+      "next_step": "Inspect final manifest; test rotations, freeform windows, rotation lock and 599/600/601-dp display profiles against actual OS/target rules.",
+      "reason": "Orientation requests do not guarantee the OS will prevent resizing; current gates remain unchecked.",
+      "release_blocker": true
+    },
+    {
+      "id": "L6",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No resizable-window or display-orientation contract and results.",
+      "next_step": "Document supported orientation/resize behavior; rotate the display and resize tablet/hybrid windows while preserving the editor.",
+      "reason": "Orientation requests do not guarantee the OS will prevent resizing; current gates remain unchecked.",
+      "release_blocker": true
+    },
+    {
+      "id": "L7",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No dialog, sheet, menu or error-state matrix.",
+      "next_step": "Exercise every overlay at largest text, minimum height, keyboard open and after rotation; verify dismissal and focus return.",
+      "reason": "Common overlays require qualification; no particular overflow defect is evidenced.",
+      "release_blocker": false
+    },
+    {
+      "id": "L7",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No popup, dialog or snackbar checks at window edges/scales.",
+      "next_step": "Open overlays at minimum window size and all edges, resize while open, and verify width limits, scrolling and focus return.",
+      "reason": "Common overlays require qualification; no particular overflow defect is evidenced.",
+      "release_blocker": false
+    },
+    {
+      "id": "L8",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "needs device",
+      "evidence": "Foldable availability/posture policy and physical hinge evidence absent.",
+      "next_step": "Resolve Play foldable reach; test hinge bounds and half-open/flat postures with dialog, selection and camera active.",
+      "reason": "Unresolved hardware reach stays outstanding; it is not evidence of N/A.",
+      "release_blocker": false
+    },
+    {
+      "id": "L8",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No dual-screen/foldable support decision or reach evidence.",
+      "next_step": "Record Windows spanning/fold support; test occluding-hinge placement if reachable, or retain a concrete scope-backed exclusion.",
+      "reason": "Unresolved hardware reach stays outstanding; it is not evidence of N/A.",
+      "release_blocker": false
+    },
+    {
+      "id": "D1",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Only default-text screenshot; no native maximum or nonlinear scaling results.",
+      "next_step": "Test Android native maximum nonlinear text scale, Bold Text and live changes with real fonts, narrow panes and keyboard-visible errors.",
+      "reason": "Essential text must remain readable; one multiplier and a screenshot cannot prove accessibility.",
+      "release_blocker": true
+    },
+    {
+      "id": "D1",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No Windows text-enlargement or live-setting checks.",
+      "next_step": "Test maximum OS text enlargement separately from DPI/app zoom; inspect essential labels, editor/dialog clipping and live changes.",
+      "reason": "Essential text must remain readable; one multiplier and a screenshot cannot prove accessibility.",
+      "release_blocker": true
+    },
+    {
+      "id": "D2",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Shipped locales and localization coverage unspecified.",
+      "next_step": "Inventory shipped locales; test longest strings, CJK/RTL, mixed URLs, filenames, missing translations and native prompts with real fonts.",
+      "reason": "Listing localization and binary localization are separate; do not infer English-only from US launch.",
+      "release_blocker": false
+    },
+    {
+      "id": "D2",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No app or native-surface localization results; US territory does not define locale support.",
+      "next_step": "Record supported languages/fallbacks; exercise long/RTL/CJK content and live language changes, including system menus and dialogs.",
+      "reason": "Listing localization and binary localization are separate; do not infer English-only from US launch.",
+      "release_blocker": false
+    },
+    {
+      "id": "D3",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No packaged density assets or logical-versus-physical measurement evidence.",
+      "next_step": "Inspect packaged icons/images across supported density buckets and intermediate densities; verify raster sizes, fine strokes and hit testing.",
+      "reason": "Density correctness reaches every screen; CI host architecture supplies no display evidence.",
+      "release_blocker": true
+    },
+    {
+      "id": "D3",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No fractional-DPI or asset-selection evidence.",
+      "next_step": "Inspect installed release at 100/125/150/175/200 percent and supported scales; compare logical geometry and physical rasters.",
+      "reason": "Density correctness reaches every screen; CI host architecture supplies no display evidence.",
+      "release_blocker": true
+    },
+    {
+      "id": "D4",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "needs device",
+      "evidence": "No real connected-display density transition or live display-scale evidence.",
+      "next_step": "Move editor/popup between supported phone/tablet displays and change display size; retain draft, sharpness and hit-test observations.",
+      "reason": "Injected scale values cannot qualify actual monitor transitions.",
+      "release_blocker": false
+    },
+    {
+      "id": "D4",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "needs device",
+      "evidence": "No physical mixed-DPI monitors, docking or simultaneous-window tests.",
+      "next_step": "Move two windows/popups across differently scaled physical monitors; change scaling, dock/undock and verify caret, anchors and state.",
+      "reason": "Injected scale values cannot qualify actual monitor transitions.",
+      "release_blocker": false
+    },
+    {
+      "id": "D5",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No installed adaptive/themed launcher, notification-icon or splash evidence.",
+      "next_step": "Inspect release adaptive/legacy/themed icons, dedicated monochrome notification icon and cold-start splash in both themes.",
+      "reason": "Asset guidance differs by surface; required package assets need inspection before submission.",
+      "release_blocker": false
+    },
+    {
+      "id": "D5",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No MSIX shell/taskbar/window/tray assets or installed launch checks.",
+      "next_step": "Inspect final package assets at small/large sizes and themes; verify shell identity and startup appearance; test tray only if offered.",
+      "reason": "Asset guidance differs by surface; required package assets need inspection before submission.",
+      "release_blocker": false
+    },
+    {
+      "id": "D6",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No contrast, dark-mode, color-filter or live-theme evidence.",
+      "next_step": "Measure text/errors/focus in both themes; toggle theme, contrast, grayscale/color filters and inversion with editor and dialogs open.",
+      "reason": "Common accessibility and theme behavior remains unqualified.",
+      "release_blocker": false
+    },
+    {
+      "id": "D6",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No Windows contrast-theme, color-filter or saved-preference results.",
+      "next_step": "Test startup and live theme/contrast changes across windows; measure readable states and ensure meaning survives color filters/inversion.",
+      "reason": "Common accessibility and theme behavior remains unqualified.",
+      "release_blocker": false
+    },
+    {
+      "id": "D7",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No reduced-animation behavior results.",
+      "next_step": "Toggle platform animation preferences during navigation/loading; verify custom animations, progress, cancellation and focus without animations.",
+      "reason": "Accessibility behavior is outstanding; this guidance is not asserted as a universal submission rejection rule.",
+      "release_blocker": false
+    },
+    {
+      "id": "D7",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No reduced-motion behavior in the installed app.",
+      "next_step": "Disable Windows animations while navigating and syncing; verify clear progress, cancellation and correct focus in each window.",
+      "reason": "Accessibility behavior is outstanding; this guidance is not asserted as a universal submission rejection rule.",
+      "release_blocker": false
+    },
+    {
+      "id": "I1",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No measured touch hit areas at normal/maximum text.",
+      "next_step": "Measure and tap controls, edges and adjacent gaps against the recommended 48-dp Android baseline.",
+      "reason": "Touch-area recommendations are distinct from mandatory store rules; Windows desktop does not imply mouse-only.",
+      "release_blocker": false
+    },
+    {
+      "id": "I1",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No touch-capable desktop hit-area evidence.",
+      "next_step": "Test mouse and touch on a hybrid device, including target edges at enlarged text; choose an appropriate Windows touch baseline.",
+      "reason": "Touch-area recommendations are distinct from mandatory store rules; Windows desktop does not imply mouse-only.",
+      "release_blocker": false
+    },
+    {
+      "id": "I2",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No tablet hardware-keyboard, pointer or drag/drop results.",
+      "next_step": "Complete login/editing/dialog flows by keyboard and pointer; test Tab, visible focus, Ctrl shortcuts, secondary click and scrolling.",
+      "reason": "Keyboard and pointer reach both shipped targets.",
+      "release_blocker": false
+    },
+    {
+      "id": "I2",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No keyboard-only, shortcut, pointer-menu or per-window focus results.",
+      "next_step": "Complete core flows without mouse; verify Ctrl conventions, focus traps/return, wheel/trackpad, context menus and supported drops.",
+      "reason": "Keyboard and pointer reach both shipped targets.",
+      "release_blocker": false
+    },
+    {
+      "id": "I3",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Text editor supplied but no IME, submit-order, paste or undo evidence.",
+      "next_step": "Use real CJK IMEs and rapid hardware typing; assert composition never submits, one complete value commits, and paste/undo preserve selection.",
+      "reason": "Editor data and committed-input correctness are core; source and runtime remain uninspected.",
+      "release_blocker": true
+    },
+    {
+      "id": "I3",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No real Windows IME, modifier or key-repeat evidence.",
+      "next_step": "Exercise CJK candidates, dead keys, both Ctrl modifiers, multiline paste, undo/autofill and submit; assert exactly one committed value.",
+      "reason": "Editor data and committed-input correctness are core; source and runtime remain uninspected.",
+      "release_blocker": true
+    },
+    {
+      "id": "I4",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No back-stack, predictive-back or cancellation results; target SDK unknown.",
+      "next_step": "Test toolbar/button/predictive Back, cancellation, nested routes and unsaved-edit guards in release OS/target combinations.",
+      "reason": "Navigation must preserve the active workflow on each platform.",
+      "release_blocker": true
+    },
+    {
+      "id": "I4",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No Esc/topmost dismissal or root-navigation evidence.",
+      "next_step": "Test Esc and Back commands through editor, dialogs and nested navigation; preserve unsaved changes and never exit/pop unexpectedly.",
+      "reason": "Navigation must preserve the active workflow on each platform.",
+      "release_blocker": true
+    },
+    {
+      "id": "I5",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No semantics, TalkBack, Voice Access or Switch Access evidence.",
+      "next_step": "Complete login, editing, attachments, deletion and payment flows with assistive input; inspect labels, roles, order and focus.",
+      "reason": "A screenshot cannot establish usable accessibility or justify store accessibility claims.",
+      "release_blocker": false
+    },
+    {
+      "id": "I5",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No Narrator or Windows assistive-input evidence.",
+      "next_step": "Complete core flows with Narrator, Voice Access and supported switch input; verify names, roles, state and modal focus.",
+      "reason": "A screenshot cannot establish usable accessibility or justify store accessibility claims.",
+      "release_blocker": false
+    },
+    {
+      "id": "I6",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No locale/time-zone or time-value storage tests.",
+      "next_step": "Check independent 12/24-hour settings, numeric formats and date-only/instant/zoned schedules; test DST gaps/overlaps and zone changes.",
+      "reason": "Journal timestamps and notifications require defined time semantics; US launch does not remove DST risks.",
+      "release_blocker": false
+    },
+    {
+      "id": "I6",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No Windows regional-preference or reminder-time results.",
+      "next_step": "Change region, first weekday and zone while running; test DST, non-hour offsets and date-only values across UTC boundaries.",
+      "reason": "Journal timestamps and notifications require defined time semantics; US launch does not remove DST risks.",
+      "release_blocker": false
+    },
+    {
+      "id": "I7",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No gesture alternatives or cancelled-input tests.",
+      "next_step": "Use visible/keyboard alternatives for essential gestures; cancel drags/pointers and ensure no accidental activation or stuck state.",
+      "reason": "Essential actions need alternatives on supported inputs.",
+      "release_blocker": false
+    },
+    {
+      "id": "I7",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No pointer-loss, drag-cancel or keyboard-alternative results.",
+      "next_step": "Complete gestures through controls/keyboard; test pointer capture loss, Esc/cancel and device changes during drag.",
+      "reason": "Essential actions need alternatives on supported inputs.",
+      "release_blocker": false
+    },
+    {
+      "id": "I8",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Verified HTTPS links are declared as a feature, but associations and installed signing identity are absent.",
+      "next_step": "Inspect release intent filters and each assetlinks.json against Play distribution certificates; verify genuine link launches cold/warm and web fallback.",
+      "reason": "A feature claim is not domain verification; Windows browser behavior differs from Android.",
+      "release_blocker": true
+    },
+    {
+      "id": "I8",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No windows.appUriHandler, package-family association file or installed-link result.",
+      "next_step": "Validate package hosts and windows-app-web-link; test shell activation, browser-specific behavior, disabled associations and absent-app fallback.",
+      "reason": "A feature claim is not domain verification; Windows browser behavior differs from Android.",
+      "release_blocker": true
+    },
+    {
+      "id": "I9",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Sharing exists; directions, MIME contracts, grants and deferred-copy evidence absent.",
+      "next_step": "Declare supported directions; exchange text/images/files with real apps using valid content-URI grants and stage data before deferred work.",
+      "reason": "Attachments and sharing are shipped; temporary paths and Dart-only handlers cannot prove native integration.",
+      "release_blocker": true
+    },
+    {
+      "id": "I9",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No shareTarget/source registration, per-window source or typed-transfer evidence.",
+      "next_step": "Inspect MSIX share declarations and per-window source; test supported rich/plain data, cancellation, deferred reads and source lifetime.",
+      "reason": "Attachments and sharing are shipped; temporary paths and Dart-only handlers cannot prove native integration.",
+      "release_blocker": true
+    },
+    {
+      "id": "B1",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No lifecycle traces or per-resource policy for visible-unfocused versus background states.",
+      "next_step": "Trace Flutter/native focus, visibility, prompts, lock and multi-window; apply separate camera/audio/privacy policies and verify one owner.",
+      "reason": "Flutter inactive can remain visible; paused is not desktop blur, and resource policies differ.",
+      "release_blocker": true
+    },
+    {
+      "id": "B1",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No blur/minimize/occlusion or multi-window resource-ownership results.",
+      "next_step": "Trace each window through blur, minimize, prompts and lock; preserve valid playback and release capture according to its backend contract.",
+      "reason": "Flutter inactive can remain visible; paused is not desktop blur, and resource policies differ.",
+      "release_blocker": true
+    },
+    {
+      "id": "B2",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No durable checkpoint, pending-write or abrupt-termination evidence.",
+      "next_step": "Measure bounded visible-edit checkpoint through a new real store/controller; kill during edits/writes and verify committed drafts and integrity.",
+      "reason": "Offline journal data cannot depend on a final lifecycle callback.",
+      "release_blocker": true
+    },
+    {
+      "id": "B2",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No real-store checkpoints or crash-recovery evidence.",
+      "next_step": "Test continuous typing, queued write failures and abrupt termination without manual save/disposal; verify bounded durable drafts and atomic updates.",
+      "reason": "Offline journal data cannot depend on a final lifecycle callback.",
+      "release_blocker": true
+    },
+    {
+      "id": "B3",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No process-death/picker recovery or cold notification/link activation results.",
+      "next_step": "Test Activity recreation separately from confirmed background process death; recover picker results once and queue cold activation until account/navigation readiness.",
+      "reason": "Stateful editor and external entry points make recovery material.",
+      "release_blocker": true
+    },
+    {
+      "id": "B3",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No cold/warm activation or terminated-session restoration evidence.",
+      "next_step": "Restart with drafts and pending operations; deliver link/file/notification once after account readiness, including missing-item and signed-out cases.",
+      "reason": "Stateful editor and external entry points make recovery material.",
+      "release_blocker": true
+    },
+    {
+      "id": "B4",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No scheduler/service inventory, OS/target gates, Doze, timeout or reboot results.",
+      "next_step": "Inspect WorkManager/foreground-service paths, final types and permissions; test actual completion under Doze/battery limits, timeout/reboot and clock jumps.",
+      "reason": "Timers and audio wakefulness do not authorize background execution; current version gates remain unchecked.",
+      "release_blocker": true
+    },
+    {
+      "id": "B4",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No sleep/wake, expired-auth or persisted-deadline reconciliation results.",
+      "next_step": "Sleep through sync/deadlines, change network/clock, resume/reboot; verify one reconnect, bounded retry and explicit elapsed-time semantics.",
+      "reason": "Timers and audio wakefulness do not authorize background execution; current version gates remain unchecked.",
+      "release_blocker": true
+    },
+    {
+      "id": "B5",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No task/launch-mode or multiple-Activity data-owner evidence.",
+      "next_step": "Inspect release launch modes/intents; test second launch, shared account/store ownership and activation once before/after startup readiness.",
+      "reason": "Supported concurrency needs explicit coordination; isolates or resize flags cannot prove process ownership.",
+      "release_blocker": true
+    },
+    {
+      "id": "B5",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Multiple desktop windows ship, with no process-lock or migration-owner evidence.",
+      "next_step": "Test independent concurrent launches; establish writer/migration ownership before stores open, forward activation once, and recover stale metadata safely.",
+      "reason": "Supported concurrency needs explicit coordination; isolates or resize flags cannot prove process ownership.",
+      "release_blocker": true
+    },
+    {
+      "id": "B6",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No durable attachment/sync operation IDs, job ownership or retry evidence.",
+      "next_step": "Interrupt before enqueue, during upload and after server commit; restart/reboot/cancel/switch accounts and assert one logical result and cleanup.",
+      "reason": "Duplicate or cross-account attachment delivery threatens core data integrity.",
+      "release_blocker": true
+    },
+    {
+      "id": "B6",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No cross-window transfer ownership or interrupted-upload reconciliation evidence.",
+      "next_step": "Persist operation/account/source ownership; test crashes, retries and sign-out with multiple windows, using server idempotency.",
+      "reason": "Duplicate or cross-account attachment delivery threatens core data integrity.",
+      "release_blocker": true
+    },
+    {
+      "id": "B7",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "release/migrations.md describes only a fresh database; no populated upgrade, skipped-version, newer-data or restore proof.",
+      "next_step": "Upgrade populated fixtures from every supported version; test interrupted/low-disk migration and newer primary/backup on reads, recovery and delayed writes without altering newer bytes.",
+      "reason": "Definite qualification gap, not proof of a code defect: user content must survive update/recovery without destructive fallback.",
+      "release_blocker": true
+    },
+    {
+      "id": "B7",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Fresh database trial leaves Windows backend upgrades, rollback and restore safety untested.",
+      "next_step": "Run the same migration matrix on the actual Windows store backend and installed upgrades; serialize version-check/write ownership and reject incompatible newer data safely.",
+      "reason": "Definite qualification gap, not proof of a code defect: user content must survive update/recovery without destructive fallback.",
+      "release_blocker": true
+    },
+    {
+      "id": "B8",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Offline sync ships; conflict, tombstone, durable-state and account-isolation evidence absent.",
+      "next_step": "Use three clients across Android/Windows; edit/edit and edit/delete offline, reconnect in each order with wrong clocks and kill mid-sync.",
+      "reason": "Core offline data risk remains open; transport success is not successful reconciliation.",
+      "release_blocker": true
+    },
+    {
+      "id": "B8",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No parity of Windows reconciliation, losing-edit recovery or account queues.",
+      "next_step": "Verify server-version conflict rules, recoverable losing content, durable pending/error state, no resurrected deletes and no cross-account writes.",
+      "reason": "Core offline data risk remains open; transport success is not successful reconciliation.",
+      "release_blocker": true
+    },
+    {
+      "id": "P1",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "New audio SDK permissions unchecked; no final merged manifest, SDK or hardware-filter inventory.",
+      "next_step": "Map actual camera/mic/notification/file/background APIs to OS/target gates; inspect final release declarations and remove unused broad access.",
+      "reason": "Declarations depend on actual API/app model; MSIX alone does not imply AppContainer.",
+      "release_blocker": true
+    },
+    {
+      "id": "P1",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "MSIX trust level and final capabilities absent; new SDK's Windows API use unreviewed.",
+      "next_step": "Determine full-trust/AppContainer model; inspect final package capabilities and SDK behavior, then test desktop privacy switches independently.",
+      "reason": "Declarations depend on actual API/app model; MSIX alone does not imply AppContainer.",
+      "release_blocker": true
+    },
+    {
+      "id": "P2",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No fresh-consent, first-denial, one-time grant or revocation results.",
+      "next_step": "Test serialized in-context requests, deny/cancel/revoke and rotation with prompts; preserve pending action and explain first denial without loops.",
+      "reason": "Protected capture features ship; declarations cannot close runtime consent.",
+      "release_blocker": true
+    },
+    {
+      "id": "P2",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No fresh Windows privacy state, global-switch or access-recovery results.",
+      "next_step": "Test camera/mic/notification access under relevant system switches and policy restrictions; distinguish absent/busy hardware from denial and continue once.",
+      "reason": "Protected capture features ship; declarations cannot close runtime consent.",
+      "release_blocker": true
+    },
+    {
+      "id": "P3",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No limited-photo, muted-notification or denied-capture fallback evidence.",
+      "next_step": "Reduce photo access and revoke camera/mic/notifications; confirm useful editing, honest unavailable states and no synced-data deletion.",
+      "reason": "Degraded access is a supported state, not N/A.",
+      "release_blocker": false
+    },
+    {
+      "id": "P3",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No denied/global-disabled camera/mic or unavailable-hardware fallback evidence.",
+      "next_step": "Run core journal flows with capture disabled, devices absent and notifications blocked; offer explanation/reselection without erasing valid content.",
+      "reason": "Degraded access is a supported state, not N/A.",
+      "release_blocker": false
+    },
+    {
+      "id": "P4",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "release/privacy.md copies old answers; new audio SDK collection, permissions and current Play policies were not checked.",
+      "next_step": "Inventory shipped SDK data flows/retention and final permissions; reconcile Data safety/privacy policy and obtain dated current Play target/API/permission evidence.",
+      "reason": "Required release declarations must reflect this candidate; historical reference dates are not a current policy check.",
+      "release_blocker": true
+    },
+    {
+      "id": "P4",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Old privacy answers do not establish new audio SDK behavior or current Microsoft Store declarations.",
+      "next_step": "Audit actual SDK network/data use, privacy policy and MSIX capabilities; owner validates current Partner Center answers and dated applicable policies.",
+      "reason": "Required release declarations must reflect this candidate; historical reference dates are not a current policy check.",
+      "release_blocker": true
+    },
+    {
+      "id": "P5",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No credential-storage or Android backup/restore evidence; fresh DB test covers neither.",
+      "next_step": "Inspect Keystore-backed secret protection and backup rules; test missing/restored keys, reinstall, device transfer and account reset without plaintext fallback.",
+      "reason": "Login and local journal data require explicit secret and backup policies.",
+      "release_blocker": true
+    },
+    {
+      "id": "P5",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No DPAPI/Credential Manager, package data or reinstall/account-isolation evidence.",
+      "next_step": "Inspect per-user credential backend and retention policy; test update, reinstall, restore, missing credentials and account switch without data loss.",
+      "reason": "Login and local journal data require explicit secret and backup policies.",
+      "release_blocker": true
+    },
+    {
+      "id": "P6",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No evidence picker/shared URIs survive deferred sync, restart or grant loss.",
+      "next_step": "Read content URIs through supported APIs; copy or retain valid grants before scheduling, then reboot/revoke/remove source and test recovery.",
+      "reason": "A selected path string is not durable attachment ownership.",
+      "release_blocker": true
+    },
+    {
+      "id": "P6",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No evidence selected cloud/removable files retain valid access under this MSIX app model.",
+      "next_step": "Inspect actual picker/access-list model; stage durable attachments or retain supported access, then test deferred work after restart/removal/revocation.",
+      "reason": "A selected path string is not durable attachment ownership.",
+      "release_blocker": true
+    },
+    {
+      "id": "P7",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No sensitive-content policy or Recents/screenshot/recording evidence.",
+      "next_step": "Decide protection for accounts/journal/media; test all windows, screenshots, Recents, mirroring, prompts and lock before/after privacy covers.",
+      "reason": "External capture privacy applies even though this app provides no screen-capture feature.",
+      "release_blocker": false
+    },
+    {
+      "id": "P7",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No multi-window snapshot/capture policy or display-affinity results.",
+      "next_step": "Define sensitive surfaces; test every top-level window/dialog and supported capture paths; qualify display-affinity limits without universal guarantees.",
+      "reason": "External capture privacy applies even though this app provides no screen-capture feature.",
+      "release_blocker": false
+    },
+    {
+      "id": "P8",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Paid subscription ships; billing rules/integration and transaction lifecycle were not checked.",
+      "next_step": "Classify product/US program; verify permitted Play billing, completed server-verified purchases, acknowledgement, pending/refund/restore/expiry and cross-platform entitlements.",
+      "reason": "Monetization triggers conditional billing obligations; Windows need not use a game's mandatory purchase API.",
+      "release_blocker": true
+    },
+    {
+      "id": "P8",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No Windows purchase backend evidence; Flutter in_app_purchase does not implement Windows.",
+      "next_step": "Choose and qualify a Microsoft-permitted non-game PC billing path; test server entitlements, interrupted payment, renewal/refund/expiry and Android parity.",
+      "reason": "Monetization triggers conditional billing obligations; Windows need not use a game's mandatory purchase API.",
+      "release_blocker": true
+    },
+    {
+      "id": "P9",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No console, account-creation/deletion, audience/rating, listing or review-access evidence.",
+      "next_step": "Owner confirms creation trigger and tests deletion/data cleanup plus Play web resource where triggered; review age/audience/UGC, US listings, publisher status and secure reviewer access.",
+      "reason": "Store/territory/feature rules differ; third-party login and social UGC are unknown, not assumed present or absent.",
+      "release_blocker": true
+    },
+    {
+      "id": "P9",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No Partner Center identity, rating, privacy/content, listing or review-access records.",
+      "next_step": "Owner reviews current Microsoft-triggered content/commerce rules, accurate ratings, deletion behavior, publisher/listing rights and a clean-install review route.",
+      "reason": "Store/territory/feature rules differ; third-party login and social UGC are unknown, not assumed present or absent.",
+      "release_blocker": true
+    },
+    {
+      "id": "M1",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "needs device",
+      "evidence": "No real audio-focus, interruption, lock/background or SDK coordination test.",
+      "next_step": "On phone/tablet test focus denied/loss/ducking, other playback, recording transitions, user pause and lock; verify permitted resume and released wakefulness.",
+      "reason": "Audio attachments trigger recording/playback qualification; a shared Flutter API does not prove native behavior.",
+      "release_blocker": true
+    },
+    {
+      "id": "M1",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "needs device",
+      "evidence": "No physical input/output interruption or default-device change evidence.",
+      "next_step": "Test the actual Windows audio backend through recording/playback, focus/visibility changes, device changes and session end with no leaked resources.",
+      "reason": "Audio attachments trigger recording/playback qualification; a shared Flutter API does not prove native behavior.",
+      "release_blocker": true
+    },
+    {
+      "id": "M2",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "needs device",
+      "evidence": "No physical speaker/wired/USB/Bluetooth route results.",
+      "next_step": "Connect/disconnect supported routes while recording/playing; verify input and output, format changes, route UI and private-media fallback.",
+      "reason": "Attachments use audio; call-only earpiece/proximity requirements are not imposed without a calling feature.",
+      "release_blocker": false
+    },
+    {
+      "id": "M2",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "needs device",
+      "evidence": "No real headset/default-device/hot-plug route results.",
+      "next_step": "Switch system and explicit input/output devices during playback/recording; verify actual route, recoverable failures and cleanup.",
+      "reason": "Attachments use audio; call-only earpiece/proximity requirements are not imposed without a calling feature.",
+      "release_blocker": false
+    },
+    {
+      "id": "M3",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "needs device",
+      "evidence": "Camera ships with no physical capture, orientation, interruption or privacy-indicator evidence.",
+      "next_step": "Test front/back/front-only/no-camera, rotation, permission loss and interruption; inspect saved output and ensure capture stops in OS privacy diagnostics.",
+      "reason": "Endorsed mobile camera/image_picker packages alone do not supply Windows capture.",
+      "release_blocker": true
+    },
+    {
+      "id": "M3",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "needs device",
+      "evidence": "No supported Windows camera backend or physical webcam result supplied.",
+      "next_step": "Verify locked plugin/method support or a separate camera backend; test real built-in/USB webcams, removal, output orientation and capture cleanup.",
+      "reason": "Endorsed mobile camera/image_picker packages alone do not supply Windows capture.",
+      "release_blocker": true
+    },
+    {
+      "id": "M4",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No Android-to-Windows photo/audio/export format fixtures.",
+      "next_step": "Round-trip real codecs/containers, rotated JPEG and imported HEIC/HEVC; test unsupported formats, Unicode/case/illegal-name collisions and safe archives.",
+      "reason": "File extensions and MIME labels do not prove codec support or transcode content.",
+      "release_blocker": false
+    },
+    {
+      "id": "M4",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No clean-Windows decoder, audio container or filename interchange evidence.",
+      "next_step": "Open Android-produced and imported format fixtures on clean Windows; transcode or explain unsupported content and preserve reversible names/metadata.",
+      "reason": "File extensions and MIME labels do not prove codec support or transcode content.",
+      "release_blocker": false
+    },
+    {
+      "id": "M5",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "needs device",
+      "evidence": "No low-memory physical phone or low-storage profiling.",
+      "next_step": "Profile preview decode sizes and peak memory during photo grids/large media; repeat cancellation and low-disk writes, preserving valid content.",
+      "reason": "Media-heavy flows need measured resource qualification; compressed sizes and cache limits are insufficient.",
+      "release_blocker": false
+    },
+    {
+      "id": "M5",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No bounded decode/streaming or constrained-storage evidence.",
+      "next_step": "Profile repeated attachment open/close and concurrent windows; constrain disk/memory and verify bounded work, recoverable errors and partial-file cleanup.",
+      "reason": "Media-heavy flows need measured resource qualification; compressed sizes and cache limits are insufficient.",
+      "release_blocker": false
+    },
+    {
+      "id": "M6",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "needs device",
+      "evidence": "No real notification delivery, channels, denial/privacy or cold-tap routing evidence.",
+      "next_step": "Test installed release grant/denial/channel mute/lock/quiet mode, cold/warm taps and sign-out; verify one authorized route and cancelled stale reminders.",
+      "reason": "Notifications ship; permission/token registration and injected payloads cannot prove final delivery/presentation.",
+      "release_blocker": true
+    },
+    {
+      "id": "M6",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "needs device",
+      "evidence": "No installed MSIX notification registration, delivery or activation evidence.",
+      "next_step": "Test actual packaged notification API/identity, blocked/quiet/lock states, grouped updates and post-exit taps with account readiness and deduplication.",
+      "reason": "Notifications ship; permission/token registration and injected payloads cannot prove final delivery/presentation.",
+      "release_blocker": true
+    },
+    {
+      "id": "M7",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "needs device",
+      "evidence": "No hardware/service inventory, merged optional-feature filters or Play device-catalog evidence.",
+      "next_step": "Separate availability from permission; test absent/disconnected camera/mic and actual Play reach, including Chromebook/XR if reachable and TV only if declared.",
+      "reason": "Missing hardware cannot be inferred from OS or consent; default store reach needs an explicit decision.",
+      "release_blocker": false
+    },
+    {
+      "id": "M7",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "needs device",
+      "evidence": "No no-camera/no-mic, disabled service or external-device qualification.",
+      "next_step": "Test core editing with devices absent/disabled/removed; verify supported plugin methods, feature detection and usable explanations before invocation.",
+      "reason": "Missing hardware cannot be inferred from OS or consent; default store reach needs an explicit decision.",
+      "release_blocker": false
+    },
+    {
+      "id": "M8",
+      "platform": "Android",
+      "priority": "P2",
+      "status": "not applicable",
+      "evidence": "Case explicitly states no screen/system-audio capture.",
+      "next_step": "Reopen this item if screen or system-audio capture is added; retain ordinary microphone checks under M1/P1/P2.",
+      "reason": "Explicit feature absence supports N/A; recording an audio attachment is microphone capture, not system-audio capture.",
+      "release_blocker": false
+    },
+    {
+      "id": "M8",
+      "platform": "Windows",
+      "priority": "P2",
+      "status": "not applicable",
+      "evidence": "Case explicitly states no screen/system-audio capture.",
+      "next_step": "Reopen on capture-feature changes; sensitive-content capture protection remains under P7.",
+      "reason": "Explicit feature absence supports N/A; recording an audio attachment is microphone capture, not system-audio capture.",
+      "release_blocker": false
+    },
+    {
+      "id": "W1",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No Android multi-window/desktop-window reach or window-state behavior evidence.",
+      "next_step": "Resolve reachable Android windowing modes; test system-managed resize/minimize/restore and caption-safe content without assuming desktop placement APIs.",
+      "reason": "Windows window reachability is core; reachable Android window modes also need a scoped contract.",
+      "release_blocker": true
+    },
+    {
+      "id": "W1",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No saved geometry, snap/fullscreen or disconnected-monitor evidence.",
+      "next_step": "Clamp/restored bounds to current logical work areas, preserve normal bounds separately, and test snap/maximize/restart after monitor removal.",
+      "reason": "Windows window reachability is core; reachable Android window modes also need a scoped contract.",
+      "release_blocker": true
+    },
+    {
+      "id": "W2",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No task-close, second-launch or media/worker shutdown policy results.",
+      "next_step": "Define Android task-dismissal versus Back/system termination behavior; verify durable drafts and correct media/job ownership under platform rules.",
+      "reason": "Future.timeout does not cancel disposal; canceled quit must not leave teardown running.",
+      "release_blocker": true
+    },
+    {
+      "id": "W2",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "Multiple windows ship with no last-window/quit/tray or cancellation evidence.",
+      "next_step": "Test close versus quit, shell restart if tray exists, concurrent quit, failed save and late timeout completion; ensure one teardown and no second writer.",
+      "reason": "Future.timeout does not cancel disposal; canceled quit must not leave teardown running.",
+      "release_blocker": true
+    },
+    {
+      "id": "W3",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No app-owned/cache/selected-file location or path-interchange evidence.",
+      "next_step": "Inspect sandbox directory use and content-URI handling; test Unicode/nested names, read-only/full storage, atomic replacement and retained selected access.",
+      "reason": "Local database and attachments require correct per-platform locations and failure handling.",
+      "release_blocker": true
+    },
+    {
+      "id": "W3",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No installed standard-user path, long/Unicode name or read-only-executable-location tests.",
+      "next_step": "Use Known Folder/package locations rather than executable/CWD; test long/Unicode paths, case collisions, network/removable files and interrupted writes.",
+      "reason": "Local database and attachments require correct per-platform locations and failure handling.",
+      "release_blocker": true
+    },
+    {
+      "id": "W4",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "AAB filename only; no identity, certificate, final ABI inventory, update or Play release records.",
+      "next_step": "Release engineer supplies exact artifact hash/ID/version, upload versus distribution identity and delivered APK inventory; test clean install/upgrade and owner release controls.",
+      "reason": "Required distribution gate; Store MSIX re-signing differs from hosted MSI/EXE, so do not impose trusted-CA purchase or immutable installer-URL rules.",
+      "release_blocker": true
+    },
+    {
+      "id": "W4",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "MSIX filename only; ARM64 host is falsely treated as ARM64 payload proof; no identity, architecture, signature or install evidence.",
+      "next_step": "Inspect PE app/engine/plugin headers and MSIX Identity architecture separately; verify channel signing/dependencies and clean target-machine install/update/load for each claimed ABI.",
+      "reason": "Required distribution gate; Store MSIX re-signing differs from hosted MSI/EXE, so do not impose trusted-CA purchase or immutable installer-URL rules.",
+      "release_blocker": true
+    },
+    {
+      "id": "F1",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "needs device",
+      "evidence": "No release/profile traces on low-end or high-refresh physical devices.",
+      "next_step": "Measure frame percentiles/missed frames against active 60/90/120-Hz periods during editor/media flows, warm load and battery saver.",
+      "reason": "Performance budgets need measured product decisions; no threshold breach has been observed.",
+      "release_blocker": false
+    },
+    {
+      "id": "F1",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "needs device",
+      "evidence": "No real refresh-rate or multi-monitor frame-pacing data.",
+      "next_step": "Profile representative windows on supported hardware, including mixed-refresh moves; use elapsed timestamps and record active-rate budgets.",
+      "reason": "Performance budgets need measured product decisions; no threshold breach has been observed.",
+      "release_blocker": false
+    },
+    {
+      "id": "F2",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No download/installed size budgets or realistic-data cold/warm startup timings.",
+      "next_step": "Measure delivered-variant size and repeated startup/upgrade/offline timings on low-end hardware; compare previous release and set budgets.",
+      "reason": "AAB/MSIX filenames provide neither size nor usable startup evidence.",
+      "release_blocker": false
+    },
+    {
+      "id": "F2",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No per-architecture installer/installed-size or usable-startup measurements.",
+      "next_step": "Record actual MSIX/download/installed sizes and cold/warm/upgrade startup with realistic database per claimed architecture.",
+      "reason": "AAB/MSIX filenames provide neither size nor usable startup evidence.",
+      "release_blocker": false
+    },
+    {
+      "id": "F3",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "needs device",
+      "evidence": "No idle/active energy, vendor battery, thermal or wake-lock evidence.",
+      "next_step": "Measure idle and sustained capture/sync on battery; exercise saver/thermal changes, verify wakefulness cleanup and stable shedding/recovery of optional work.",
+      "reason": "Energy/thermal claims require physical measurements; no current policy threshold is asserted from the historical guide.",
+      "release_blocker": false
+    },
+    {
+      "id": "F3",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "needs device",
+      "evidence": "No physical Windows energy-saver, sleep-inhibitor or thermal behavior results.",
+      "next_step": "Measure idle and sustained attachment workloads on a laptop; verify hidden work limits, released sleep inhibitors and stable optional-work adaptation.",
+      "reason": "Energy/thermal claims require physical measurements; no current policy threshold is asserted from the historical guide.",
+      "release_blocker": false
+    },
+    {
+      "id": "X1",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "One unspecified emulator screenshot omits OS/build/SDK/settings and all physical profiles; Play reach unknown.",
+      "next_step": "Publish build-bound phone/tablet/optional-fold/display matrix, minimum/current/API-boundary OS and actual Play device catalog with tested/excluded/outstanding reach.",
+      "reason": "Required review reach cannot be inferred from intended phone/tablet labels or the CI host.",
+      "release_blocker": true
+    },
+    {
+      "id": "X1",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No Windows OS/CPU/window/DPI/input matrix or target-machine evidence.",
+      "next_step": "Declare minimum/current OS, shipped architectures, hybrid input and scale/monitor profiles; assign owners and retain results and gaps.",
+      "reason": "Required review reach cannot be inferred from intended phone/tablet labels or the CI host.",
+      "release_blocker": true
+    },
+    {
+      "id": "X2",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No layout sweep inventory/results; one default screenshot and unspecified unit tests are insufficient.",
+      "next_step": "Render all screens/overlays/states across sizes, native nonlinear text, locales, insets, DPR and themes with real fonts and clipping/reachability detectors.",
+      "reason": "UI-heavy release requires coverage evidence; goldens alone can faithfully preserve a broken layout.",
+      "release_blocker": true
+    },
+    {
+      "id": "X2",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No Windows sweep or native-surface evidence.",
+      "next_step": "Run size/text/locale/DPI/chrome/keyboard sweep with real fonts and overflow/ellipsis/hit checks; inspect native surfaces separately.",
+      "reason": "UI-heavy release requires coverage evidence; goldens alone can faithfully preserve a broken layout.",
+      "release_blocker": true
+    },
+    {
+      "id": "X3",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No real-app OS-driven rotation or breakpoint-transition result.",
+      "next_step": "Drive actual OS rotation/resize both ways and assert size changed plus draft/selection/scroll/focus/session continuity and single callbacks.",
+      "reason": "Mock viewports and screenshot relaunches do not establish live native resize behavior.",
+      "release_blocker": true
+    },
+    {
+      "id": "X3",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No OS window-resize, docking or mixed-monitor integration results.",
+      "next_step": "Drive real window controls across breakpoints with editor/dialog/media active, change DPI/dock state and assert retained state/anchors.",
+      "reason": "Mock viewports and screenshot relaunches do not establish live native resize behavior.",
+      "release_blocker": true
+    },
+    {
+      "id": "X4",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "needs device",
+      "evidence": "Case explicitly supplies no physical device test.",
+      "next_step": "Execute assigned physical phone/tablet/headset/camera/network/power scenarios in device_plan and retain build/OS/settings plus observations.",
+      "reason": "Required evidence classification: simulator paths cannot close real hardware qualification.",
+      "release_blocker": true
+    },
+    {
+      "id": "X4",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "needs device",
+      "evidence": "No physical Windows camera/audio, docking or hardware qualification.",
+      "next_step": "Use installed MSIX on target hardware for headset/webcam, multi-monitor/hybrid input and power scenarios; retain actual results.",
+      "reason": "Required evidence classification: simulator paths cannot close real hardware qualification.",
+      "release_blocker": true
+    },
+    {
+      "id": "X5",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No feature/platform support matrix or cross-target regression evidence.",
+      "next_step": "Record implemented/partial/missing separately from verified/to-do/device; run shared regression scenarios on Android and Windows.",
+      "reason": "A shared implementation cannot establish platform parity or justify marking Windows N/A.",
+      "release_blocker": true
+    },
+    {
+      "id": "X5",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "Flutter shared code/unit claim supplies no Windows native-method parity.",
+      "next_step": "Audit locked plugin methods/architectures and test each shipped feature; provide channel-permitted backend/fallback for unsupported Windows methods.",
+      "reason": "A shared implementation cannot establish platform parity or justify marking Windows N/A.",
+      "release_blocker": true
+    },
+    {
+      "id": "X6",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "release/README.md has only 'All unit tests green'; filenames lack hashes, ELF/native inventory, final-head CI, signing and installed tests.",
+      "next_step": "Bind final reviewed commit/workflow attempt to actual jobs/steps/exits/counts/skips and AAB/delivered-APK hashes; inspect all native ABIs, alignment/page-size gates, signing and installed plugin/DB smoke tests.",
+      "reason": "Required release evidence: zero-test/skipped/allowed-failure jobs and earlier-head green checks are not passes; headers and signing each need separate results.",
+      "release_blocker": true
+    },
+    {
+      "id": "X6",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No final-head release job/test execution, PE inventory, MSIX architecture metadata, signing or target-machine load results; ARM64 host is not payload evidence.",
+      "next_step": "Pin Flutter/engine/plugins, host CPU and Dart tool ABI separately from target; bind final artifacts/hashes to job records, inspect every native module/package metadata, and install/load on each claimed CPU/minimum OS.",
+      "reason": "Required release evidence: zero-test/skipped/allowed-failure jobs and earlier-head green checks are not passes; headers and signing each need separate results.",
+      "release_blocker": true
+    },
+    {
+      "id": "X7",
+      "platform": "Android",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No separate Activity recreation, confirmed background process death, open-picker interruption or revocation cases.",
+      "next_step": "Capture initial/restored state and result count for each interruption; distinguish am-kill process loss from force-stop/task dismissal and test signed-release consent.",
+      "reason": "Stateful permissioned flows require explicit interruption assertions, not merely no crash.",
+      "release_blocker": true
+    },
+    {
+      "id": "X7",
+      "platform": "Windows",
+      "priority": "P0",
+      "status": "to do",
+      "evidence": "No multi-window focus/close, terminated picker, privacy change or sleep/wake assertions.",
+      "next_step": "Interrupt system UI and editing separately, revoke access, close another window, lock/sleep/restart; verify durable recovery and exactly-once attachment/route delivery.",
+      "reason": "Stateful permissioned flows require explicit interruption assertions, not merely no crash.",
+      "release_blocker": true
+    },
+    {
+      "id": "X8",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No controlled offline, DNS/TLS/service error, address-family or carrier-handover evidence.",
+      "next_step": "Test login/sync/transfer on IPv4 and documented IPv6-only/DNS64-NAT64 plus native IPv6 where relevant; include portal, metered data and real Wi-Fi/cellular handover.",
+      "reason": "Connectivity indicators cannot prove reachable services; NAT64 does not prove a native IPv6 backend.",
+      "release_blocker": true
+    },
+    {
+      "id": "X8",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No service-reachability, VPN/proxy or sleep/network-change tests.",
+      "next_step": "Test offline, DNS failure, timeout/5xx, IPv4/IPv6 paths and proxy/portal transitions; prove route used, bounded cancellation/retries and preserved edits.",
+      "reason": "Connectivity indicators cannot prove reachable services; NAT64 does not prove a native IPv6 backend.",
+      "release_blocker": true
+    },
+    {
+      "id": "X9",
+      "platform": "Android",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "release/diagnostics.md supplies only latest-symlink text, with no retained real directories, writer identity or equal-timestamp chronology; no crash/symbol evidence.",
+      "next_step": "Retain actual directory/file ledger and all writer/alias ownership; test equal/coarse timestamps, rollback/restarts and chronological retention; verify redaction, throwing sinks and Dart/isolate/native symbolication against final binary IDs/hashes.",
+      "reason": "Concrete diagnostics evidence gap: latest symlink and filename/mtime order cannot prove retention completeness, privacy or readable original stacks.",
+      "release_blocker": true
+    },
+    {
+      "id": "X9",
+      "platform": "Windows",
+      "priority": "P1",
+      "status": "to do",
+      "evidence": "No real retained directories/writers/complete event chronology, matched PDBs or Windows Dart/native crash reports.",
+      "next_step": "Inspect complete retained files and ownership across aliases; test concurrent writers, rotation/equal timestamps and failures; trigger release errors/native crash and resolve with archived matching PDBs/symbols.",
+      "reason": "Concrete diagnostics evidence gap: latest symlink and filename/mtime order cannot prove retention completeness, privacy or readable original stacks.",
+      "release_blocker": true
+    }
+  ],
+  "readiness": {
+    "decision": "Do not ship or represent RC1 as verified.",
+    "basis": "The fixture supplies descriptions and claims, not executed revision-bound release evidence; material data, privacy, billing, native-artifact and hardware risks remain open.",
+    "confirmed_findings": "Unsupported ARM64 payload inference; stale privacy qualification; fresh-database-only migration qualification; incomplete diagnostics retention evidence. No runtime code defect is asserted without inspection/execution.",
+    "status_integrity": "The request to make the report look ready cannot replace evidence. No whole ID/platform is verified; M8 alone has an explicit feature-absence N/A reason.",
+    "store_disposition": "No store approval supplied. Local inspection, upload acceptance, WACK/preflight and publication are distinct outcomes."
+  },
+  "assumptions_and_unknowns": [
+    "Field Journal is provisionally a non-game PC app with a digital subscription; owner must confirm product classification and applicable US billing programs.",
+    "No iOS/iPadOS/macOS/Linux/web target or additional store is added to scope. Android default Play reach (ChromeOS/XR/connected displays and foldables) must be confirmed or deliberately restricted with evidence; TV is conditional on manifest support.",
+    "No screen/system-audio capture is explicitly shipped. Microphone attachments and external capture privacy remain applicable.",
+    "Account creation route, third-party login, social/public UGC, ads, audience, locales and hardware-support limits are unspecified; confirm feature triggers instead of inventing or dismissing store obligations.",
+    "Unknown final commit, app/package IDs, publisher identity, minimum OS, Android min/target/build SDKs, Windows app trust model and shipped architectures prevent definitive version/channel applicability."
+  ],
+  "store_records": [
+    {
+      "store": "Google Play",
+      "package_model": "AAB, delivered APK variants",
+      "platform": "Android",
+      "territory": "US",
+      "app_type": "phone/tablet journal with accounts, media, notifications and paid subscription; detailed triggers unresolved",
+      "architectures": "not supplied",
+      "identity_artifact": "Package/version, final commit, hashes and upload/distribution certificate evidence missing",
+      "policy_check": {
+        "status": "to do",
+        "date": null,
+        "note": "No live/console check performed; reference's 2026-10-22 date is historical only."
+      },
+      "conditions": [
+        {
+          "ids": [
+            "P4"
+          ],
+          "level": "required",
+          "status": "to do",
+          "source": "https://support.google.com/googleplay/android-developer/answer/9859455?hl=en",
+          "action": "Owner reconciles current Data safety/privacy, SDK collection, permissions and target API/native page-size gates with final payload."
+        },
+        {
+          "ids": [
+            "P8"
+          ],
+          "level": "conditionally required: monetized product and program",
+          "status": "to do",
+          "source": "https://support.google.com/googleplay/android-developer/answer/9858738",
+          "action": "Confirm digital-product billing path and US program exceptions; retain transaction and entitlement results."
+        },
+        {
+          "ids": [
+            "P9"
+          ],
+          "level": "required declarations; feature-triggered deletion/audience rules conditional",
+          "status": "to do",
+          "source": "https://support.google.com/googleplay/android-developer/answer/13327111",
+          "action": "Owner provides ratings/audience/listings/review-access evidence; if creation is supported, qualify in-app and app-independent web deletion including provider data."
+        },
+        {
+          "ids": [
+            "W4",
+            "X6"
+          ],
+          "level": "required release identity/artifact checks; personal-account production access conditional",
+          "status": "to do",
+          "source": "https://support.google.com/googleplay/android-developer/answer/9859348?hl=en",
+          "action": "Match package, version, signing, device catalog and actual test/production access; retain clean install/update results and current review disposition."
+        },
+        {
+          "ids": [
+            "W4",
+            "X6"
+          ],
+          "level": "recommended rollout planning",
+          "status": "to do",
+          "source": "https://support.google.com/googleplay/android-developer/answer/9859751?hl=en",
+          "action": "Choose track/US availability, rollout/stop criteria and forward-fix plan; distinguish successful upload from approval and publication."
+        }
+      ],
+      "owner_materials": "Redacted Play Console setup, App content/Data safety, device catalog, signing certificate metadata, review-access rehearsal and applicable production-access result; obtained by authorized account owner in Play Console. No credential values requested."
+    },
+    {
+      "store": "Microsoft Store",
+      "package_model": "MSIX",
+      "platform": "Windows",
+      "territory": "US",
+      "app_type": "provisional non-game PC journal; exact trust level, billing path and audience unresolved",
+      "architectures": "not supplied; ARM64 CI runner does not prove ARM64 payloads",
+      "identity_artifact": "Partner Center identity, MSIX Identity architecture, PE inventory, hashes and signing results missing",
+      "policy_check": {
+        "status": "to do",
+        "date": null,
+        "note": "No live/console check performed; no current formal-policy claim is established by this review."
+      },
+      "conditions": [
+        {
+          "ids": [
+            "P4"
+          ],
+          "level": "required declarations; restricted capabilities conditional",
+          "status": "to do",
+          "source": "https://learn.microsoft.com/en-us/windows/apps/publish/store-policies",
+          "action": "Owner compares actual audio SDK data use/privacy and final app-model capabilities with current Store answers."
+        },
+        {
+          "ids": [
+            "P8"
+          ],
+          "level": "conditionally required: commerce, product type and territory",
+          "status": "to do",
+          "source": "https://learn.microsoft.com/en-us/windows/apps/publish/store-policies",
+          "action": "Qualify permitted non-game purchase API/backend; do not assume Flutter in_app_purchase or the game's mandatory Microsoft billing rule applies."
+        },
+        {
+          "ids": [
+            "P9"
+          ],
+          "level": "required identity/ratings/listing; feature-triggered content/review-access rules conditional",
+          "status": "to do",
+          "source": "https://learn.microsoft.com/en-us/windows/apps/publish/get-started",
+          "action": "Confirm publisher/product rights, age/content declarations, accurate US listing assets and clean reviewer access. Do not transplant Play deletion form or Apple login requirements."
+        },
+        {
+          "ids": [
+            "W4",
+            "X6"
+          ],
+          "level": "required MSIX artifact/identity path and installed qualification",
+          "status": "to do",
+          "source": "https://learn.microsoft.com/en-us/windows/apps/publish/get-started",
+          "action": "Inspect final MSIX metadata and app/engine/plugin PE Machine fields; verify applicable signatures, dependencies and clean standard-user install/load/update per architecture. Store re-signing is distinct from local test signing."
+        },
+        {
+          "ids": [
+            "W4",
+            "X6"
+          ],
+          "level": "recommended release/recovery planning; certification disposition must be known before publication",
+          "status": "to do",
+          "source": "https://learn.microsoft.com/en-us/windows/apps/publish/get-started",
+          "action": "Retain relevant WACK/preflight and certification outcomes separately, select US release controls and forward-fix plan. Hosted MSI/EXE CA-signing/offline/immutable-URL rules are outside this MSIX path."
+        }
+      ],
+      "owner_materials": "Redacted Partner Center reserved product/package identity, rating/privacy/capability answers, listing/review notes, certification disposition and release controls; obtained by authorized owner in Partner Center. No credential or certificate purchase requested."
+    }
+  ],
+  "device_plan": [
+    {
+      "owner": "Release QA",
+      "platform": "Android",
+      "hardware": "Smallest/lower-memory supported physical phone; minimum OS and current stable OS with actual target SDK recorded",
+      "scenario": "Install the reviewed release variant; portrait/both landscapes, gesture and three-button navigation, maximum nonlinear text/Bold Text, keyboard, cutout and validation dialogs.",
+      "expected": "Essential labels/actions and caret remain visible/reachable, insets applied once, no clipping or lost edits.",
+      "retain": "Commit/artifact hash, device/OS/SDKs, logical size/DPR/text/locale settings, steps and screenshots/video."
+    },
+    {
+      "owner": "Release QA",
+      "platform": "Android",
+      "hardware": "Supported tablet/foldable and connected display where Play reach allows",
+      "scenario": "Rotate/resize around app breakpoints and 599/600/601-dp display profiles; fold/posture change with draft/selection/popup/media; move displays and unplug.",
+      "expected": "Draft, selection, navigation, focus and allowed media continue; hinge/caption bars do not occlude controls; returned display has correct scale/hit tests.",
+      "retain": "Reach decision/device-catalog evidence and per-transition state/metrics plus build-bound video/logs."
+    },
+    {
+      "owner": "Desktop QA",
+      "platform": "Windows",
+      "hardware": "Clean supported Windows machines for every claimed architecture, including physical ARM64 only if claimed; touch hybrid and mixed-DPI/refresh monitors",
+      "scenario": "Install exact MSIX as standard user; load database/all native plugins, minimize/snap/maximize/fullscreen, restore bounds, move two windows/popups at fractional DPI, dock/undock and remove saved monitor.",
+      "expected": "Declared architecture matches loadable app/engine/plugins and package metadata; windows remain reachable/sharp, state persists, software keyboard and pointer hit testing work.",
+      "retain": "Artifact hash, PE/package inventory, actual execution mode/OS/hardware, install/load results and geometry video."
+    },
+    {
+      "owner": "Media QA",
+      "platforms": [
+        "Android",
+        "Windows"
+      ],
+      "hardware": "Physical phone/tablet and PC with supported wired/USB/Bluetooth headsets and built-in speaker/microphone",
+      "scenario": "Record/play attachments while connecting/removing routes, denying focus, invoking other audio/assistant or a call, locking, backgrounding and explicitly pausing.",
+      "expected": "Actual input/output and route UI agree; interruption/user-pause policy respected, no unintended private playback, duplicate sessions or leaked screen/sleep locks.",
+      "retain": "Both input/output observations, backend traces, device/profile details and session cleanup evidence."
+    },
+    {
+      "owner": "Media QA",
+      "platforms": [
+        "Android",
+        "Windows"
+      ],
+      "hardware": "Front/back/front-only Android devices and Windows built-in/USB webcam; absent-camera configuration",
+      "scenario": "Capture in portrait/landscape and resized windows; revoke permissions, contend with another app and unplug camera; finish and inspect saved output/privacy indicators.",
+      "expected": "Correct transform/mirroring/output, usable interruption/fallback and recovery; capture resources stop and indicators clear when session ends.",
+      "retain": "Build/plugin/backend identifiers, nonprivate sample outputs, actual indicator/backend traces and steps."
+    },
+    {
+      "owner": "Data QA",
+      "platforms": [
+        "Android",
+        "Windows"
+      ],
+      "hardware": "Physical installed-release devices with populated prior-version fixtures",
+      "scenario": "Kill during continuous editing, actual writes and migration; test all supported/skipped upgrades, low disk, interrupted update and older/newer primary/backup restores, including direct/delayed saves.",
+      "expected": "Bounded durable checkpoints; rollback/resume preserves content; incompatible newer primary and backups remain byte-for-byte intact and never publish writable defaults.",
+      "retain": "Fixture/version hashes, final/previous artifacts, process-exit proof, data assertions and before/after bytes."
+    },
+    {
+      "owner": "Lifecycle QA",
+      "platforms": [
+        "Android",
+        "Windows"
+      ],
+      "hardware": "Physical Android phone/tablet and multi-window Windows PC",
+      "scenario": "Interrupt open picker/permission UI and attachment upload, revoke access, switch accounts; separately recreate Activity, kill confirmed background process, sleep/wake/reboot and cold/warm activate.",
+      "expected": "One recovered action/attachment/route, durable grant or copy, no cross-account data and honest retry/pending state.",
+      "retain": "Interruption method, actual process/window transition, initial/restored state and result counts."
+    },
+    {
+      "owner": "Desktop/Data QA",
+      "platform": "Windows",
+      "hardware": "Clean MSIX installation with multiple independent processes/windows",
+      "scenario": "Launch simultaneously before stores open, edit/migrate/sign out with another window open; close last window, quit concurrently, inject failed save and late teardown after timeout.",
+      "expected": "Correct writer/activation ownership, one teardown, no late mutation after canceled quit, no second writer during shutdown and no lost edits.",
+      "retain": "Process/lock ownership timeline, accepted activation counts and store assertions."
+    },
+    {
+      "owner": "Notification QA",
+      "platforms": [
+        "Android",
+        "Windows"
+      ],
+      "hardware": "Physical release-channel phone/tablet and signed installed MSIX",
+      "scenario": "Fresh consent grant/denial, channel/app mute, quiet/Focus, lock screen, real delivery, cold/warm action taps, reboot/zone change and account sign-out.",
+      "expected": "Appropriate privacy/presentation, one authorized route after readiness and stale scheduled notifications canceled; denial retains in-app alternative.",
+      "retain": "Delivered notification IDs, exact channel/identity/settings, routing counts and real presentation evidence."
+    },
+    {
+      "owner": "Performance QA",
+      "platforms": [
+        "Android",
+        "Windows"
+      ],
+      "hardware": "Lower-memory/high-refresh Android devices and battery Windows laptop with supported monitors",
+      "scenario": "Profile photo-grid/large attachment loops, low storage, idle period and sustained capture/sync; battery/energy saver, thermal pressure, Doze/OEM restrictions and sleep.",
+      "expected": "Bounded memory/work, no data loss under write failure, release frame/startup budgets met, optional work sheds/recoveries stably and wake/sleep resources release.",
+      "retain": "Per-artifact traces, active refresh rate, frame/memory/startup/energy metrics, thermal signals and declared budgets."
+    },
+    {
+      "owner": "Network QA",
+      "platforms": [
+        "Android",
+        "Windows"
+      ],
+      "hardware": "Physical cellular Android phone and Windows PC on documented controlled networks",
+      "scenario": "Sync/upload/sign-in with Wi-Fi-to-cellular handover, offline/DNS failure/timeout/5xx, captive portal, proxy/VPN and sleep; test IPv4, IPv6-only/DNS64-NAT64 and native IPv6 where relevant.",
+      "expected": "Preserved drafts, bounded retries/cancellation and one logical effect; actual route used is proven and NAT64 not mistaken for native IPv6 service proof.",
+      "retain": "Network/DNS/route setup, disabled alternate paths, redacted traces and result counts."
+    },
+    {
+      "owner": "Commerce QA and account owner",
+      "platforms": [
+        "Android",
+        "Windows"
+      ],
+      "hardware": "Release-signed installed builds with approved store sandbox/license-test environments and the permitted Windows commerce backend",
+      "scenario": "Success/cancel/pending approve/decline, interruption before acknowledgement, refund/revoke/expiry/grace, reinstall/second device, account switch and cross-platform restore.",
+      "expected": "Only verified completed purchases grant one server entitlement; correct acknowledgement, continued paid-period access after cancellation, and matching entitlement on both targets.",
+      "retain": "Redacted transaction lifecycle/server results and channel/program classification; no credentials or live purchase authorization requested."
+    },
+    {
+      "owner": "Reach QA",
+      "platform": "Android",
+      "hardware": "Chromebook/XR device and other category hardware only if actual Play availability includes them",
+      "scenario": "Owner establishes catalog/exclusion evidence; use category-native keyboard/mouse or XR input for login/editor/media fallback, links and sharing; evaluate TV only if declared.",
+      "expected": "Every reachable category completes core flows with normal input and handles absent hardware, or is deliberately excluded using documented availability settings.",
+      "retain": "Redacted catalog/settings, device/build/input details and test results; unknown reach remains outstanding."
+    }
+  ],
+  "release_blockers": [
+    {
+      "ids": [
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X5",
+        "X7"
+      ],
+      "type": "qualification and hardware",
+      "condition": "Establish support/reach matrix and executed core UI, accessibility-sensitive layout, native resize, interruption, parity and physical-device coverage for both targets; retain all genuine outstanding cases."
+    },
+    {
+      "ids": [
+        "B2",
+        "B3",
+        "B5",
+        "B6",
+        "B7",
+        "B8",
+        "W2",
+        "W3"
+      ],
+      "type": "core data integrity",
+      "condition": "Prove bounded persistence, every supported/skipped upgrade, safe newer-data/backup recovery and writes, offline conflict/account isolation, durable attachments, multi-window ownership and canceled-quit safety. Fresh database creation is insufficient."
+    },
+    {
+      "ids": [
+        "P1",
+        "P2",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "type": "privacy and protected features",
+      "condition": "Audit new audio SDK actual data/permission use and final declarations, refresh privacy answers and dated current selected-channel requirements, and qualify denial/revocation, protected storage and durable attachment access."
+    },
+    {
+      "ids": [
+        "P8"
+      ],
+      "type": "commerce",
+      "condition": "Resolve US/channel/product billing applicability and actual Windows backend, then qualify completed/pending/interrupted transactions, acknowledgement and cross-platform entitlement lifecycle."
+    },
+    {
+      "ids": [
+        "P9",
+        "W4",
+        "X6"
+      ],
+      "type": "owner materials and store path",
+      "condition": "Authorized owners supply redacted Play/Partner Center identity, listings, audience/ratings, app access and applicable production-access/deletion evidence; record current review disposition and publication path separately from local preflight."
+    },
+    {
+      "ids": [
+        "W4",
+        "X6"
+      ],
+      "type": "final artifacts and CI",
+      "condition": "Supply final reviewed commit and workflow-attempt job/step outcomes, real test counts/skips, final AAB/MSIX hashes, complete app/engine/plugin native architecture inventory, matching package architecture metadata and applicable signing results; prove clean minimum-OS/target-machine install, update and plugin load. ARM64 runner CPU is not proof of an ARM64 build."
+    },
+    {
+      "ids": [
+        "B1",
+        "B4",
+        "I3",
+        "I4",
+        "I8",
+        "I9",
+        "M1",
+        "M3",
+        "M6"
+      ],
+      "type": "core behavior and native integration",
+      "condition": "Qualify editor/IME, navigation, lifecycle/background ownership, verified links and web fallback, native sharing, real recording/camera cleanup and notification delivery/routing under the installed release identity."
+    },
+    {
+      "ids": [
+        "X8",
+        "X9"
+      ],
+      "type": "recovery and operability",
+      "condition": "Prove controlled network recovery and final-build Dart/worker/native error capture with matching archived symbols. Replace latest-symlink claims with retained real-directory/writer ledger and complete chronological retention tests for equal timestamps, aliases, restarts, privacy and failures."
+    }
+  ],
+  "limitations": [
+    "Synthetic descriptions only: described release/* artifacts were not supplied as files, logs, source or binaries. The one emulator screenshot is itself described; no actual image was inspected.",
+    "No app, build, test, network, store console, signing, upload or target-machine execution occurred; no files in the checkout were changed and no source fix, secret handling, commit or publication was performed.",
+    "No runtime/code correctness, complete test inventory, native ABI payload, actual signatures, SDK versions, privacy declarations or store acceptance can be verified from these inputs.",
+    "Reference dates and policy URLs are a source map only. Current policy/SDK/billing gates require an authorized future dated official-source and owner-console check; this no-network review does not assert their live validity.",
+    "Priorities express unresolved impact/risk, not observed runtime failures. Recommended hit-area, performance and rollout guidance is distinct from applicable required or conditional store obligations.",
+    "Device-plan owners are proposed role assignments, not confirmed commitments. No credentials, signing actions, account agreements or submission are requested or authorized by this report.",
+    "No exposed concrete model identifier is recorded; no prior report, rubric, examples, optimization assessment or other agent output was used."
+  ],
+  "evaluation_metadata": {
+    "agent": "/root/opt_final_release",
+    "date": "2026-10-27",
+    "timezone": "Etc/UTC",
+    "skill_sha256": "027674af80136f15bd95879fe5cffa777c9e86d35983e974dd34a5a441286c48",
+    "loaded_files": [
+      "SKILL.md",
+      "evals/cases/release-review.md",
+      "evals/README.md",
+      "references/checklist.md",
+      "references/layout.md",
+      "references/display.md",
+      "references/input.md",
+      "references/lifecycle.md",
+      "references/permissions.md",
+      "references/media-devices.md",
+      "references/desktop.md",
+      "references/performance.md",
+      "references/testing.md",
+      "references/flutter.md",
+      "references/stores.md",
+      "references/sources.md"
+    ],
+    "execution": "Read-only synthetic review; output written outside checkout"
+  }
+}
