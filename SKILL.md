@@ -8,6 +8,8 @@ metadata:
 
 # Cross-platform app checklist
 
+[GitHub repository](https://github.com/agentx-icu/cross-platform-app-checklist)
+
 Review app changes and release candidates for failures caused by differences
 between platforms: layouts after resize, large text, input methods, lifecycle,
 permissions, device capabilities and native distribution. The result is a scoped,
