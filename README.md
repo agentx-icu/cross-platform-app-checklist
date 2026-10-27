@@ -37,10 +37,10 @@ references/stores.md        store-specific submission / release evidence under e
 references/stores.zh-CN.md  Chinese counterpart of the store release guide
 tools/check_skill.py        consistency check (IDs, project Markdown links/anchors, metadata, hygiene; needs PyYAML)
 tools/test_check_skill.py   isolated positive / negative validator regressions
-evals/                     three reproducible review cases, contract examples and actual agent results
+evals/                     reproducible cases, contract examples, boundary probes and actual agent results
 tools/evaluate_review.py    synthetic report-contract grader, not an app verifier
-VERSION / CHANGELOG.md      first versioned preparation: 0.1.0
-docs/CLAWHUB.md             publication preparation only; no upload
+VERSION / CHANGELOG.md      version metadata and release history (current: 0.1.1)
+docs/CLAWHUB.md             release staging, publication gates and verification
 docs/PROVENANCE.md          bounded license/source audit
 README.zh-CN.md             Chinese project documentation
 ```
@@ -107,8 +107,11 @@ Cover all 65 IDs per target; distinguish unavailable evidence from verification.
 ```
 
 See [reproducible cases and evaluation boundaries](evals/README.md),
-[0.1.0 changes](CHANGELOG.md) and [ClawHub preparation](docs/CLAWHUB.md).
-The ClawHub listing is not published by this preparation; clone/link works today.
+[0.1.1 changes](CHANGELOG.md) and [ClawHub release checklist](docs/CLAWHUB.md).
+Published versions are listed on [ClawHub](https://clawhub.ai/agentx-icu/skills/cross-platform-app-checklist).
+With a current ClawHub CLI, install the latest published version using
+`clawhub install @agentx-icu/cross-platform-app-checklist`; add `--version` to
+select an existing published version. Git clone/link also works.
 
 For submission or release work, open the [store release guide](references/stores.md)
 ([简体中文](references/stores.zh-CN.md)) and choose the actual channel,

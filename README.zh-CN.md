@@ -30,9 +30,9 @@ Android、macOS、Windows、Linux 的窗口尺寸与断点、DPI、旋转／分�
 | [商店发布指南](references/stores.zh-CN.md)／[English](references/stores.md) | 在 P4／P8／P9／W4／X6 下细化不同渠道的提审与发布证据 |
 | [tools/check_skill.py](tools/check_skill.py) | frontmatter、ID、项目 Markdown 链接／锚点、行尾和基础泄漏检查 |
 | [tools/test_check_skill.py](tools/test_check_skill.py) | 临时副本中的校验器正例、断链和锚点负例 |
-| [evals](evals/README.md) | 三个复现案例、报告契约、手写样例及独立 agent 实测记录 |
-| [ClawHub 准备](docs/CLAWHUB.md)／[来源核查](docs/PROVENANCE.md) | 发布文件准备及 MIT-0 许可核查 |
-| [CHANGELOG](CHANGELOG.md)／[VERSION](VERSION) | 首个明确版本：0.1.0 |
+| [evals](evals/README.md) | 复现案例、边界探针、报告契约、手写样例及独立 agent 记录 |
+| [ClawHub 发布](docs/CLAWHUB.md)／[来源核查](docs/PROVENANCE.md) | 发布流程及 MIT-0 许可核查 |
+| [CHANGELOG](CHANGELOG.md)／[VERSION](VERSION) | 版本元数据与发布记录（当前：0.1.1） |
 
 ## 安装
 
@@ -82,8 +82,11 @@ Flutter；Android + Windows；Google Play + Microsoft Store，美国。
 ```
 
 参见 [三个复现案例与评测边界](evals/README.md)、[版本变更](CHANGELOG.md)
-及 [ClawHub 准备文档](docs/CLAWHUB.md)。本次未上传 ClawHub，当前可用 Git
-克隆／链接方式安装；Codex 用户也可链接到 `~/.codex/skills`。
+及 [ClawHub 发布文档](docs/CLAWHUB.md)。已公开版本见
+[ClawHub](https://clawhub.ai/agentx-icu/skills/cross-platform-app-checklist)。使用当前
+ClawHub CLI 执行 `clawhub install @agentx-icu/cross-platform-app-checklist` 可安装
+最新公开版本；添加 `--version` 可选择已有版本。也可继续 Git 克隆／链接，
+Codex 用户可链接到 `~/.codex/skills`。
 
 提审、更新或分发变更时读取 [商店发布指南](references/stores.zh-CN.md)，
 按“渠道／包模型 × 国家地区 × 应用类型”选择适用路径。覆盖 App Store

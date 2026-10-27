@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.1 — 2026-10-27
+
+- Put the skill’s purpose, target platforms, core capabilities, outputs and limits
+  before operational details, aligned with the project README.
+- Clarify change versus full release review, missing-input handling, selective
+  loading and distribution-text applicability while preserving all 65 IDs, parity,
+  evidence states and read-only/user-authorization boundaries.
+- Separate rule requirement level, issue priority and verification status. Retain
+  final-artifact, signing, physical-device and final-head CI evidence requirements.
+- Preserve the [before/after agent observations and limits](evals/optimization-2026-10-27/ASSESSMENT.md).
+  These use synthetic inputs and do not establish real-app/device/store acceptance.
+- Bump version metadata and synchronize installation/publication documentation.
+  The optimized instruction body is unchanged from `17cb681`; existing 0.1.0
+  tags, releases and hosted version remain separate immutable snapshots.
+
 ## 0.1.0 — 2026-10-27
 
 First versioned publication preparation; no tag, GitHub Release or ClawHub

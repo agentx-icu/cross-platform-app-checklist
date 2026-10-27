@@ -3,7 +3,7 @@ name: cross-platform-app-checklist
 description: Review multi-platform app changes and release readiness for UI, lifecycle, permissions, media and distribution risks. Produces platform-specific findings, evidence gaps and test plans for iOS/iPadOS, Android and desktop apps. Use for compatibility or app-release reviews, not standalone API explanations or prose edits without app-behavior or distribution impact.
 license: MIT-0
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Cross-platform app checklist

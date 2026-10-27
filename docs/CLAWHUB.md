@@ -1,78 +1,93 @@
-# ClawHub publication preparation — 0.1.0
+# ClawHub release checklist — 0.1.1
 
-Prepared on **2026-10-27**; no ClawHub upload, account/credential setup, acceptance
-of new terms, GitHub tag or Release is part of this change. The owner must
-separately authorize publication. The default skill operation is read-only review.
+Version **0.1.1** packages the purpose-first SKILL.md optimization from `17cb681`.
+Only its version metadata changes for this release; the reviewed instruction body,
+65 IDs and detailed references remain intact. Existing `v0.1.0` GitHub and ClawHub
+artifacts must be preserved. Publication requires the owner's authorization;
+this document does not authorize future uploads, accounts or new access grants.
+The skill itself continues to default to read-only app review.
 
-## Official format checked
+## Format and identity
 
-Official docs at ClawHub commit `5e73cd713330fec7b33c3e56921bfed42190df33`:
-[skill format](https://github.com/openclaw/clawhub/blob/5e73cd713330fec7b33c3e56921bfed42190df33/docs/skill-format.md),
-[publishing](https://github.com/openclaw/clawhub/blob/5e73cd713330fec7b33c3e56921bfed42190df33/docs/publishing.md),
-[CLI](https://github.com/openclaw/clawhub/blob/5e73cd713330fec7b33c3e56921bfed42190df33/docs/cli.md).
-Recheck the current versions before a future upload.
+Checked **2026-10-27** against official docs at ClawHub commit
+`eb65c6c1af089d8947d2d62ebd60a8b26cbc6eeb`:
+[skill format](https://github.com/openclaw/clawhub/blob/eb65c6c1af089d8947d2d62ebd60a8b26cbc6eeb/docs/skill-format.md),
+[publishing](https://github.com/openclaw/clawhub/blob/eb65c6c1af089d8947d2d62ebd60a8b26cbc6eeb/docs/publishing.md),
+[CLI](https://github.com/openclaw/clawhub/blob/eb65c6c1af089d8947d2d62ebd60a8b26cbc6eeb/docs/cli.md).
+Recheck current requirements before a later release. CLI 0.23.3 supports the
+commands below; the earlier 0.8.0 CLI lacks the preview/catalog/source flags.
 
-The folder has the required `SKILL.md`, lowercase portable name, description,
-MIT-0 license and relative references. Version `0.1.0` is the first explicitly
-versioned preparation, recorded in `VERSION` and `metadata.version` for portable
-Agent Skills. An eventual CLI invocation must select `--version 0.1.0`; ClawHub's
-new-skill default is otherwise `1.0.0`. No per-skill license override exists:
-ClawHub requires MIT-0 without attribution. See the [provenance review](PROVENANCE.md).
+The portable folder name and frontmatter name are `cross-platform-app-checklist`.
+`VERSION` and `metadata.version` agree; pass `--version 0.1.1` explicitly rather
+than relying on automatic version selection. The project uses **MIT-0**, required
+by ClawHub with no per-skill override; see [provenance](PROVENANCE.md).
+Review needs no service credential, required environment variable or installer.
+Optional repository validators use Python 3/PyYAML.
 
-No service, secret, required environment variable or automatic installer is
-needed for the review. Optional local validators use Python 3 and PyYAML; the
-skill can be read without running them. Do not declare credentials or `always`.
+Publisher: `agentx-icu`; slug: `cross-platform-app-checklist`; display name:
+`Cross-platform App Checklist`; category: `development`; topics:
+`cross-platform,release-review,flutter,desktop,quality`. Verify existing publisher
+access with `clawhub whoami`. Do not print tokens. If login, a new persistent grant
+or acceptance of new platform terms is required, stop and obtain the appropriate
+user confirmation; do not create access as part of file preparation.
 
-Suggested catalog fields: slug `cross-platform-app-checklist`, display name
-`Cross-platform App Checklist`, category `development`, topics
-`cross-platform,release-review,flutter,desktop,quality`. All five are ordinary
-labels; none implies platform endorsement or security certification. Choose the
-actual publisher handle at publication time; repository ownership does not
-establish a ClawHub account or namespace.
+## Validate and stage
 
-## Local preparation and bundle review
-
-From a clean checkout:
+Before committing, then confirm the final commit and CI:
 ```bash
 python3 -B -m unittest discover -s tools -p 'test_*.py' -v
 python3 tools/check_skill.py
 python3 tools/evaluate_review.py --examples
+python3 tools/evaluate_review.py flutter-change evals/optimization-2026-10-27/results/flutter-change-after.json
+python3 tools/evaluate_review.py release-review evals/optimization-2026-10-27/results/release-review-after.json
 git diff --check
 ```
 
-`.clawhubignore` excludes development CI, documentation, evals, tools and caches.
-The intended bundle is `SKILL.md`, `LICENSE`, `VERSION` and `references/*.md`.
-Inspect the file inventory and size before uploading; regular supporting files
-are accepted subject to ignore/hidden/symlink handling and the 50 MB bundle cap.
-Do not package local reports, credentials, working projects or symlinks. The
-optional validators and evaluation instructions remain in the GitHub checkout.
+Inspect existing tags, Releases and hosted versions first. Never overwrite an
+existing release version or force-rewrite a tag. Stage from the reviewed commit
+outside the checkout, including only **17 regular files**: `SKILL.md`, `LICENSE`,
+`VERSION` and `references/*.md`. Verify paths, bytes, local links and SHA-256
+hashes against that commit. `.clawhubignore` excludes development CI, docs,
+evaluations, tools, READMEs and caches if publishing from a checkout; a separate
+whitelist stage is easier to audit. Do not package symlinks, working projects,
+local reports, private paths or credentials. The bundle cap is 50 MB.
 
-After separate authorization and with a current installed CLI, a **preview only**
-command is:
+Create the authorized GitHub tag/Release at the exact successful final commit.
+From the parent of the staged folder, preview with that source commit:
 ```bash
-clawhub skill publish . --dry-run --version 0.1.0 \
-  --slug cross-platform-app-checklist \
-  --name "Cross-platform App Checklist" \
+clawhub skill publish ./cross-platform-app-checklist --dry-run --json \
+  --owner agentx-icu --slug cross-platform-app-checklist \
+  --name "Cross-platform App Checklist" --version 0.1.1 \
   --categories development \
-  --topics cross-platform,release-review,flutter,desktop,quality
+  --topics cross-platform,release-review,flutter,desktop,quality \
+  --source-repo agentx-icu/cross-platform-app-checklist \
+  --source-commit "$RELEASE_COMMIT" --source-ref refs/tags/v0.1.1 --source-path .
 ```
-This command has **not** been executed in this preparation. CLI preview may
-contact the registry and does not check all server-side catalog constraints.
-Do not remove `--dry-run`, run `sync`, log in, accept terms, or add a publishing
-workflow as part of preparation. A future uploader must inspect exact contents,
-confirm publisher rights and terms, and await the registry's security result;
-pending status is not published or discoverable status.
+Set `RELEASE_COMMIT` to the verified tag's commit. Preview may contact the registry
+and does not check all server-side catalog rules. After the explicit publication
+authorization, publish that same bundle without `--dry-run`, with a concise
+`--changelog`. No automatic publishing workflow or `sync` batch is needed.
 
-## Installation and invocation
+## Verify the result
 
-Today: use the Git clone/link instructions in [README](../README.md#install).
-After a separately completed public upload, verify the real owner/slug with
-`clawhub inspect @OWNER/cross-platform-app-checklist --files`, then install that
-qualified identifier with `clawhub install @OWNER/cross-platform-app-checklist`.
-`OWNER` is a placeholder; these commands do not claim a listing exists. The CLI
-installs into its configured workdir/skills directory; agent discovery varies.
+Save the upload receipt/version/attempt IDs. A successful command with
+`pending-publication` is not public availability. Follow the existing submission
+with read-only owner/public checks; do not upload again merely because review is
+pending. Stop for a concrete rejection, failure or access requirement rather than
+changing review state or bypassing it.
 
-Invoke with project/revision or diff, targets, framework, channels and mode; the
-[three review cases](../evals/README.md) provide repeatable prompts. Never treat a
-passing repository validator, an agent report or a registry scan as proof that
-an application works on real hardware or will pass any store review.
+Confirm public owner/version/latest, security state and anonymous archive
+availability. Compare all 17 project-file hashes with the release commit; the
+registry may add its own `_meta.json`. Verify normal CLI installation in a
+disposable directory with telemetry disabled, without `--force` or
+`--force-install`, and without activating the skill in a user's agent.
+`clawhub skill verify @agentx-icu/cross-platform-app-checklist --version 0.1.1`
+provides a separate verification envelope: report `card.missing`, unsigned or
+other limitations exactly rather than calling complete verification passed.
+A missing platform-generated Skill Card is not a reason to invent or upload one.
+
+Keep receipts and hash evidence; clean regenerable CLI/cache/install staging once
+finished. See [installation/invocation](../README.md#install) and the
+[synthetic evaluation assessment](../evals/optimization-2026-10-27/ASSESSMENT.md).
+Repository tests, agent probes and registry scans do not establish real app,
+physical-device or store acceptance.
