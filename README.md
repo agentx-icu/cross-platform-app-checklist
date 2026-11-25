@@ -164,7 +164,7 @@ git diff --check
 ```
 
 The [CI workflow](.github/workflows/check.yml) runs the validator regressions
-and consistency check on pushes and pull requests. It checks frontmatter,
+and consistency check on pushes to `master` and on pull requests. It checks frontmatter,
 checklist / reference ID correspondence, local links and heading anchors
 in project Markdown, line endings and selected leak patterns. Version/license
 metadata and the complete stable ID set are checked as well.
