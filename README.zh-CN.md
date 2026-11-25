@@ -128,7 +128,7 @@ python3 tools/evaluate_review.py --examples
 git diff --check
 ```
 
-[CI](.github/workflows/check.yml) 在 push 和 pull request 上运行校验器回归与
+[CI](.github/workflows/check.yml) 在 `master` 的 push 和 pull request 上运行校验器回归与
 一致性检查，覆盖 frontmatter、ID 对应、项目 Markdown 的本地
 链接／标题锚点、换行和选定泄漏模式，以及完整 ID 集、版本与许可元数据。
 CI 也重新评分已保存的合成场景 agent 报告，不启动新 agent。负例证明中文 README 断链和中文
