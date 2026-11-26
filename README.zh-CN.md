@@ -28,6 +28,7 @@ Android、macOS、Windows、Linux 的窗口尺寸与断点、DPI、旋转／分�
 | [flutter](references/flutter.md) | 对应 Flutter API、插件和验证注意事项 |
 | [sources](references/sources.md) | 官方来源、版本／商店规则日期、商店来源索引、相关项目 |
 | [商店发布指南](references/stores.zh-CN.md)／[English](references/stores.md) | 在 P4／P8／P9／W4／X6 下细化不同渠道的提审与发布证据 |
+| [首发技术发布门禁与数据可靠性](references/release-reliability.zh-CN.md)／[English](references/release-reliability.md) | 首发数据基线、离线账号、覆盖升级、备份恢复与验收矩阵 |
 | [tools/check_skill.py](tools/check_skill.py) | frontmatter、ID、项目 Markdown 链接／锚点、行尾和基础泄漏检查 |
 | [tools/test_check_skill.py](tools/test_check_skill.py) | 临时副本中的校验器正例、断链和锚点负例 |
 | [evals](evals/README.md) | 复现案例、边界探针、报告契约、手写样例及独立 agent 记录 |
@@ -87,6 +88,9 @@ Flutter；Android + Windows；Google Play + Microsoft Store，美国。
 ClawHub CLI 执行 `clawhub install @agentx-icu/cross-platform-app-checklist` 可安装
 最新公开版本；添加 `--version` 可选择已有版本。也可继续 Git 克隆／链接，
 Codex 用户可链接到 `~/.codex/skills`。
+
+首次发布和后续更新时，按[首发技术发布门禁](references/release-reliability.zh-CN.md)
+准备有内容的数据基线，验证离线存储、身份、覆盖升级、备份和故障恢复。
 
 提审、更新或分发变更时读取 [商店发布指南](references/stores.zh-CN.md)，
 按“渠道／包模型 × 国家地区 × 应用类型”选择适用路径。覆盖 App Store

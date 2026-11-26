@@ -35,6 +35,8 @@ references/flutter.md       Flutter APIs and plugin traps for all of the above
 references/sources.md       official guidelines mapped to IDs, dated version / store gates, related projects
 references/stores.md        store-specific submission / release evidence under existing P4 / P8 / P9 / W4 / X6
 references/stores.zh-CN.md  Chinese counterpart of the store release guide
+references/release-reliability.md       first-release data contracts and upgrade acceptance
+references/release-reliability.zh-CN.md  Chinese counterpart of the release reliability guide
 tools/check_skill.py        consistency check (IDs, project Markdown links/anchors, metadata, hygiene; needs PyYAML)
 tools/test_check_skill.py   isolated positive / negative validator regressions
 evals/                     reproducible cases, contract examples, boundary probes and actual agent results
@@ -112,6 +114,11 @@ Published versions are listed on [ClawHub](https://clawhub.ai/agentx-icu/skills/
 With a current ClawHub CLI, install the latest published version using
 `clawhub install @agentx-icu/cross-platform-app-checklist`; add `--version` to
 select an existing published version. Git clone/link also works.
+
+For first releases and updates, use the
+[technical release gates](references/release-reliability.md)
+([简体中文](references/release-reliability.zh-CN.md)) to prepare a populated
+baseline and verify offline storage, identity, upgrades, backups and failure recovery.
 
 For submission or release work, open the [store release guide](references/stores.md)
 ([简体中文](references/stores.zh-CN.md)) and choose the actual channel,

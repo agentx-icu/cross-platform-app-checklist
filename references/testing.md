@@ -329,6 +329,10 @@ assume reinstall resets permissions or credentials. Exercise launch, a
 protected feature, links / associations and any changed update / migration
 path as a standard user without developer permission overrides.
 
+For a first release, preserve the installable candidate and a populated data
+baseline. Use the [technical acceptance matrix](release-reliability.md#minimum-acceptance-matrix)
+for update, interruption and recovery evidence.
+
 Store validation and privacy declarations need their own evidence; an
 accepted upload or local permission prompt is not approval of all policies.
 See P4 in [permissions](permissions.md).
