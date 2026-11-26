@@ -50,7 +50,8 @@ territory and app type under **P4/P8/P9/W4/X6**, without a second checklist.
 For first releases and changes to persistent data, credentials or update
 paths, use the [technical release gates](references/release-reliability.md)
 ([中文](references/release-reliability.zh-CN.md)) to verify offline use, identity,
-populated upgrades, interruption recovery, backup and transfer on the installed release.
+populated updates where applicable, same-version restore, interruption recovery,
+durable transfer, release promotion and channel-delivered packages.
 
 ## Two review modes
 

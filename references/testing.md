@@ -258,7 +258,7 @@ Use [permissions](permissions.md) for the required declarations and
 | Native payload architecture | Inventory the final app, engine and loaded plugin / FFI binaries against the declared target ABI: PE `Machine` (`dumpbin /headers`), Mach-O slices (`lipo -archs` on each executable), ELF class / machine / ABI flags (`readelf -h -A`). Every in-process module needs a compatible target ABI / slice; document intentional universal / hybrid binaries and out-of-process helpers separately. Package labels and CI job names are not binary evidence. Sources: [PE headers](https://learn.microsoft.com/en-us/windows/win32/debug/pe-format#machine-types), [Mach-O inspection](https://developer.apple.com/documentation/apple-silicon/building-a-universal-macos-binary), [ELF inspection](https://sourceware.org/binutils/docs/binutils/readelf.html). |
 | Android release APKs generated from the shipped bundle | Inspect final permissions, SDK levels, components and hardware requirements; run release shrinking / obfuscation and invoke plugins / native libraries. The [manifest merger](https://developer.android.com/build/manage-manifests) includes variants and dependencies, so the main source manifest is insufficient |
 | Android device availability | Check Play device filtering as well as sideload installation. Optional hardware permissions can imply required features; inspect camera and autofocus separately, then test without the hardware. See [`uses-feature`](https://developer.android.com/guide/topics/manifest/uses-feature-element) |
-| Android native libraries, including framework / SDK binaries | Check packaged ELF and ZIP alignment and run on a 16 KB page-size system with compatibility fallback disabled where available; a passing 4 KB emulator is insufficient. Follow the current [16 KB testing procedure](https://developer.android.com/guide/practices/page-sizes) and record the measured page size |
+| Android native libraries, including framework / SDK binaries | Where 16 KB compatibility applies, check ELF alignment for compressed and uncompressed libraries. For uncompressed libraries, check ZIP alignment in direct and channel-generated APKs, and check the AAB alignment request when shipping a bundle. Install through the intended channel on a 16 KB system with compatibility fallback disabled where available. Record measured page size and package identity. [Package acceptance details](release-reliability.md#release-promotion-and-delivered-package) |
 | Apple exported app and embedded extensions / frameworks | Inspect built usage strings and localisations, privacy manifests, deployment minima and signed entitlements / provisioning where applicable. Install the distribution build and invoke protected features; debug signing can hide release access failures |
 | Windows shipped package or unpackaged installer | Verify the actual manifest / identity and capabilities where used, then exercise system privacy settings. [Capability requirements depend on the app model](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/app-capability-declarations); an unpackaged build does not validate an MSIX build |
 | Linux shipped package and supported desktop session | Install on a clean supported system; exercise file / device portals with the shipped sandbox permissions. Developer-machine libraries and permission overrides can hide failures. See [Flatpak sandbox and portal guidance](https://docs.flatpak.org/en/latest/sandbox-permissions.html) when applicable |
@@ -322,16 +322,19 @@ do not qualify the final head. Record test totals and reasons for skips;
 a dedicated layout run covers only the cases it actually executes.
 
 **Verify.** Record artifact identifiers / hashes and installation channel.
-Test both clean install with fresh consent and upgrade from the previous
-released version with existing data and consent. Reinstall, OS update,
+Test clean install with fresh consent. Where a supported predecessor exists,
+also test upgrade with existing data and consent. Reinstall, OS update,
 backup restore and account change are separate cases when affected; do not
 assume reinstall resets permissions or credentials. Exercise launch, a
 protected feature, links / associations and any changed update / migration
 path as a standard user without developer permission overrides.
 
-For a first release, preserve the installable candidate and a populated data
-baseline. Use the [technical acceptance matrix](release-reliability.md#minimum-acceptance-matrix)
-for update, interruption and recovery evidence.
+For a first public release, preserve the installable candidate and a populated
+data baseline, including when it follows a supported beta. Use the
+[technical acceptance matrix](release-reliability.md#minimum-acceptance-matrix)
+for updates, interruptions and same-version recovery. For channels that stage
+drafts, verify [release promotion](release-reliability.md#release-promotion-and-delivered-package)
+including incomplete uploads and reattempts before publication.
 
 Store validation and privacy declarations need their own evidence; an
 accepted upload or local permission prompt is not approval of all policies.

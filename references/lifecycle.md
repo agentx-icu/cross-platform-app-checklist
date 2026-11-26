@@ -329,8 +329,11 @@ For Dart's process / handle differences, see [Flutter notes](flutter.md).
 
 **Rule.** Persist an operation ID, owned source / valid grant, destination,
 status and cancellation before enqueueing work. Reconcile durable state
-with the OS task on launch and resume; retries and repeated callbacks must
-not duplicate an upload, charge or imported item.
+with the OS task on launch and resume. Apply callbacks only to the matching
+attempt and settle it on the completion event that satisfies the protocol's
+delivery contract. Use idempotency for duplicate-free retry. If the outcome is
+unknown, follow the [documented retry policy](release-reliability.md#first-release-failure-paths)
+and expose the pending or uncertain state.
 
 - Apple background `URLSessionConfiguration.background(withIdentifier:)`
   lets HTTP(S) transfers run in a system process. Recreate the session with
@@ -359,8 +362,8 @@ twice.
 
 **Verify.** Interrupt before enqueue, during transfer and after server
 success but before local acknowledgement. Restart, reboot, cancel, sign
-out and retry; verify one logical result, cleanup of owned temporary files,
-and an honest pending / failed / completed state.
+out and retry. Verify the promised delivery semantics, cleanup of owned
+temporary files, and an accurate pending / uncertain / failed / completed state.
 
 Sources: [Apple background session lifecycle](https://developer.apple.com/documentation/foundation/urlsessionconfiguration/background(withidentifier:)),
 [background transfer constraints](https://developer.apple.com/documentation/foundation/downloading-files-in-the-background),
